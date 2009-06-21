@@ -66,12 +66,12 @@
 			background-color: #F00;
 			position: absolute;
 			left: 200px;
-			top: 40px;
+			top: -100px;
 		}
 	</style>
 	
 </head>
-<body onResize="resetScroller()">
+<body onResize="resetScrollerPos()" onLoad="doInit()">
 	<div class="topNav">
 		<span>This is where the top nav goes</span>
 	</div>
@@ -282,7 +282,22 @@
 		Bottom Navigation
 	</div>
 	<script type="text/javascript" charset="utf-8">
-		var resetScroller = function() {
+		var doInit = function() {
+			// Setup the scroller
+			resetScrollerPos();
+			var scrollerDragDrop = new YAHOO.util.DD("scroller");
+			scrollerDragDrop.setXConstraint(0, 0);
+			scrollerDragDrop.on('dragEvent', function(ev) {
+				// scroll the canvas
+			}, scrollerDragDrop, true);
+			scrollerDragDrop.on('endDragEvent', function(ev) {
+				resetScrollerPos();
+			}, scrollerDragDrop, true);
+			
+			
+		}
+		
+		var resetScrollerPos = function() {
 			var scrollerDOM = document.getElementById("scroller");
 			var viewHeight = YAHOO.util.Dom.getViewportHeight();
 			var scrollerHeight = scrollerDOM.clientHeight;
@@ -290,14 +305,9 @@
 
 			YAHOO.util.Dom.setStyle(scrollerDOM, "top", reestTop + "px");
 		}
-		
-		resetScroller();
-		
-		
 	
-		var scrollerDragDrop = new YAHOO.util.DD("scroller");
-		var canvas = document.getElementById("canvas");
 
+		//var canvas = document.getElementById("canvas");
 		//console.log(canvas.scrollTop);
 	</script>
 </body>
