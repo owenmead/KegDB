@@ -71,7 +71,7 @@
 	</style>
 	
 </head>
-<body onResize="resetScrollerPos()" onLoad="doInit()">
+<body onResize="scrollManager.resetScrollerPos()">
 	<div class="topNav">
 		<span>This is where the top nav goes</span>
 	</div>
@@ -282,30 +282,44 @@
 		Bottom Navigation
 	</div>
 	<script type="text/javascript" charset="utf-8">
-		var doInit = function() {
-			// Setup the scroller
-			resetScrollerPos();
-			var scrollerDragDrop = new YAHOO.util.DD("scroller");
-			scrollerDragDrop.setXConstraint(0, 0);
-			scrollerDragDrop.on('dragEvent', function(ev) {
-				// scroll the canvas
-			}, scrollerDragDrop, true);
-			scrollerDragDrop.on('endDragEvent', function(ev) {
-				resetScrollerPos();
-			}, scrollerDragDrop, true);
-			
-			
+		ScrollManager = function (scrollerID) {
+			this.scrollerDOM = document.getElementById(scrollerID);
+			this.scrollerDragDrop = new YAHOO.util.DD(scrollerID);
+			this.scrollerDragDrop.scrollManager = this;
 		}
-		
-		var resetScrollerPos = function() {
-			var scrollerDOM = document.getElementById("scroller");
-			var viewHeight = YAHOO.util.Dom.getViewportHeight();
-			var scrollerHeight = scrollerDOM.clientHeight;
-			var reestTop = viewHeight/2 - scrollerHeight/2;
 
-			YAHOO.util.Dom.setStyle(scrollerDOM, "top", reestTop + "px");
+		ScrollManager.prototype.init = function() {
+			this.resetScrollerPos();
+
+			// Only scroll in the Y Axis
+			this.scrollerDragDrop.setXConstraint(0, 0);
+
+			// Setup the event hooks
+			this.scrollerDragDrop.on('dragEvent', this.onDragScroller, this.scrollerDragDrop, true);
+			this.scrollerDragDrop.on('endDragEvent', this.onEndDragScroller, this.scrollerDragDrop, true);
 		}
-	
+
+		ScrollManager.prototype.resetScrollerPos = function() {
+			var viewHeight = YAHOO.util.Dom.getViewportHeight();
+			var scrollerHeight = this.scrollerDOM.clientHeight;
+			var reestTop = viewHeight/2 - scrollerHeight/2;
+			YAHOO.util.Dom.setStyle(this.scrollerDOM, "top", reestTop + "px");
+		}
+
+		ScrollManager.prototype.onDragScroller = function(ev) {
+			//var scrollerY = YAHOO.util.Dom.getY("scroller");
+			//console.log(scrollerY);			
+			//console.log("Move Canvas!");
+		}
+
+		ScrollManager.prototype.onEndDragScroller = function(ev) {
+			this.scrollManager.resetScrollerPos();
+		}
+
+		var scrollManager = new ScrollManager("scroller");
+		scrollManager.init();
+		scrollManager.resetScrollerPos();
+
 
 		//var canvas = document.getElementById("canvas");
 		//console.log(canvas.scrollTop);
