@@ -1,0 +1,21 @@
+:::::::::::::::::::::: Product Goal / Definition :::::::::::::::::::::::
+::  A preparation, cooking, and allergy guide for Keg kitchen staff.  ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Couple different ways to get to what they need:
+-Recent
+-Most Common
+-Needed for Today
+-Alphabetically
+-Category
+-Search
+
+Provide finger-tip sized targets
+
+Navigation Bar (Blue Top Thing)
+	- Navigation controls
+
+Tab Bar - Different views or modes (Black)
+
+Keyboard slides up from the bottom, and covers everything underneath it
+
