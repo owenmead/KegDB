@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>YUI Animation Stuff</title>
+
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.7.0/build/reset/reset-min.css">
+	<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.7.0/build/utilities/utilities.js"></script>
+	<script src="http://yui.yahooapis.com/2.7.0/build/yahoo/yahoo-min.js"></script> 
+	<script src="http://yui.yahooapis.com/2.7.0/build/dom/dom-min.js"></script> 
+
+	<style type="text/css" media="screen">
+		* {
+			margin: 0pt;
+			padding: 0pt;
+		}
+		body {
+			font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+		}
+		div#canvas {
+			background-color: #FFF;
+			padding: 10px;
+			height: 400px;
+			overflow: scroll;
+		}
+			div#canvas dl dt, div#canvas dl dd {
+				border-bottom: 1px solid #ddd;
+				border-left: 1px solid #ddd;
+				border-right: 1px solid #ddd;
+			}
+			div#canvas dl dt {
+				font-weight: bold;
+				font-size: 11px;
+				color: #FFF;
+				background-image: url('images/letterGradient.png');
+				background-repeat: repeat-x;
+				padding-left: 5px;
+			}
+			div#canvas dl dd {
+				font-size: 120%;
+				padding: 5px 5px;
+			}
+
+		/* <end canvas */
+
+		div.topNav, div.bottomNav {
+			color: #EEE;
+			clear: both;
+			text-align: center;
+		}
+		div.topNav {
+			background-image: url('images/topGradient.png');
+			background-repeat: repeat-x;
+			height: 35px;
+		}
+		div.bottomNav {
+			background-image: url('images/bottomGradient.png');
+			background-repeat: repeat-x;
+			height: 40px;
+		}
+		
+		div.scroller {
+			height: 40px;
+			width: 200px;
+			background-color: #F00;
+			position: absolute;
+			left: 200px;
+			top: 40px;
+		}
+	</style>
+	
+</head>
+<body onResize="resetScroller()">
+	<div class="topNav">
+		<span>This is where the top nav goes</span>
+	</div>
+	<div class="scroller" id="scroller"></div>
+	<div id="canvas">
+		<dl>
+			<dt>A</dt>
+			<dd>Ahi Tuna</dd>
+			<dd>Apple Crumble</dd>
+			<dd>Au Jus</dd>
+			<dt>B</dt>
+			<dd>Baked Garlic Shrimp</dd>
+			<dd>Baked Goat Cheese</dd>
+			<dd>Baked Parmesan Tomato</dd>
+			<dd>Baked Potato</dd>
+			<dd>Baked Potatoes - 70 Count</dd>
+			<dd>Baked Tomato</dd>
+			<dd>Balsamic Mushroom Chicken</dd>
+			<dd>Balsamic Mushroom Sirloin.</dd>
+			<dd>Baseball Sirloin</dd>
+			<dd>Bearnaise Sauce</dd>
+			<dd>Billy Miner Pie (Swus)</dd>
+			<dd>Billy Miner Pie</dd>
+			<dd>Bleu Burger Prep (Swus)</dd>
+			<dd>Bleu Cheese Crust Mixture</dd>
+			<dd>Bleu Cheese Filet</dd>
+			<dd>Bleu Onion Burger</dd>
+			<dd>Broccoli Au Gratin</dd>
+			<dd>Brownie  Sundae</dd>
+			<dd>Burger Set up (Swus)</dd>
+			<dd>Butter: Creamy</dd>
+			<dd>Butter: Whipped</dd>
+			<dt>C</dt>
+			<dd>C-Vap Cooking Procedure</dd>
+			<dd>Caesar Salad - Romaine Lettuce</dd>
+			<dd>Caesar Salad</dd>
+			<dd>Calamari Breading</dd>
+			<dd>Calamari Dipping Sauce</dd>
+			<dd>Calamari Thawing</dd>
+			<dd>Caper Dill Mayonnaise (Swus)</dd>
+			<dd>Carrot Cake (Usa)</dd>
+			<dd>Carrot/Red Pepper Confetti</dd>
+			<dd>Cheese Toast Bread</dd>
+			<dd>Cheese Toast Mixture</dd>
+			<dd>Cheesecake</dd>
+			<dd>Chicken Breast Panning Procedure</dd>
+			<dd>Chicken Caesar Salad (Usa)</dd>
+			<dd>Chicken Fajitas (Cdn)</dd>
+			<dd>Chicken Fajitas Vegetables (Cdn)</dd>
+			<dd>Chicken for Nachos (Usa)</dd>
+			<dd>Chicken Strips</dd>
+			<dd>Chicken Strips and Caesar</dd>
+			<dd>Chicken Strips and Fries</dd>
+			<dd>Chicken-Teriyaki Marinade Procedure</dd>
+			<dd>Chipotle Ranch Chicken Sandwich</dd>
+			<dd>Chipotle Ranch Sauce (Swus)</dd>
+			<dd>Chocolate Cake (Usa)</dd>
+			<dd>Chocolate Chunk Brownie</dd>
+			<dd>Chocolate Heaven (Cnd/Pnw)</dd>
+			<dd>Classic Vegetable Prep</dd>
+			<dd>Classic Vegetables (Cooking Procedures)</dd>
+			<dd>Classic Vegetables (Presentation)</dd>
+			<dd>Clear Garlic Sauce</dd>
+			<dd>Cook & Hold Procedure</dd>
+			<dd>Crab Cakes (Sw Usa)</dd>
+			<dd>Crab Parmesan Spinach Dip (Pnw and Cnd)</dd>
+			<dd>Crab Parmesan Spinach Dip (Pnw/Cnd)</dd>
+			<dd>Creole Butter</dd>
+			<dd>Creole Chicken</dd>
+			<dd>Crispy Dry Ribs (Cnd)</dd>
+			<dd>Crostini</dd>
+			<dd>Crème Brule</dd>
+			<dt>D</dt>
+			<dd>Dill Pickle/Cherry Tomato Skewer (Swus)</dd>
+			<dt>E</dt>
+			<dd>Escargot</dd>
+			<dt>F</dt>
+			<dd>Filet Classic</dd>
+			<dd>Filet:  7 Oz. and 10 Oz.</dd>
+			<dd>Flatbread</dd>
+			<dd>French Onion Soup</dd>
+			<dd>Frizzled Onions</dd>
+			<dt>G</dt>
+			<dd>Garlic Cheese Toast</dd>
+			<dd>Garlic Mashed Potatoes</dd>
+			<dd>Garlic Toast for Steak Sandwiches</dd>
+			<dd>Garnish Summary</dd>
+			<dd>Graham Cracker Crust (Swus)</dd>
+			<dd>Grilled Filet</dd>
+			<dd>Grilled Shrimp</dd>
+			<dd>Grilled Thai Chicken</dd>
+			<dt>H</dt>
+			<dd>Honey Bbq Chicken & Ribs</dd>
+			<dd>Honey Bbq Ribs</dd>
+			<dd>Hot Sweet Calamari</dd>
+			<dd>House Salad   27</dd>
+			<dd>House Salad  44</dd>
+			<dt>K</dt>
+			<dd>Keg Fries</dd>
+			<dd>Keg S & P Blend</dd>
+			<dd>Kids Beef Dip  126</dd>
+			<dd>Kids Burgers</dd>
+			<dd>Kids Chicken Strips & Fries</dd>
+			<dd>Kids Grilled Chicken</dd>
+			<dd>Kids Sirloin:  6 Oz.</dd>
+			<dd>Kids Veggie Platter</dd>
+			<dd>Kids ½ Rack Bbq Pork Ribs</dd>
+			<dd>King Crab Combo</dd>
+			<dd>King Crab Dinner</dd>
+			<dt>L</dt>
+			<dd>Lettuce Wedge Salad (Usa)</dd>
+			<dd>Lobster Dinner</dd>
+			<dd>Lobster Tails</dd>
+			<dt>M</dt>
+			<dd>Margarita Key Lime Pie (Swus)</dd>
+			<dd>Margarita Key Lime Pie (Swusa)</dd>
+			<dd>Martini Cocktail Sauce</dd>
+			<dd>Medium Well/Well Done Prime Rib</dd>
+			<dd>Mezzina/Chips (for Tuna Appetizer)</dd>
+			<dd>Mezzina/Red Tortilla Chips (for Nachos)</dd>
+			<dd>Mushroom Broth</dd>
+			<dd>Mushrooms Mix (for Balsamic Mushrooms)</dd>
+			<dd>Mushrooms Neptune</dd>
+			<dd>Mushrooms Reduction</dd>
+			<dd>Nachos - Keg Size (With Chicken Option)</dd>
+			<dd>Nachos - Regular   (With Chicken Option)</dd>
+			<dd>Nachos</dd>
+			<dd>Neptune Mix</dd>
+			<dd>New York Classic</dd>
+			<dd>New York Striploin.</dd>
+			<dd>New Yorks:  All Sizes</dd>
+			<dd>Oscar Combo</dd>
+			<dd>Peppercorn New York.</dd>
+			<dd>Pineapple Cilantro Salsa</dd>
+			<dd>Pork Button Bones (Cnd)</dd>
+			<dd>Prime Rib</dd>
+			<dd>Prime Rib Beef Dip</dd>
+			<dd>Prime Rib Burger</dd>
+			<dd>Prime Rib Burger Prep (Swus)</dd>
+			<dd>Prime Rib Classic</dd>
+			<dd>Prime Rib Cooked to Medium</dd>
+			<dd>Prime Rib Overnight Holding Procedure</dd>
+			<dd>Prime Rib With King Crab</dd>
+			<dd>Prime Rib With Lobster Tail</dd>
+			<dd>Prime Rib With Shrimp Skewer</dd>
+			<dd>Prime Rib.</dd>
+			<dd>Red Wine Herb Au Jus</dd>
+			<dd>Rib Eye:   16 Oz.</dd>
+			<dd>Rib Steak.</dd>
+			<dd>Rice Pilaf</dd>
+			<dd>Roasted Garlic</dd>
+			<dd>Rosemary Mayonnaise</dd>
+			<dd>Salmon Panning</dd>
+			<dd>Sandwich Sirloin: 8 Oz.</dd>
+			<dd>Santa Fe Chicken Dip (Sw Usa)</dd>
+			<dd>Sante Fe Chicken Dip (Swus)</dd>
+			<dd>Sauteed Mushrooms</dd>
+			<dd>Scallops & Bacon</dd>
+			<dd>Shaved Prime Rib Sandwich</dd>
+			<dd>Shrimp Cocktail</dd>
+			<dd>Shrimp Skewer</dd>
+			<dd>Sirloin Caesar Salad  (Usa).</dd>
+			<dd>Sirloin Oscar</dd>
+			<dd>Sirloin.</dd>
+			<dd>Sirloin/Teriyaki Classic</dd>
+			<dd>Sirloin/Teriyaki With King Crab</dd>
+			<dd>Sirloin/Teriyaki With Lobster Tail</dd>
+			<dd>Sirloin/Teriyaki With Shrimp Skewer</dd>
+			<dd>Sirloins:  All Sizes.</dd>
+			<dd>Sliders</dd>
+			<dd>Smoked Chicken (Swus)</dd>
+			<dd>Snap Peas and Aspargus</dd>
+			<dd>Soy Dipping Sauce</dd>
+			<dd>Spicy Seasoning</dd>
+			<dd>Spinach Salad</dd>
+			<dd>Spinach Salad With Bleu or Goat Cheese</dd>
+			<dd>Spinach Saute (Usa Only)</dd>
+			<dd>Spinach Saute</dd>
+			<dd>Steak Sandwich</dd>
+			<dd>Steamed Asparagus</dd>
+			<dd>Sweet Potato Fries</dd>
+			<dd>Sweet Teri Sauce (Pnw)</dd>
+			<dd>Table Bread</dd>
+			<dd>Tempura Asparagus and Snap Peas</dd>
+			<dd>Tempura Batter</dd>
+			<dd>Teriyaki Chicken</dd>
+			<dd>Teriyaki Sirloin. .</dd>
+			<dd>Teriyaki Sirloin:  8 Oz.</dd>
+			<dd>Thai Chili Aioli</dd>
+			<dd>Thai Teriyaki Sauce</dd>
+			<dd>Thai Vegetable Portion</dd>
+			<dd>Thai Vegetable Salad</dd>
+			<dd>Three Pepper Sauce (Pnw)</dd>
+			<dd>Three Pepper Wings (Pnw)</dd>
+			<dd>Three Pepper Wings (from Frozen State) (Pnw)</dd>
+			<dd>Three Pepper Wings (from Refrigerated State) (Pnw)</dd>
+			<dd>Tomato Basil Salsa</dd>
+			<dd>Tomato Pesto Salmon</dd>
+			<dd>Trio Sampler</dd>
+			<dd>Tuna Medallion Thawing</dd>
+			<dd>Twice Baked Potato</dd>
+			<dd>Zesty Salmon</dd>
+			<dd>Zucchini Sauté</dd>
+			<dd>Zucchini, Cherry Tomato, Black Olive and Basil</dd>
+		</dl>
+	</div>
+	<div class="bottomNav">
+		Bottom Navigation
+	</div>
+	<script type="text/javascript" charset="utf-8">
+		var resetScroller = function() {
+			var scrollerDOM = document.getElementById("scroller");
+			var viewHeight = YAHOO.util.Dom.getViewportHeight();
+			var scrollerHeight = scrollerDOM.clientHeight;
+			var reestTop = viewHeight/2 - scrollerHeight/2;
+
+			YAHOO.util.Dom.setStyle(scrollerDOM, "top", reestTop + "px");
+		}
+		
+		resetScroller();
+		
+		
+	
+		var scrollerDragDrop = new YAHOO.util.DD("scroller");
+		var canvas = document.getElementById("canvas");
+
+		//console.log(canvas.scrollTop);
+	</script>
+</body>
