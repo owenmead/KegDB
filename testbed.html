@@ -282,10 +282,13 @@
 		Bottom Navigation
 	</div>
 	<script type="text/javascript" charset="utf-8">
-		ScrollManager = function (scrollerID) {
+		ScrollManager = function (scrollerID, canvasID) {
 			this.scrollerDOM = document.getElementById(scrollerID);
 			this.scrollerDragDrop = new YAHOO.util.DD(scrollerID);
 			this.scrollerDragDrop.scrollManager = this;
+
+			this.canvasDOM = document.getElementById(canvasID);
+			this.startScrollTop = this.canvasDOM.scrollTop;
 		}
 
 		ScrollManager.prototype.init = function() {
@@ -304,24 +307,22 @@
 			var scrollerHeight = this.scrollerDOM.clientHeight;
 			var reestTop = viewHeight/2 - scrollerHeight/2;
 			YAHOO.util.Dom.setStyle(this.scrollerDOM, "top", reestTop + "px");
+			
+			this.defaultScrollerTop = YAHOO.util.Dom.getY("scroller");
 		}
-
+		
 		ScrollManager.prototype.onDragScroller = function(ev) {
-			//var scrollerY = YAHOO.util.Dom.getY("scroller");
-			//console.log(scrollerY);			
-			//console.log("Move Canvas!");
+			var scrollerY = YAHOO.util.Dom.getY("scroller");
+			this.scrollManager.canvasDOM.scrollTop = 
+				this.scrollManager.startScrollTop + (scrollerY - this.scrollManager.defaultScrollerTop) * -1;
 		}
 
 		ScrollManager.prototype.onEndDragScroller = function(ev) {
 			this.scrollManager.resetScrollerPos();
+			this.scrollManager.startScrollTop = this.scrollManager.canvasDOM.scrollTop;
 		}
 
-		var scrollManager = new ScrollManager("scroller");
+		var scrollManager = new ScrollManager("scroller", "canvas");
 		scrollManager.init();
-		scrollManager.resetScrollerPos();
-
-
-		//var canvas = document.getElementById("canvas");
-		//console.log(canvas.scrollTop);
 	</script>
 </body>
