@@ -21,8 +21,8 @@
 		div#canvas {
 			background-color: #FFF;
 			padding: 10px;
-			height: 400px;
-			overflow: scroll;
+			height: 350px;
+			overflow: hidden;
 		}
 			div#canvas dl dt, div#canvas dl dd {
 				border-bottom: 1px solid #ddd;
@@ -69,22 +69,65 @@
 			top: -100px;
 		}
 	</style>
-	
+	<script type="text/javascript" charset="utf-8">
+		ScrollManager = function (scrollingDOMID) {
+			this.scrollingDOMID = scrollingDOMID;
+			this.isDragging = false;
+		}
+		
+		ScrollManager.prototype.init = function() {
+			this.scrollingrDOM = document.getElementById(this.scrollingDOMID);
+			this.scrollingDD = new YAHOO.util.DD(this.scrollingrDOM);
+			
+			// Needed for on dragging events
+			this.scrollingDD.scrollManager = this;
+			
+			// Only drag in Y-axis
+			this.scrollingDD.setXConstraint(0, 0);
+			
+			this.scrollingDD.on('dragEvent', this.onDragging, this.scrollingDD, true);
+			this.scrollingDD.on('endDragEvent', this.onEndDragging, this.scrollingDD, true);			
+			this.scrollingDD.on('startDragEvent', this.onStartDragging, this.scrollingDD, true);			
+		}
+
+		ScrollManager.prototype.onDragging = function(ev) {
+			//console.log("dragging!");
+		}
+
+		ScrollManager.prototype.onStartDragging = function(ev) {
+			this.scrollManager.isDragging = true;
+		}
+		
+		ScrollManager.prototype.onEndDragging = function(ev) {
+			console.log("end dragging!");
+		}
+		
+		ScrollManager.prototype.doClick = function(ev) {
+			if(this.isDragging) {
+				this.isDragging = false;
+				return;
+			} else {
+				alert("HI!");
+			}
+		}
+
+		var scrollManager = new ScrollManager("toScroll");
+	</script>
 </head>
-<body onResize="scrollManager.resetScrollerPos()">
+<body onResize="scrollManager.resetScrollerPos()" onLoad="scrollManager.init()">
 	<div class="topNav">
 		<span>This is where the top nav goes</span>
 	</div>
 	<div class="scroller" id="scroller"></div>
 	<div id="canvas">
-		<dl>
+		<dl id="toScroll">
 			<dt>A</dt>
 			<dd>Ahi Tuna</dd>
 			<dd>Apple Crumble</dd>
 			<dd>Au Jus</dd>
 			<dt>B</dt>
 			<dd>Baked Garlic Shrimp</dd>
-			<dd>Baked Goat Cheese</dd>
+			<dd onclick="scrollManager.doClick()">Baked Goat Cheese</dd>
 			<dd>Baked Parmesan Tomato</dd>
 			<dd>Baked Potato</dd>
 			<dd>Baked Potatoes - 70 Count</dd>
@@ -281,48 +324,4 @@
 	<div class="bottomNav">
 		Bottom Navigation
 	</div>
-	<script type="text/javascript" charset="utf-8">
-		ScrollManager = function (scrollerID, canvasID) {
-			this.scrollerDOM = document.getElementById(scrollerID);
-			this.scrollerDragDrop = new YAHOO.util.DD(scrollerID);
-			this.scrollerDragDrop.scrollManager = this;
-
-			this.canvasDOM = document.getElementById(canvasID);
-			this.startScrollTop = this.canvasDOM.scrollTop;
-		}
-
-		ScrollManager.prototype.init = function() {
-			this.resetScrollerPos();
-
-			// Only scroll in the Y Axis
-			this.scrollerDragDrop.setXConstraint(0, 0);
-
-			// Setup the event hooks
-			this.scrollerDragDrop.on('dragEvent', this.onDragScroller, this.scrollerDragDrop, true);
-			this.scrollerDragDrop.on('endDragEvent', this.onEndDragScroller, this.scrollerDragDrop, true);
-		}
-
-		ScrollManager.prototype.resetScrollerPos = function() {
-			var viewHeight = YAHOO.util.Dom.getViewportHeight();
-			var scrollerHeight = this.scrollerDOM.clientHeight;
-			var reestTop = viewHeight/2 - scrollerHeight/2;
-			YAHOO.util.Dom.setStyle(this.scrollerDOM, "top", reestTop + "px");
-			
-			this.defaultScrollerTop = YAHOO.util.Dom.getY("scroller");
-		}
-		
-		ScrollManager.prototype.onDragScroller = function(ev) {
-			var scrollerY = YAHOO.util.Dom.getY("scroller");
-			this.scrollManager.canvasDOM.scrollTop = 
-				this.scrollManager.startScrollTop + (scrollerY - this.scrollManager.defaultScrollerTop) * -1;
-		}
-
-		ScrollManager.prototype.onEndDragScroller = function(ev) {
-			this.scrollManager.resetScrollerPos();
-			this.scrollManager.startScrollTop = this.scrollManager.canvasDOM.scrollTop;
-		}
-
-		var scrollManager = new ScrollManager("scroller", "canvas");
-		scrollManager.init();
-	</script>
 </body>
