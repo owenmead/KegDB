@@ -8,7 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.7.0/build/reset/reset-min.css">
 	<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.7.0/build/utilities/utilities.js"></script>
 	<script src="http://yui.yahooapis.com/2.7.0/build/yahoo/yahoo-min.js"></script> 
-	<script src="http://yui.yahooapis.com/2.7.0/build/dom/dom-min.js"></script> 
+	<script src="http://yui.yahooapis.com/2.7.0/build/dom/dom-min.js"></script>
+	<script src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<script src="http://yui.yahooapis.com/2.7.0/build/element/element-min.js"></script>
+	<script src="http://yui.yahooapis.com/2.7.0/build/animation/animation-min.js" type="text/javascript"></script>
 
 	<style type="text/css" media="screen">
 		* {
@@ -40,6 +43,7 @@
 			div#canvas dl dd {
 				font-size: 120%;
 				padding: 5px 5px;
+				cursor: hand; cursor: pointer;				
 			}
 
 		/* <end canvas */
@@ -70,15 +74,29 @@
 		}
 	</style>
 	<script type="text/javascript" charset="utf-8">
+		function topStyleToInt(el) {
+			// Grab the style which is a string
+			var theTop = el.getStyle('top');
+			
+			if (theTop == 'auto') return 0;
+
+			// Chop the negative sign, and the 'px'
+			return parseInt(theTop.substr(0, theTop.length-2));
+		}
+	
 		ScrollManager = function (scrollingDOMID) {
 			this.scrollingDOMID = scrollingDOMID;
 			this.isDragging = false;
+
+			this.startScrollPos;
+			this.startScrollTime;
 		}
 		
 		ScrollManager.prototype.init = function() {
-			this.scrollingrDOM = document.getElementById(this.scrollingDOMID);
-			this.scrollingDD = new YAHOO.util.DD(this.scrollingrDOM);
-			
+			//console.log(getTime());
+			this.scrollingrEl = new YAHOO.util.Element(this.scrollingDOMID);
+			this.scrollingDD = new YAHOO.util.DD(this.scrollingDOMID);
+
 			// Needed for on dragging events
 			this.scrollingDD.scrollManager = this;
 			
@@ -86,8 +104,8 @@
 			this.scrollingDD.setXConstraint(0, 0);
 			
 			this.scrollingDD.on('dragEvent', this.onDragging, this.scrollingDD, true);
-			this.scrollingDD.on('endDragEvent', this.onEndDragging, this.scrollingDD, true);			
-			this.scrollingDD.on('startDragEvent', this.onStartDragging, this.scrollingDD, true);			
+			this.scrollingDD.on('endDragEvent', this.onEndDragging, this.scrollingDD, true);
+			this.scrollingDD.on('startDragEvent', this.onStartDragging, this.scrollingDD, true);
 		}
 
 		ScrollManager.prototype.onDragging = function(ev) {
@@ -95,26 +113,38 @@
 		}
 
 		ScrollManager.prototype.onStartDragging = function(ev) {
-			this.scrollManager.isDragging = true;
+			var mngr = this.scrollManager;
+
+			mngr.isDragging = true;
+
+			mngr.startScrollPos = topStyleToInt(mngr.scrollingrEl);
+			mngr.startScrollTime = new Date().getTime();
 		}
 		
 		ScrollManager.prototype.onEndDragging = function(ev) {
-			console.log("end dragging!");
+			var mngr = this.scrollManager;
+			var posDiff = mngr.startScrollPos - topStyleToInt(mngr.scrollingrEl);
+			var timeDiff = new Date().getTime() - mngr.startScrollTime;
+			console.log(posDiff, timeDiff);
 		}
-		
+
 		ScrollManager.prototype.doClick = function(ev) {
+			var mngr = this.scrollManager;
+
 			if(this.isDragging) {
 				this.isDragging = false;
 				return;
 			} else {
-				alert("HI!");
+				alert("CLICK");
+				//var el = ('toScroll');
+				//console.log(el.getStyle('top'));
 			}
 		}
 
 		var scrollManager = new ScrollManager("toScroll");
 	</script>
 </head>
-<body onResize="scrollManager.resetScrollerPos()" onLoad="scrollManager.init()">
+<body onLoad="scrollManager.init()">
 	<div class="topNav">
 		<span>This is where the top nav goes</span>
 	</div>
