@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<script src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<script src="http://yui.yahooapis.com/2.7.0/build/element/element-min.js"></script>
+	<style type="text/css" media="screen">
+	div#foo {
+		border: 1px solid #F00;
+	}
+	</style>
+</head>
+
+<body> 
+	<!--markup for foo--> 
+	<div id="foo"> 
+		<ul> 
+			<li>lorem</li> 
+			<li>ipsum</li> 
+			<li>dolor</li> 
+			<li>sit</li> 
+		</ul> 
+	</div>
+
+	<script> 
+	var el = new YAHOO.util.Element('foo');
+
+	//set the color style property of 'foo'
+	//using the Element instance:
+	el.setStyle('color', '#f00');
+
+	//set an event handler using the Element
+	//instance to alert the value of the 
+	//color style property when 'foo' is clicked:
+	el.on('click', function() {
+	    alert(this.getStyle('color'));
+	});
+	
+	console.log(el.getStyle('top'));
+
+	</script>
+</body>
+</html>
