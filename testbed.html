@@ -120,7 +120,24 @@
 			var mngr = this.scrollManager;
 			var posDiff = mngr.startScrollPos - topStyleToInt(mngr.scrollingrEl);
 			var timeDiff = new Date().getTime() - mngr.startScrollTime;
-			console.log(posDiff, timeDiff);
+
+			mngr.animateList(posDiff, timeDiff);
+		}
+		
+		ScrollManager.prototype.animateList = function(posDiff, timeDiff) {
+			var deAcel = 3000; //px/sec/sec
+			var velocity = posDiff/timeDiff * 1000; // px / sec
+			var timeToStop = Math.abs(velocity/deAcel); // sec
+			var distanceToMove = timeToStop * velocity * -1; // px
+			
+			var attributes = {
+			   top: { by: distanceToMove }
+			};
+			
+			var myAnim = new YAHOO.util.Anim(this.scrollingDOMID, attributes);
+			myAnim.method = YAHOO.util.Easing.easeOut;
+			myAnim.duration = timeToStop;
+			myAnim.animate();
 		}
 
 		ScrollManager.prototype.doClick = function(ev) {
@@ -152,7 +169,7 @@
 			<dd>Au Jus</dd>
 			<dt>B</dt>
 			<dd>Baked Garlic Shrimp</dd>
-			<dd onclick="scrollManager.doClick()">Baked Goat Cheese</dd>
+			<dd onclick="scrollManager.animateList()">Baked Goat Cheese</dd>
 			<dd>Baked Parmesan Tomato</dd>
 			<dd>Baked Potato</dd>
 			<dd>Baked Potatoes - 70 Count</dd>
