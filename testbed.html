@@ -79,8 +79,9 @@
 			return parseInt(theTop.substr(0, theTop.length-2));
 		}
 	
-		ScrollManager = function (scrollingDOMID) {
+		ScrollManager = function (scrollingDOMID, canvasDOMID) {
 			this.scrollingDOMID = scrollingDOMID;
+			this.canvasDOMID = canvasDOMID;
 			this.isDragging = false;
 
 			this.startScrollPos;
@@ -88,9 +89,9 @@
 		}
 		
 		ScrollManager.prototype.init = function() {
-			//console.log(getTime());
 			this.scrollingrEl = new YAHOO.util.Element(this.scrollingDOMID);
 			this.scrollingDD = new YAHOO.util.DD(this.scrollingDOMID);
+			this.canvasEl = new YAHOO.util.Element(this.canvasDOMID);
 
 			// Needed for on dragging events
 			this.scrollingDD.scrollManager = this;
@@ -134,13 +135,14 @@
 			var attributes;
 			var currentTop = styleToInt(this.scrollingrEl, 'top');
 			var scrollerHeight = styleToInt(this.scrollingrEl, 'height');
+			var canvasHeight = styleToInt(this.canvasEl, 'height');
 			if ( currentTop + distanceToMove > 0 ) {
 				attributes = {
 				   top: { to: 0 }
 				};
-			} else if (Math.abs(currentTop + distanceToMove) > scrollerHeight - 300) {
+			} else if (Math.abs(currentTop + distanceToMove) > scrollerHeight - canvasHeight) {
 				attributes = {
-				   top: { to: scrollerHeight*-1 + 300 }
+				   top: { to: scrollerHeight*-1 + canvasHeight }
 				};
 			} else {
 				attributes = {
@@ -167,7 +169,7 @@
 			}
 		}
 
-		var scrollManager = new ScrollManager("toScroll");
+		var scrollManager = new ScrollManager("toScroll", "canvas");
 	</script>
 </head>
 <body onLoad="scrollManager.init()">
