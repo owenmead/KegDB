@@ -69,9 +69,9 @@
 		}
 	</style>
 	<script type="text/javascript" charset="utf-8">
-		function topStyleToInt(el) {
+		function styleToInt(el, style) {
 			// Grab the style which is a string
-			var theTop = el.getStyle('top');
+			var theTop = el.getStyle(style);
 			
 			if (theTop == 'auto') return 0;
 
@@ -112,13 +112,13 @@
 
 			mngr.isDragging = true;
 
-			mngr.startScrollPos = topStyleToInt(mngr.scrollingrEl);
+			mngr.startScrollPos = styleToInt(mngr.scrollingrEl, 'top');
 			mngr.startScrollTime = new Date().getTime();
 		}
 		
 		ScrollManager.prototype.onEndDragging = function(ev) {
 			var mngr = this.scrollManager;
-			var posDiff = mngr.startScrollPos - topStyleToInt(mngr.scrollingrEl);
+			var posDiff = mngr.startScrollPos - styleToInt(mngr.scrollingrEl, 'top');
 			var timeDiff = new Date().getTime() - mngr.startScrollTime;
 
 			mngr.animateList(posDiff, timeDiff);
@@ -129,11 +129,25 @@
 			var velocity = posDiff/timeDiff * 1000; // px / sec
 			var timeToStop = Math.abs(velocity/deAcel); // sec
 			var distanceToMove = timeToStop * velocity * -1; // px
-			
-			var attributes = {
-			   top: { by: distanceToMove }
-			};
-			
+
+			// Don't let it scroll past the top or bottom
+			var attributes;
+			var currentTop = styleToInt(this.scrollingrEl, 'top');
+			var scrollerHeight = styleToInt(this.scrollingrEl, 'height');
+			if ( currentTop + distanceToMove > 0 ) {
+				attributes = {
+				   top: { to: 0 }
+				};
+			} else if (Math.abs(currentTop + distanceToMove) > scrollerHeight - 300) {
+				attributes = {
+				   top: { to: scrollerHeight*-1 + 300 }
+				};
+			} else {
+				attributes = {
+				   top: { by: distanceToMove }
+				};
+			}
+
 			var myAnim = new YAHOO.util.Anim(this.scrollingDOMID, attributes);
 			myAnim.method = YAHOO.util.Easing.easeOut;
 			myAnim.duration = timeToStop;
