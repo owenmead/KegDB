@@ -102,6 +102,24 @@
 			this.scrollingDD.on('dragEvent', this.onDragging, this.scrollingDD, true);
 			this.scrollingDD.on('endDragEvent', this.onEndDragging, this.scrollingDD, true);
 			this.scrollingDD.on('startDragEvent', this.onStartDragging, this.scrollingDD, true);
+
+			// Hook up the click events
+			/*
+				TODO : Create a dictionary of dd's and dt's so we only create one Element.
+						Will also allow us to access them later
+			*/
+			/*
+			var dds = this.scrollingrEl.getElementsByTagName('dd');
+			for (var i=0; i<dds.length; i++) {
+				new YAHOO.util.Element(dds[i]).addListener('click', this.stopScrolling);
+			}
+			var dts = this.scrollingrEl.getElementsByTagName('dt');
+			for (var i=0; i<dts.length; i++) {
+				new YAHOO.util.Element(dts[i]).addListener('click', this.stopScrolling);
+			}
+			*/
+			this.scrollingrEl.addListener('mousedown', this.stopScrollingAnimation);
+			//console.log(dds);
 		}
 
 		ScrollManager.prototype.onDragging = function(ev) {
@@ -119,6 +137,9 @@
 		
 		ScrollManager.prototype.onEndDragging = function(ev) {
 			var mngr = this.scrollManager;
+
+			mngr.isDragging = false;
+
 			var posDiff = mngr.startScrollPos - styleToInt(mngr.scrollingrEl, 'top');
 			var timeDiff = new Date().getTime() - mngr.startScrollTime;
 
@@ -156,16 +177,12 @@
 			myAnim.animate();
 		}
 
-		ScrollManager.prototype.doClick = function(ev) {
+		ScrollManager.prototype.stopScrollingAnimation = function(ev) {
 			var mngr = this.scrollManager;
-
 			if(this.isDragging) {
-				this.isDragging = false;
 				return;
 			} else {
-				alert("CLICK");
-				//var el = ('toScroll');
-				//console.log(el.getStyle('top'));
+				console.log("stop animation!");
 			}
 		}
 
@@ -185,7 +202,7 @@
 			<dd>Au Jus</dd>
 			<dt>B</dt>
 			<dd>Baked Garlic Shrimp</dd>
-			<dd onclick="scrollManager.animateList()">Baked Goat Cheese</dd>
+			<dd>Baked Goat Cheese</dd>
 			<dd>Baked Parmesan Tomato</dd>
 			<dd>Baked Potato</dd>
 			<dd>Baked Potatoes - 70 Count</dd>
