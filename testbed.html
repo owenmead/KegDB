@@ -99,9 +99,9 @@
 			// Only drag in Y-axis
 			this.scrollingDD.setXConstraint(0, 0);
 			
-			this.scrollingDD.on('dragEvent', this.onDragging, this.scrollingDD, true);
-			this.scrollingDD.on('endDragEvent', this.onEndDragging, this.scrollingDD, true);
-			this.scrollingDD.on('startDragEvent', this.onStartDragging, this.scrollingDD, true);
+			this.scrollingDD.on('dragEvent', this.onDragging, this, true);
+			this.scrollingDD.on('endDragEvent', this.onEndDragging, this, true);
+			this.scrollingDD.on('startDragEvent', this.onStartDragging, this, true);
 
 			// Hook up the click events
 			/*
@@ -118,7 +118,7 @@
 				new YAHOO.util.Element(dts[i]).addListener('click', this.stopScrolling);
 			}
 			*/
-			this.scrollingrEl.addListener('mousedown', this.stopScrollingAnimation);
+			this.scrollingrEl.on('mousedown', this.stopScrollingAnimation, this, true);
 			//console.log(dds);
 		}
 
@@ -127,23 +127,18 @@
 		}
 
 		ScrollManager.prototype.onStartDragging = function(ev) {
-			var mngr = this.scrollManager;
-
-			mngr.isDragging = true;
-
-			mngr.startScrollPos = styleToInt(mngr.scrollingrEl, 'top');
-			mngr.startScrollTime = new Date().getTime();
+			this.isDragging = true;
+			this.startScrollPos = styleToInt(this.scrollingrEl, 'top');
+			this.startScrollTime = new Date().getTime();
 		}
 		
 		ScrollManager.prototype.onEndDragging = function(ev) {
-			var mngr = this.scrollManager;
+			this.isDragging = false;
 
-			mngr.isDragging = false;
+			var posDiff = this.startScrollPos - styleToInt(this.scrollingrEl, 'top');
+			var timeDiff = new Date().getTime() - this.startScrollTime;
 
-			var posDiff = mngr.startScrollPos - styleToInt(mngr.scrollingrEl, 'top');
-			var timeDiff = new Date().getTime() - mngr.startScrollTime;
-
-			mngr.animateList(posDiff, timeDiff);
+			this.animateList(posDiff, timeDiff);
 		}
 		
 		ScrollManager.prototype.animateList = function(posDiff, timeDiff) {
@@ -178,12 +173,7 @@
 		}
 
 		ScrollManager.prototype.stopScrollingAnimation = function(ev) {
-			var mngr = this.scrollManager;
-			if(this.isDragging) {
-				return;
-			} else {
-				console.log("stop animation!");
-			}
+			console.log("stop animation!");
 		}
 
 		var scrollManager = new ScrollManager("toScroll", "canvas");
