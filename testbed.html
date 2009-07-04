@@ -166,14 +166,14 @@
 				};
 			}
 
-			var myAnim = new YAHOO.util.Anim(this.scrollingDOMID, attributes);
-			myAnim.method = YAHOO.util.Easing.easeOut;
-			myAnim.duration = timeToStop;
-			myAnim.animate();
+			this.scrollAnimation = new YAHOO.util.Anim(this.scrollingDOMID, attributes);
+			this.scrollAnimation.method = YAHOO.util.Easing.easeOut;
+			this.scrollAnimation.duration = timeToStop;
+			this.scrollAnimation.animate();
 		}
 
 		ScrollManager.prototype.stopScrollingAnimation = function(ev) {
-			console.log("stop animation!");
+			this.scrollAnimation.stop(false);
 		}
 
 		var scrollManager = new ScrollManager("toScroll", "canvas");
