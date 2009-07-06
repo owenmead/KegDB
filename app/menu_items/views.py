@@ -1,7 +1,13 @@
-from app.menu_items.models import Category
+from app.menu_items.models import Category, MenuItem
 from django.http import HttpResponse
+from django.core import serializers
 
 def index(request):
-	cats = Category.objects.all()
-	output = ", ".join([c.name for c in cats])
-	return HttpResponse(output)
+	return HttpResponse("INDEX")
+
+def categoryList(request):
+	#data = serializers.serialize("json", Category.objects.all(), ensure_ascii=False)
+	return HttpResponse("CAT LIST")
+
+def menuitemList(request):
+	return HttpResponse("MENUITEM LIST")
