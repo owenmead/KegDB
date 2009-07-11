@@ -6,8 +6,9 @@ def index(request):
 	return HttpResponse("INDEX")
 
 def categoryList(request):
-	#data = serializers.serialize("json", Category.objects.all(), ensure_ascii=False)
-	return HttpResponse("CAT LIST")
+	data = serializers.serialize("json", Category.objects.all(), ensure_ascii=False)
+	return HttpResponse(data)
 
 def menuitemList(request):
-	return HttpResponse("MENUITEM LIST")
+	data = serializers.serialize("json", MenuItem.objects.all(), ensure_ascii=False)
+	return HttpResponse(data)
