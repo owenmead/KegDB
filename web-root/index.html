@@ -32,10 +32,18 @@
 		
 		MyManager.prototype.menuItemCallBack = function(o) {
 			var data = YAHOO.lang.JSON.parse(o.responseText);
-			console.log(data);
+			this.drawMenuItems(data);
 		}
 		MyManager.prototype.menuItemCallBack_error = function(o) {
 			alert("Error getting Menu Items")
+		}
+		MyManager.prototype.drawMenuItems = function(data) {
+			var collect = "";
+			for (i in data) {
+				collect += "<dd>" + data[i]['name'] + "</dd>"
+			}
+			var toWriteTo = document.getElementById("toScroll")
+			toWriteTo.innerHTML = collect;
 		}
 		
 		
@@ -44,5 +52,11 @@
 </head>
 <body onLoad="myManager.init()">
 	<h1>Hi</h1>
+	<div id="canvas">
+		<dl id="toScroll">
+			<dt>A</dt>
+			<dd>Ahi Tuna</dd>
+		</dl>
+	</div>
 </body>
 </html>
