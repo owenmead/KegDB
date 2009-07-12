@@ -20,4 +20,4 @@ class MenuItem(models.Model):
 
 	@classmethod
 	def get_items(cls):
-		return cls.objects.all()
+		return cls.objects.all().order_by('name')
