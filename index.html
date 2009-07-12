@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Keg DB</title>
+	<link rel="stylesheet" type="text/css" href="yui/reset-min.css">
+	<script type="text/javascript" src="yui/utilities.js"></script>
+	<script src="yui/yahoo-min.js"></script> 
+	<script src="yui/dom-min.js"></script>
+	<script src="yui/yahoo-dom-event.js"></script>
+	<script src="yui/element-min.js"></script>
+	<script src="yui/animation-min.js" type="text/javascript"></script>
+	<script src="yui/event-min.js"></script>
+	<script src="yui/connection-min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8">
+		MyManager = function(serverURL) {
+			this.serverURL = serverURL;
+		}
+		
+		MyManager.prototype.init = function() {
+			console.log("INIT!");
+		}
+		
+		var myManager = new MyManager("http://localhost:8000/");
+	</script>
+</head>
+<body onLoad="myManager.init()">
+	<h1>Hi</h1>
+</body>
+</html>
