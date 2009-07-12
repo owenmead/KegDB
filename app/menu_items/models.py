@@ -7,9 +7,17 @@ class Category(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	@classmethod
+	def get_items(cls):
+		return cls.objects.all()
+
 class MenuItem(models.Model):
 	name = models.CharField(max_length=200)
 	category = models.ForeignKey(Category)
 
 	def __unicode__(self):
 		return self.name
+
+	@classmethod
+	def get_items(cls):
+		return cls.objects.all()
