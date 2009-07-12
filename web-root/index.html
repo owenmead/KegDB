@@ -10,14 +10,15 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
 
 	<script type="text/javascript" src="yui/utilities.js"></script>
-	<script src="yui/yahoo-min.js"></script> 
-	<script src="yui/dom-min.js"></script>
-	<script src="yui/yahoo-dom-event.js"></script>
-	<script src="yui/element-min.js"></script>
-	<script src="yui/animation-min.js" type="text/javascript"></script>
-	<script src="yui/event-min.js"></script>
-	<script src="yui/connection-min.js"></script>
-	<script src="yui/json-min.js"></script>
+	<script type="text/javascript" src="yui/yahoo-min.js"></script> 
+	<script type="text/javascript" src="yui/dom-min.js"></script>
+	<script type="text/javascript" src="yui/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="yui/element-min.js"></script>
+	<script type="text/javascript" src="yui/animation-min.js"></script>
+	<script type="text/javascript" src="yui/event-min.js"></script>
+	<script type="text/javascript" src="yui/connection-min.js"></script>
+	<script type="text/javascript" src="yui/json-min.js"></script>
+	
 	
 	<script type="text/javascript" charset="utf-8">
 		MyManager = function(serverURL) {
@@ -41,14 +42,24 @@
 			alert("Error getting Menu Items")
 		}
 		MyManager.prototype.drawMenuItems = function(data) {
+			var letters = ["A","B","C","D","E","F","G","H","I","J","K",
+							"L","M","N","O","P","Q","R","S","T","U",
+							"V","W","X","Y","Z"]
+
 			var collect = "";
-			for (i in data) {
-				collect += "<dd>" + data[i]['name'] + "</dd>"
+			var menu_item_pos = 0;
+			for (var i in letters) {
+				collect += "<dt>" + letters[i] + "</dt>\n";
+				while (menu_item_pos < data.length
+									&& data[menu_item_pos]['name'][0].toUpperCase() == letters[i]) {
+					collect += "<dd>" + data[menu_item_pos]['name'] + "</dd>"
+					menu_item_pos++;
+				}
 			}
+
 			var toWriteTo = document.getElementById("toScroll")
 			toWriteTo.innerHTML = collect;
 		}
-		
 		
 		var myManager = new MyManager("http://localhost:8000/");
 	</script>
@@ -56,10 +67,7 @@
 <body onLoad="myManager.init()">
 	<h1>Hi</h1>
 	<div id="canvas">
-		<dl id="toScroll">
-			<dt>A</dt>
-			<dd>Ahi Tuna</dd>
-		</dl>
+		<dl id="toScroll"></dl>
 	</div>
 </body>
 </html>
