@@ -23,19 +23,19 @@
 		
 		MyManager.prototype.init = function() {
 			var callback = {
-				success: this.wee,
-				failure: this.bad,
+				success: this.menuItemCallBack,
+				failure: this.menuItemCallBack_error,
 				scope: this
 			}
 			YAHOO.util.Connect.asyncRequest('GET', this.serverURL + 'menuitems/', callback, null);
 		}
 		
-		MyManager.prototype.wee = function(o) {
-			console.log("GOOD!");
-			console.log(o);
+		MyManager.prototype.menuItemCallBack = function(o) {
+			var data = YAHOO.lang.JSON.parse(o.responseText);
+			console.log(data);
 		}
-		MyManager.prototype.bad = function(o) {
-			console.log("BAD!");
+		MyManager.prototype.menuItemCallBack_error = function(o) {
+			alert("Error getting Menu Items")
 		}
 		
 		
