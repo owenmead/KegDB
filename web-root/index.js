@@ -1,8 +1,8 @@
-MyManager = function(serverURL) {
+MenuItemManager = function(serverURL) {
 	this.serverURL = serverURL;
 }
 
-MyManager.prototype.init = function() {
+MenuItemManager.prototype.init = function() {
 	var callback = {
 		success: this.menuItemCallBack,
 		failure: this.menuItemCallBack_error,
@@ -11,14 +11,14 @@ MyManager.prototype.init = function() {
 	YAHOO.util.Connect.asyncRequest('GET', this.serverURL + 'menuitems/', callback, null);
 }
 
-MyManager.prototype.menuItemCallBack = function(o) {
+MenuItemManager.prototype.menuItemCallBack = function(o) {
 	var data = YAHOO.lang.JSON.parse(o.responseText);
 	this.drawMenuItems(data);
 }
-MyManager.prototype.menuItemCallBack_error = function(o) {
+MenuItemManager.prototype.menuItemCallBack_error = function(o) {
 	alert("Error getting Menu Items")
 }
-MyManager.prototype.drawMenuItems = function(data) {
+MenuItemManager.prototype.drawMenuItems = function(data) {
 	var letters = ["A","B","C","D","E","F","G","H","I","J","K",
 					"L","M","N","O","P","Q","R","S","T","U",
 					"V","W","X","Y","Z"]
