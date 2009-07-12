@@ -1,5 +1,5 @@
-MenuItemManager = function(serverURL) {
-	this.serverURL = serverURL;
+MenuItemManager = function() {
+    // pass
 }
 
 MenuItemManager.prototype.init = function() {
@@ -8,7 +8,7 @@ MenuItemManager.prototype.init = function() {
 		failure: this.menuItemCallBack_error,
 		scope: this
 	}
-	YAHOO.util.Connect.asyncRequest('GET', this.serverURL + 'menuitems/', callback, null);
+	YAHOO.util.Connect.asyncRequest('GET', '/menuitems/', callback, null);
 }
 
 MenuItemManager.prototype.menuItemCallBack = function(o) {
