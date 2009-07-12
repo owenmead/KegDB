@@ -21,8 +21,22 @@
 		}
 		
 		MyManager.prototype.init = function() {
-			console.log("INIT!");
+			var callback = {
+				success: this.wee,
+				failure: this.bad,
+				scope: this
+			}
+			YAHOO.util.Connect.asyncRequest('GET', this.serverURL + 'menuitems/', callback, null);
 		}
+		
+		MyManager.prototype.wee = function(o) {
+			console.log("GOOD!");
+			console.log(o);
+		}
+		MyManager.prototype.bad = function(o) {
+			console.log("BAD!");
+		}
+		
 		
 		var myManager = new MyManager("http://localhost:8000/");
 	</script>

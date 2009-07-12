@@ -47,6 +47,9 @@ MEDIA_URL = ''
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
 
+# Used to serve static files when in development
+STATIC_DOC_ROOT = "/Users/owen/work/KegDB/web-root"
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'a-rqk03mrl6-1-y8vtn3q2y+-y&ar1mlcm4z)($pmj%5wyunqo'
 
