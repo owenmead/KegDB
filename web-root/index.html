@@ -18,49 +18,10 @@
 	<script type="text/javascript" src="yui/event-min.js"></script>
 	<script type="text/javascript" src="yui/connection-min.js"></script>
 	<script type="text/javascript" src="yui/json-min.js"></script>
-	
+
+	<script type="text/javascript" src="index.js"></script>
 	
 	<script type="text/javascript" charset="utf-8">
-		MyManager = function(serverURL) {
-			this.serverURL = serverURL;
-		}
-		
-		MyManager.prototype.init = function() {
-			var callback = {
-				success: this.menuItemCallBack,
-				failure: this.menuItemCallBack_error,
-				scope: this
-			}
-			YAHOO.util.Connect.asyncRequest('GET', this.serverURL + 'menuitems/', callback, null);
-		}
-		
-		MyManager.prototype.menuItemCallBack = function(o) {
-			var data = YAHOO.lang.JSON.parse(o.responseText);
-			this.drawMenuItems(data);
-		}
-		MyManager.prototype.menuItemCallBack_error = function(o) {
-			alert("Error getting Menu Items")
-		}
-		MyManager.prototype.drawMenuItems = function(data) {
-			var letters = ["A","B","C","D","E","F","G","H","I","J","K",
-							"L","M","N","O","P","Q","R","S","T","U",
-							"V","W","X","Y","Z"]
-
-			var collect = "";
-			var menu_item_pos = 0;
-			for (var i in letters) {
-				collect += "<dt>" + letters[i] + "</dt>\n";
-				while (menu_item_pos < data.length
-									&& data[menu_item_pos]['name'][0].toUpperCase() == letters[i]) {
-					collect += "<dd>" + data[menu_item_pos]['name'] + "</dd>"
-					menu_item_pos++;
-				}
-			}
-
-			var toWriteTo = document.getElementById("toScroll")
-			toWriteTo.innerHTML = collect;
-		}
-		
 		var myManager = new MyManager("http://localhost:8000/");
 	</script>
 </head>
