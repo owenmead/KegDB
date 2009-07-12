@@ -8,7 +8,7 @@ body {
 div#canvas {
 	background-color: #FFF;
 	padding: 10px;
-	/*height: 550px;*/
+	height: 550px;
 	overflow: hidden;
 	cursor: hand; cursor: pointer;				
 }
