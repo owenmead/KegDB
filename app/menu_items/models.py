@@ -13,6 +13,8 @@ class Category(models.Model):
 
 class MenuItem(models.Model):
 	name = models.CharField(max_length=200)
+	quality_check = models.CharField(max_length=1000)
+
 	category = models.ForeignKey(Category)
 
 	def __unicode__(self):
