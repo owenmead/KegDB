@@ -71,6 +71,10 @@ MenuItemManager.prototype.drawMenuItems = function(data) {
 // |____/ \___|_|  \___/|_|_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|   
 //                                                    |___/
 
+/*
+    TODO : Calc dragging velocity at intervals instead of over who drag event
+*/
+
 ScrollManager = function (scrollingDOMID, canvasDOMID) {
 	this.scrollingDOMID = scrollingDOMID;
 	this.canvasDOMID = canvasDOMID;
