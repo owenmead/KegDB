@@ -7,8 +7,11 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	(r'^$',          'app.menu_items.views.index'),
-	(r'^categories/', 'app.menu_items.views.categoryList'),
-	(r'^menuitems/',  'app.menu_items.views.menuitemList'),
+	(r'^category/$', 'app.menu_items.views.categoryList'),
+
+	(r'^menuitem/$',  'app.menu_items.views.menuitemList'),
+	(r'^menuitem/(\d+)/',  'app.menu_items.views.displayMenuItem'),
+
 
 	# Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
 	# to INSTALLED_APPS to enable admin documentation:

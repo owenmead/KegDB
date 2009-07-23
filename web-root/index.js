@@ -32,7 +32,7 @@ MenuItemManager.prototype.init = function() {
 		failure: this.menuItemCallBack_error,
 		scope: this
 	}
-	YAHOO.util.Connect.asyncRequest('GET', '/menuitems/', callback, null);
+	YAHOO.util.Connect.asyncRequest('GET', '/menuitem/', callback, null);
 }
 
 MenuItemManager.prototype.menuItemCallBack = function(o) {
