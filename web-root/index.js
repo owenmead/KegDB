@@ -53,11 +53,12 @@ MenuItemManager.prototype.drawMenuItems = function(data) {
 		collect += "<dt>" + letters[i] + "</dt>\n";
 		while (menu_item_pos < data.length
 							&& data[menu_item_pos]['name'][0].toUpperCase() == letters[i]) {
-			collect += "<dd>" + data[menu_item_pos]['name'] + "</dd>"
+			collect += "<dd><a href=\"/menuitem/"+data[menu_item_pos]['id']+"/\">" +
+			                        data[menu_item_pos]['name'] + "</a></dd>"
 			menu_item_pos++;
 		}
 	}
-
+	
 	var toWriteTo = document.getElementById(this.scrollingDOMID);
 	toWriteTo.innerHTML = collect;
 	this.scrollManager.init();
