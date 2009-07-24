@@ -53,8 +53,7 @@ MenuItemManager.prototype.drawMenuItems = function(data) {
 		collect += "<dt>" + letters[i] + "</dt>\n";
 		while (menu_item_pos < data.length
 							&& data[menu_item_pos]['name'][0].toUpperCase() == letters[i]) {
-			collect += "<dd><a href=\"/menuitem/"+data[menu_item_pos]['id']+"/\">" +
-			                        data[menu_item_pos]['name'] + "</a></dd>"
+			collect += "<dd id=\"" + data[menu_item_pos]['id'] + "\">" + data[menu_item_pos]['name'] + "</dd>"
 			menu_item_pos++;
 		}
 	}
@@ -62,6 +61,18 @@ MenuItemManager.prototype.drawMenuItems = function(data) {
 	var toWriteTo = document.getElementById(this.scrollingDOMID);
 	toWriteTo.innerHTML = collect;
 	this.scrollManager.init();
+
+    // Hook up the mouse click events
+	var dds = this.scrollManager.scrollingrEl.getElementsByTagName('dd');
+	for (var i=0; i<dds.length; i++) {
+		new YAHOO.util.Element(dds[i]).addListener('click', this.clickMenuItem, dds[i].id);
+	}
+}
+
+MenuItemManager.prototype.clickMenuItem = function(param, blarg) {
+    console.log(param);
+    console.log(blarg);
+    console.log("CLICK!");
 }
 
 //  ____                 _ _ __  __                                   
@@ -99,23 +110,7 @@ ScrollManager.prototype.init = function() {
 	this.scrollingDD.on('endDragEvent', this.onEndDragging, this, true);
 	this.scrollingDD.on('startDragEvent', this.onStartDragging, this, true);
 
-	// Hook up the click events
-	/*
-		TODO : Create a dictionary of dd's and dt's so we only create one Element.
-				Will also allow us to access them later
-	*/
-	/*
-	var dds = this.scrollingrEl.getElementsByTagName('dd');
-	for (var i=0; i<dds.length; i++) {
-		new YAHOO.util.Element(dds[i]).addListener('click', this.stopScrolling);
-	}
-	var dts = this.scrollingrEl.getElementsByTagName('dt');
-	for (var i=0; i<dts.length; i++) {
-		new YAHOO.util.Element(dts[i]).addListener('click', this.stopScrolling);
-	}
-	*/
 	this.scrollingrEl.on('mousedown', this.stopScrollingAnimation, this, true);
-	//console.log(dds);
 }
 
 ScrollManager.prototype.onDragging = function(ev) {
