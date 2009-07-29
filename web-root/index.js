@@ -50,10 +50,12 @@ MenuItemManager.prototype.drawMenuItems = function(data) {
 	var collect = "";
 	var menu_item_pos = 0;
 	for (var i in letters) {
-		collect += "<dt>" + letters[i] + "</dt>\n";
+	    if (data[menu_item_pos] != null && data[menu_item_pos]['name'][0].toUpperCase() == letters[i]) {
+    	    collect += "<dt>" + letters[i] + "</dt>\n";
+		}
 		while (menu_item_pos < data.length
 							&& data[menu_item_pos]['name'][0].toUpperCase() == letters[i]) {
-			collect += "<dd id=\"" + data[menu_item_pos]['id'] + "\">" + data[menu_item_pos]['name'] + "</dd>"
+			collect += "<dd id=\"" + data[menu_item_pos]['id'] + "\">" + data[menu_item_pos]['name'] + "</dd>";
 			menu_item_pos++;
 		}
 	}
