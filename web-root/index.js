@@ -67,12 +67,15 @@ MenuItemManager.prototype.drawMenuItems = function(data) {
     // Hook up the mouse click events
 	var dds = this.scrollManager.scrollingrEl.getElementsByTagName('dd');
 	for (var i=0; i<dds.length; i++) {
-		new YAHOO.util.Element(dds[i]).addListener('mouseup', this.clickMenuItem, this, true);
+	    var data = {'self': this, 'id': dds[i].id};
+		new YAHOO.util.Element(dds[i]).addListener('mouseup', this.clickMenuItem, data);
 	}
 }
 
-MenuItemManager.prototype.clickMenuItem = function(ev, mngr) {
-    console.log(mngr.scrollManager.isDragging);
+MenuItemManager.prototype.clickMenuItem = function(evnt, data) {
+    if (!data['self'].scrollManager.isDragging) {
+        window.location.href = "/menuitem/" + data['id'] + "/";
+    }
 }
 
 //  ____                 _ _ __  __                                   
