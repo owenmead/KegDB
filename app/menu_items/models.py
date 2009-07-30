@@ -42,3 +42,6 @@ class MenuIngredient(models.Model):
 	# The measurements stored can be pretty messed up, so keep em as text
 	amount_imperial = models.CharField(max_length=50)
 	amount_metric = models.CharField(max_length=50)
+
+	def __unicode__(self):
+		return "%s >> %s/%s << %s" % (self.menuItem.name, self.amount_imperial, self.amount_metric, self.ingredient.name)
