@@ -34,6 +34,9 @@ class MenuPrepStep(models.Model):
 
 	menu = models.ForeignKey(MenuItem)
 
+	class Meta:
+		ordering = ['order']
+
 	def __unicode__(self):
 		return u'[%d]%s' % (self.order, self.step)
 
@@ -43,6 +46,9 @@ class MenuStorageStep(models.Model):
 	isNote = models.BooleanField(default=False)
 
 	menu = models.ForeignKey(MenuItem)
+
+	class Meta:
+		ordering = ['order']
 
 	def __unicode__(self):
 		return u'[%d]%s' % (self.order, self.step)
