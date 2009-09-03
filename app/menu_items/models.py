@@ -37,6 +37,16 @@ class MenuPrepStep(models.Model):
 	def __unicode__(self):
 		return u'[%d]%s' % (self.order, self.step)
 
+class MenuStorageStep(models.Model):
+	order = models.PositiveIntegerField()
+	step = models.TextField()
+	isNote = models.BooleanField(default=False)
+
+	menu = models.ForeignKey(MenuItem)
+
+	def __unicode__(self):
+		return u'[%d]%s' % (self.order, self.step)
+
 class Ingredient(models.Model):
 	name = models.CharField(max_length=200)
 
