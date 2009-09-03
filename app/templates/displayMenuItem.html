@@ -36,5 +36,22 @@
 		{% endfor %}
 		</tbody>
 	</table>
+	<br />
+	<table border="1">
+		<thead>
+		<tr>
+			<td>Step</td>
+			<td>Action</td>
+		</tr>
+		</thead>
+		<tbody>
+		{% for step in steps %}
+		<tr>
+			<td>{{step.order}}</td>
+			<td>{{step.step}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
 </body>
 </html>
