@@ -35,12 +35,19 @@ def displayMenuItem(request, item_id):
 					  'step'  : step.step,
 					  'isNote': step.isNote})
 
+	storage = []
+	for store in menu_item.menustoragestep_set.all():
+		storage.append({'order' : step.order,
+						'step'  : step.step,
+						'isNote': step.isNote})
+
 	data = {'name'         : menu_item.name,
 			'quality_check': menu_item.quality_check,
 			'prep_yield'   : menu_item.prep_yield,
 			'shelf_life'   : menu_item.shelf_life,
 			'ingredients'  : ingredients,
-			'steps'        : steps
+			'steps'        : steps,
+			'storage'      : storage,
 			}
 	
 	return render_to_response('displayMenuItem.html', data)

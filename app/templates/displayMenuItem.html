@@ -53,5 +53,22 @@
 		{% endfor %}
 		</tbody>
 	</table>
+	<br />
+	<table border="1">
+		<thead>
+		<tr>
+			<td>Step</td>
+			<td>Action</td>
+		</tr>
+		</thead>
+		<tbody>
+		{% for store in storage %}
+		<tr>
+			<td>{{store.order}}</td>
+			<td>{{store.step}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
 </body>
 </html>
