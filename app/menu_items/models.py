@@ -27,7 +27,7 @@ class MenuItem(models.Model):
 	def get_items(cls):
 		return cls.objects.all().order_by('name')
 
-class MenuPrepStep(models.Model):
+class MenuItemAbstractStep(models.Model):
 	order = models.PositiveIntegerField()
 	step = models.TextField()
 	isNote = models.BooleanField(default=False)
@@ -35,23 +35,18 @@ class MenuPrepStep(models.Model):
 	menu = models.ForeignKey(MenuItem)
 
 	class Meta:
+		abstract = True
 		ordering = ['order']
 
 	def __unicode__(self):
 		return u'[%d]%s' % (self.order, self.step)
 
-class MenuStorageStep(models.Model):
-	order = models.PositiveIntegerField()
-	step = models.TextField()
-	isNote = models.BooleanField(default=False)
+class MenuStorageStep(MenuItemAbstractStep):
+	pass
 
-	menu = models.ForeignKey(MenuItem)
-
-	class Meta:
-		ordering = ['order']
-
-	def __unicode__(self):
-		return u'[%d]%s' % (self.order, self.step)
+class MenuPrepStep(MenuItemAbstractStep):
+	pass
+	# At present, the same as Storage Step
 
 class Ingredient(models.Model):
 	name = models.CharField(max_length=200)
