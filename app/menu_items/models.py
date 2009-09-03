@@ -27,6 +27,16 @@ class MenuItem(models.Model):
 	def get_items(cls):
 		return cls.objects.all().order_by('name')
 
+class MenuPrepStep(models.Model):
+	order = models.PositiveIntegerField()
+	step = models.TextField()
+	isNote = models.BooleanField(default=False)
+
+	menu = models.ForeignKey(MenuItem)
+
+	def __unicode__(self):
+		return u'[%d]%s' % (self.order, self.step)
+
 class Ingredient(models.Model):
 	name = models.CharField(max_length=200)
 
