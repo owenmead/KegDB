@@ -5,6 +5,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Prep Information - {{name}}</title>
+	<style type="text/css" media="screen">
+		thead td {
+			font-weight: bold;
+		}
+	</style>
 </head>
 <body>
 	<p><a href="/index.html">Back</a></p>
@@ -12,5 +17,24 @@
 	<p><strong>Quality:</strong> {{quality_check}}</p>
 	<p><strong>Yield:</strong> {{prep_yield}}</p>
 	<p><strong>Shelf Life:</strong> {{shelf_life}}</p>
+	
+	<table border="1">
+		<thead>
+		<tr>
+			<td>Ingredients</td>
+			<td>Imperial</td>
+			<td>Metric</td>
+		</tr>
+		</thead>
+		<tbody>
+		{% for ingredient in ingredients %}
+		<tr>
+			<td>{{ingredient.name}}</td>
+			<td>{{ingredient.amount_imperial}}</td>
+			<td>{{ingredient.amount_metric}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
 </body>
 </html>

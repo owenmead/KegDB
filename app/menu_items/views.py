@@ -22,10 +22,18 @@ def menuitemList(request):
 def displayMenuItem(request, item_id):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
 	
-	data = {'name': menu_item.name,
+	ingredients = []
+	for mi in menu_item.menuingredient_set.all():
+		ingredients.append({'name': mi.ingredient.name,
+							'amount_imperial': mi.amount_imperial,
+							'amount_metric': mi.amount_metric,
+							})
+
+	data = {'name':          menu_item.name,
 			'quality_check': menu_item.quality_check,
-			'prep_yield': menu_item.prep_yield,
-			'shelf_life': menu_item.shelf_life,
+			'prep_yield':    menu_item.prep_yield,
+			'shelf_life':    menu_item.shelf_life,
+			'ingredients':   ingredients
 			}
 	
 	return render_to_response('displayMenuItem.html', data)
