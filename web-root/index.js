@@ -77,10 +77,12 @@ CategoryListManager.prototype.pickCategory = function(categoryID) {
             var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#566779' }, color: { to: '#ffffff'}});
             myAnim.duration = 0.5;
             myAnim.animate();
-        } else {
+            n.HAS_STYLE = true;
+        } else if (n.HAS_STYLE) { // Only need to animate one of them back to normal state
             var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#ffffff' }, color: { to: '#000000'}});
             myAnim.duration = 0.25;
             myAnim.animate();
+            n.HAS_STYLE = false;
         }
     }
 
