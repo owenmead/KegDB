@@ -39,6 +39,7 @@ CategoryListManager.prototype.init = function() {
 CategoryListManager.prototype.categoryListCallBack = function(o) {
 	var data = YAHOO.lang.JSON.parse(o.responseText);
 	this.drawCategoryList(data);
+	this.pickCategory("_ALL");
 }
 CategoryListManager.prototype.categoryListCallBack_error = function(o) {
 	alert("Error getting Category List")
@@ -65,13 +66,26 @@ CategoryListManager.prototype.drawCategoryList = function(data) {
 
 CategoryListManager.prototype.clickMenuItem = function(evnt, data) {
     if (!data['self'].scrollManager.isDragging) {
-        console.log("CATEGORY CLICK" + data['id']);
+        data['self'].pickCategory(data['id']);
     }
-    // if (!data['self'].scrollManager.isDragging) {
-    //     window.location.href = "/menuitem/" + data['id'] + "/";
-    // }
 }
 
+CategoryListManager.prototype.pickCategory = function(categoryID) {
+    var nodeApply = function(n) {
+        // Lets do some fade action here :-)
+        if (n.id == categoryID) {
+            var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#566779' }, color: { to: '#ffffff'}});
+            myAnim.duration = 0.5;
+            myAnim.animate();
+        } else {
+            var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#ffffff' }, color: { to: '#000000'}});
+            myAnim.duration = 0.25;
+            myAnim.animate();
+        }
+    }
+
+    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "dd", this.scrollingDOMID, nodeApply);
+}
 
 //  __  __                  ___ _                 __  __                                   
 // |  \/  | ___ _ __  _   _|_ _| |_ ___ _ __ ___ |  \/  | __ _ _ __   __ _  __ _  ___ _ __ 
