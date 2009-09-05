@@ -13,7 +13,7 @@ def categoryList(request):
 		cats.append({'id': cat.id, 'name': cat.name})
 	return HttpResponse(simplejson.dumps(cats))
 
-def menuitemList(request):
+def menuitemList(request, category_id="_ALL"):
 	menu_items = []
 	for item in MenuItem.get_items():
 		menu_items.append({'id': item.id, 'name': item.name, 'categoryID': item.category.id})

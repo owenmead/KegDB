@@ -10,6 +10,7 @@ urlpatterns = patterns('',
 	(r'^category/$', 'app.menu_items.views.categoryList'),
 
 	(r'^menuitem/$',  'app.menu_items.views.menuitemList'),
+	(r'^menuitem/byCategory/(\d+)/$',  'app.menu_items.views.menuitemList'),
 	(r'^menuitem/(\d+)/',  'app.menu_items.views.displayMenuItem'),
 
 
