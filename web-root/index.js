@@ -22,9 +22,10 @@ function styleToInt(el, style) {
 // \____\__,_|\__\___|\__, |\___/|_|   \__, |_____|_|___/\__|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
 //                    |___/            |___/                                          |___/
 
-CategoryListManager = function(scrollingDOMID, canvasDOMID) {
+CategoryListManager = function(scrollingDOMID, canvasDOMID, menuItemManager) {
     this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
     this.scrollingDOMID = scrollingDOMID;
+    this.menuItemManager = menuItemManager;
 }
 
 CategoryListManager.prototype.init = function() {
@@ -85,8 +86,9 @@ CategoryListManager.prototype.pickCategory = function(categoryID) {
             n.HAS_STYLE = false;
         }
     }
-
     YAHOO.util.Dom.getElementsBy(function(n) {return true}, "dd", this.scrollingDOMID, nodeApply);
+
+    this.menuItemManager.redraw(categoryID);
 }
 
 //  __  __                  ___ _                 __  __                                   
@@ -101,14 +103,21 @@ MenuItemManager = function(scrollingDOMID, canvasDOMID) {
 }
 
 MenuItemManager.prototype.init = function() {
+    this.redraw("_ALL");
+}
+MenuItemManager.prototype.redraw = function(categoryID) {
 	var callback = {
 		success: this.menuItemCallBack,
 		failure: this.menuItemCallBack_error,
 		scope: this
 	}
-	YAHOO.util.Connect.asyncRequest('GET', '/menuitem/', callback, null);
-}
 
+	var url = "/menuitem/";
+	if (categoryID != "_ALL") {
+	    url = "/menuitem/byCategory/"+categoryID+"/";
+	}
+	YAHOO.util.Connect.asyncRequest('GET', url, callback, null);
+}
 MenuItemManager.prototype.menuItemCallBack = function(o) {
 	var data = YAHOO.lang.JSON.parse(o.responseText);
 	this.drawMenuItems(data);
