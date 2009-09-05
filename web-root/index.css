@@ -40,8 +40,12 @@ div.canvas {
 		font-size: 150%;
 		color: #666;
 	}
-
 /* <end canvas */
+
+iframe#menuItemViewer {
+	margin-top: 10px;
+	border: 2px solid #ddd;	
+}
 
 div.topNav, div.bottomNav {
 	color: #EEE;

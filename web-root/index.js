@@ -97,13 +97,15 @@ CategoryListManager.prototype.pickCategory = function(categoryID) {
 // | |  | |  __/ | | | |_| || || ||  __/ | | | | | |  | | (_| | | | | (_| | (_| |  __/ |   
 // |_|  |_|\___|_| |_|\__,_|___|\__\___|_| |_| |_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|   
 //                                                                         |___/
-MenuItemManager = function(scrollingDOMID, canvasDOMID) {
+MenuItemManager = function(scrollingDOMID, canvasDOMID, iFrameViewerDOMID) {
     this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
     this.scrollingDOMID = scrollingDOMID;
+    this.iFrameViewerDOMID = iFrameViewerDOMID
 }
 
 MenuItemManager.prototype.init = function() {
     this.redraw("_ALL");
+    this.iFrameViewer = document.getElementById(this.iFrameViewerDOMID);
 }
 MenuItemManager.prototype.redraw = function(categoryID) {
 	var callback = {
@@ -160,8 +162,9 @@ MenuItemManager.prototype.drawMenuItems = function(data) {
 }
 
 MenuItemManager.prototype.clickMenuItem = function(evnt, data) {
+    console.log("foo");
     if (!data['self'].scrollManager.isDragging) {
-        window.location.href = "/menuitem/" + data['id'] + "/";
+        data['self'].iFrameViewer.src = "/menuitem/" + data['id'] + "/";
     }
 }
 

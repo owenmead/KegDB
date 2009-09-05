@@ -22,18 +22,22 @@
 	<script type="text/javascript" src="index.js"></script>
 	
 	<script type="text/javascript" charset="utf-8">
-		var menuItemManager = new MenuItemManager("menuItemsToScroll", "menuItemsCanvas");
+		var menuItemManager = new MenuItemManager("menuItemsToScroll", "menuItemsCanvas", "menuItemViewer");
 		var categoryListManager = new CategoryListManager("categoryToScroll", "categoryCanvas", menuItemManager);
 	</script>
 	
 	<style type="text/css" media="screen">
 		div#categoryCanvas {
 			float: left;
-			width: 34%;
+			width: 20%;
 		}
 		div#menuItemsCanvas {
 			float: left;
-			width: 60%;
+			width: 30%;
+		}
+		iframe {
+			width: 45%;
+			height: 550px;
 		}
 	</style>
 </head>
@@ -47,6 +51,8 @@
 	<div id="menuItemsCanvas" class="canvas">
 		<dl id="menuItemsToScroll"></dl>
 	</div>
+	<iframe id="menuItemViewer">
+	</iframe>
 	<div class="bottomNav">
 		Bottom Navigation
 	</div>
