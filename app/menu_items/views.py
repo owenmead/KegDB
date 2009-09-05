@@ -13,9 +13,14 @@ def categoryList(request):
 		cats.append({'id': cat.id, 'name': cat.name})
 	return HttpResponse(simplejson.dumps(cats))
 
-def menuitemList(request, category_id="_ALL"):
+def menuitemList(request, category_id=None):
+	if category_id:
+		search = dict(category=category_id)
+	else:
+		search = {}
+
 	menu_items = []
-	for item in MenuItem.get_items():
+	for item in MenuItem.get_items().filter(**search):
 		menu_items.append({'id': item.id, 'name': item.name, 'categoryID': item.category.id})
 	return HttpResponse(simplejson.dumps(menu_items))
 
