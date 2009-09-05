@@ -7,7 +7,6 @@ body {
 }
 div.canvas {
 	background-color: #FFF;
-	padding: 10px;
 	height: 550px;
 	overflow: hidden;
 	cursor: hand; cursor: pointer;				
@@ -43,7 +42,6 @@ div.canvas {
 /* <end canvas */
 
 iframe#menuItemViewer {
-	margin-top: 10px;
 	border: 2px solid #ddd;	
 }
 

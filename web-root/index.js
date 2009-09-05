@@ -162,11 +162,32 @@ MenuItemManager.prototype.drawMenuItems = function(data) {
 }
 
 MenuItemManager.prototype.clickMenuItem = function(evnt, data) {
-    console.log("foo");
     if (!data['self'].scrollManager.isDragging) {
-        data['self'].iFrameViewer.src = "/menuitem/" + data['id'] + "/";
+        data['self'].pickItem(data['id']);
     }
 }
+
+MenuItemManager.prototype.pickItem = function(itemID) {
+    var nodeApply = function(n) {
+        // Lets do some fade action here :-)
+        if (n.id == itemID) {
+            var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#566779' }, color: { to: '#ffffff'}});
+            myAnim.duration = 0.5;
+            myAnim.animate();
+            n.HAS_STYLE = true;
+        } else if (n.HAS_STYLE) { // Only need to animate one of them back to normal state
+            var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#ffffff' }, color: { to: '#000000'}});
+            myAnim.duration = 0.25;
+            myAnim.animate();
+            n.HAS_STYLE = false;
+        }
+    }
+    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "dd", this.scrollingDOMID, nodeApply);
+
+    this.iFrameViewer.src = "/menuitem/" + itemID + "/";
+    
+}
+
 
 //  ____                 _ _ __  __                                   
 // / ___|  ___ _ __ ___ | | |  \/  | __ _ _ __   __ _  __ _  ___ _ __ 
