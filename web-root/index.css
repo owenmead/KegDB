@@ -12,24 +12,26 @@ div.canvas {
 	cursor: hand; cursor: pointer;				
 }
 	div.canvas dl dt, div.canvas dl dd.topItem {
-		border-top: 1px solid #ddd;
+		border-top: 1px solid #C6D8EC;
 	}
 	div.canvas dl dt, div.canvas dl dd {
-		border-bottom: 1px solid #ddd;
-		border-left: 1px solid #ddd;
-		border-right: 1px solid #ddd;
+		border-bottom: 1px solid #C6D8EC;
+		border-left: 1px solid #C6D8EC;
+		border-right: 1px solid #C6D8EC;
 	}
 	div.canvas dl dt {
 		font-weight: bold;
-		font-size: 11px;
-		color: #FFF;
+		font-size: 14px;
+		color: #E1E7F9;
 		background-image: url('images/letterGradient.png');
 		background-repeat: repeat-x;
-		padding-left: 5px;
+		padding-left: 5px;		
+		height: 19px;
 	}
 	div.canvas dl dd {
-		font-size: 120%;
-		padding: 5px 5px;
+		font-size: 18px;
+		padding: 8px 5px;
+		color: #1C3451;
 	}
 
 	div.canvas div.noItems {
@@ -37,7 +39,7 @@ div.canvas {
 		border: 2px solid #ddd;
 		padding: 40px 0px 50px;
 		font-size: 150%;
-		color: #666;
+		color: #C6D8EC;
 	}
 /* <end canvas */
 
