@@ -9,7 +9,6 @@ div.canvas {
 	background-color: #FFF;
 	height: 550px;
 	overflow: hidden;
-	cursor: hand; cursor: pointer;				
 }
 	div.canvas dl dt, div.canvas dl dd.topItem {
 		border-top: 1px solid #C6D8EC;
@@ -29,6 +28,7 @@ div.canvas {
 		height: 19px;
 	}
 	div.canvas dl dd {
+		cursor: hand; cursor: pointer;				
 		font-size: 18px;
 		padding: 8px 5px;
 		color: #1C3451;
