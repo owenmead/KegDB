@@ -5,19 +5,19 @@
 body {
 	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
 }
-div#canvas {
+div.canvas {
 	background-color: #FFF;
 	padding: 10px;
 	height: 550px;
 	overflow: hidden;
 	cursor: hand; cursor: pointer;				
 }
-	div#canvas dl dt, div#canvas dl dd {
+	div.canvas dl dt, div.canvas dl dd {
 		border-bottom: 1px solid #ddd;
 		border-left: 1px solid #ddd;
 		border-right: 1px solid #ddd;
 	}
-	div#canvas dl dt {
+	div.canvas dl dt {
 		font-weight: bold;
 		font-size: 11px;
 		color: #FFF;
@@ -25,7 +25,7 @@ div#canvas {
 		background-repeat: repeat-x;
 		padding-left: 5px;
 	}
-	div#canvas dl dd {
+	div.canvas dl dd {
 		font-size: 120%;
 		padding: 5px 5px;
 	}
@@ -46,6 +46,7 @@ div.bottomNav {
 	background-image: url('images/bottomGradient.png');
 	background-repeat: repeat-x;
 	height: 40px;
+	clear: both;
 }
 
 dl#toScroll {

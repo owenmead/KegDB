@@ -22,15 +22,26 @@
 	<script type="text/javascript" src="index.js"></script>
 	
 	<script type="text/javascript" charset="utf-8">
-		var menuItemManager = new MenuItemManager("toScroll", "canvas");
+		var categoryListManager = new CategoryListManager("categoryToScroll", "categoryCanvas");
+		var menuItemManager = new MenuItemManager("menuItemsToScroll", "menuItemsCanvas");
 	</script>
+	
+	<style type="text/css" media="screen">
+		div.canvas {
+			float: left;
+			width: 47%;
+		}
+	</style>
 </head>
-<body onLoad="menuItemManager.init()">
+<body onLoad="menuItemManager.init(); categoryListManager.init()">
 	<div class="topNav">
 		<span>This is where the top nav goes</span>
 	</div>
-	<div id="canvas">
-		<dl id="toScroll"></dl>
+	<div id="categoryCanvas" class="canvas">
+		<dl id="categoryToScroll"></dl>
+	</div>
+	<div id="menuItemsCanvas" class="canvas">
+		<dl id="menuItemsToScroll"></dl>
 	</div>
 	<div class="bottomNav">
 		Bottom Navigation

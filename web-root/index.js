@@ -15,6 +15,62 @@ function styleToInt(el, style) {
 	return parseInt(theTop.substr(0, theTop.length-2));
 }
 
+//  ____      _                              _     _     _   __  __
+// / ___|__ _| |_ ___  __ _  ___  _ __ _   _| |   (_)___| |_|  \/  | __ _ _ __   __ _  __ _  ___ _ __
+//| |   / _` | __/ _ \/ _` |/ _ \| '__| | | | |   | / __| __| |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
+//| |__| (_| | ||  __/ (_| | (_) | |  | |_| | |___| \__ \ |_| |  | | (_| | | | | (_| | (_| |  __/ |
+// \____\__,_|\__\___|\__, |\___/|_|   \__, |_____|_|___/\__|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
+//                    |___/            |___/                                          |___/
+
+CategoryListManager = function(scrollingDOMID, canvasDOMID) {
+    this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
+    this.scrollingDOMID = scrollingDOMID;
+}
+
+CategoryListManager.prototype.init = function() {
+	var callback = {
+		success: this.categoryListCallBack,
+		failure: this.categoryListCallBack_error,
+		scope: this
+	}
+	YAHOO.util.Connect.asyncRequest('GET', '/category/', callback, null);
+}
+
+CategoryListManager.prototype.categoryListCallBack = function(o) {
+	var data = YAHOO.lang.JSON.parse(o.responseText);
+	this.drawCategoryList(data);
+}
+CategoryListManager.prototype.categoryListCallBack_error = function(o) {
+	alert("Error getting Category List")
+}
+CategoryListManager.prototype.drawCategoryList = function(data) {
+	var collect = "";
+	var category_item_pos = 0;
+	while (category_item_pos < data.length) {
+		collect += "<dd id=\"" + data[category_item_pos]['id'] + "\">" + data[category_item_pos]['name'] + "</dd>";
+		category_item_pos++;
+	}
+	
+	var toWriteTo = document.getElementById(this.scrollingDOMID);
+	toWriteTo.innerHTML = collect;
+	this.scrollManager.init();
+
+    // Hook up the mouse click events
+	var dds = this.scrollManager.scrollingrEl.getElementsByTagName('dd');
+	for (var i=0; i<dds.length; i++) {
+	    var data = {'self': this, 'id': dds[i].id};
+		new YAHOO.util.Element(dds[i]).addListener('mouseup', this.clickMenuItem, data);
+	}
+}
+
+CategoryListManager.prototype.clickMenuItem = function(evnt, data) {
+    console.log("CATEGORY CLICK" + data);
+    // if (!data['self'].scrollManager.isDragging) {
+    //     window.location.href = "/menuitem/" + data['id'] + "/";
+    // }
+}
+
+
 //  __  __                  ___ _                 __  __                                   
 // |  \/  | ___ _ __  _   _|_ _| |_ ___ _ __ ___ |  \/  | __ _ _ __   __ _  __ _  ___ _ __ 
 // | |\/| |/ _ \ '_ \| | | || || __/ _ \ '_ ` _ \| |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
