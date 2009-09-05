@@ -44,7 +44,7 @@ CategoryListManager.prototype.categoryListCallBack_error = function(o) {
 	alert("Error getting Category List")
 }
 CategoryListManager.prototype.drawCategoryList = function(data) {
-	var collect = "";
+	var collect = "<dd id=\"_ALL\" class=\"topItem\">All Items</dd>";
 	var category_item_pos = 0;
 	while (category_item_pos < data.length) {
 		collect += "<dd id=\"" + data[category_item_pos]['id'] + "\">" + data[category_item_pos]['name'] + "</dd>";
@@ -64,7 +64,9 @@ CategoryListManager.prototype.drawCategoryList = function(data) {
 }
 
 CategoryListManager.prototype.clickMenuItem = function(evnt, data) {
-    console.log("CATEGORY CLICK" + data);
+    if (!data['self'].scrollManager.isDragging) {
+        console.log("CATEGORY CLICK" + data['id']);
+    }
     // if (!data['self'].scrollManager.isDragging) {
     //     window.location.href = "/menuitem/" + data['id'] + "/";
     // }

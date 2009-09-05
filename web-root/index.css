@@ -12,6 +12,9 @@ div.canvas {
 	overflow: hidden;
 	cursor: hand; cursor: pointer;				
 }
+	div.canvas dl dt, div.canvas dl dd.topItem {
+		border-top: 1px solid #ddd;
+	}
 	div.canvas dl dt, div.canvas dl dd {
 		border-bottom: 1px solid #ddd;
 		border-left: 1px solid #ddd;
