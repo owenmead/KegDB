@@ -33,6 +33,14 @@ div.canvas {
 		padding: 5px 5px;
 	}
 
+	div.canvas div.noItems {
+		text-align: center;
+		border: 2px solid #ddd;
+		padding: 40px 0px 50px;
+		font-size: 150%;
+		color: #666;
+	}
+
 /* <end canvas */
 
 div.topNav, div.bottomNav {

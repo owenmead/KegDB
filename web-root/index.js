@@ -143,6 +143,10 @@ MenuItemManager.prototype.drawMenuItems = function(data) {
 		}
 	}
 	
+	if (data.length == 0 ) {
+        collect = "<div class=\"noItems\">No Items Found, Sorry</div>";
+    }
+
 	var toWriteTo = document.getElementById(this.scrollingDOMID);
 	toWriteTo.innerHTML = collect;
 	this.scrollManager.init();
