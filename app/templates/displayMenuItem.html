@@ -5,66 +5,51 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Prep Information - {{name}}</title>
-	<style type="text/css" media="screen">
-		thead td {
-			font-weight: bold;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="/global.css">
+	<link rel="stylesheet" type="text/css" href="/menuItem.css">
 </head>
-<body>
-	<p><a href="/index.html">Back</a></p>
+<body style="padding: 5px 15px;">
 	<h1>{{name}}</h1>
-	<p><strong>Quality:</strong> {{quality_check}}</p>
-	<p><strong>Yield:</strong> {{prep_yield}}</p>
-	<p><strong>Shelf Life:</strong> {{shelf_life}}</p>
 	
-	<table border="1">
-		<thead>
-		<tr>
-			<td>Ingredients</td>
-			<td>Imperial</td>
-			<td>Metric</td>
-		</tr>
-		</thead>
+	<div id="smallInfo">
+		<div><h3>Yield</h3><span>{{prep_yield}}</span></div>
+		<div><h3>Shelf Life</h3><span>{{shelf_life}}</span></div>
+	</div>
+	
+	<h2>Quality Check:</h2>
+	<p>{{quality_check}}</p>
+
+	<h2>Ingredients</h2>	
+	<table>
 		<tbody>
 		{% for ingredient in ingredients %}
 		<tr>
-			<td>{{ingredient.name}}</td>
-			<td>{{ingredient.amount_imperial}}</td>
 			<td>{{ingredient.amount_metric}}</td>
+			<td>{{ingredient.amount_imperial}}</td>
+			<td>{{ingredient.name}}</td>
 		</tr>
 		{% endfor %}
 		</tbody>
 	</table>
-	<br />
-	<table border="1">
-		<thead>
-		<tr>
-			<td>Step</td>
-			<td>Action</td>
-		</tr>
-		</thead>
+	
+	<h2>Steps</h2>
+	<table>
 		<tbody>
 		{% for step in steps %}
 		<tr>
-			<td>{{step.order}}</td>
+			<td class="stepNum">{{step.order}}.</td>
 			<td>{{step.step}}</td>
 		</tr>
 		{% endfor %}
 		</tbody>
 	</table>
-	<br />
-	<table border="1">
-		<thead>
-		<tr>
-			<td>Step</td>
-			<td>Action</td>
-		</tr>
-		</thead>
+
+	<h2>Storage</h2>
+	<table>
 		<tbody>
 		{% for store in storage %}
 		<tr>
-			<td>{{store.order}}</td>
+			<td class="stepNum">{{store.order}}.</td>
 			<td>{{store.step}}</td>
 		</tr>
 		{% endfor %}

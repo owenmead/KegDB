@@ -1,0 +1,30 @@
+div#smallInfo {
+	margin: 10px 0px 15px;
+}
+	div#smallInfo div {
+		height: 24px;
+		vertical-align: bottom;
+		
+	}
+
+	div#smallInfo h3 {
+		width: 80px;
+		text-align: right;
+		margin-right: 5px;
+		display: block;
+		float: left;
+		line-height: 18px;
+	}
+	div#smallInfo span {
+		line-height: 18px;
+	}
+/* end smallInfo */
+
+table {
+	margin-bottom: 18px;
+}
+
+td.stepNum {
+	text-align: right;
+	width: 15px;
+}
