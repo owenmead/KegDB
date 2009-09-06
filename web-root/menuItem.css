@@ -32,3 +32,8 @@ td.stepNum {
 td.noteStep {
 	font-weight: bold;
 }
+
+td.noteStep {
+	text-indent:-25px;
+	padding-left: 35px;
+}
