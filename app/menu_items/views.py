@@ -42,9 +42,9 @@ def displayMenuItem(request, item_id):
 
 	storage = []
 	for store in menu_item.menustoragestep_set.all():
-		storage.append({'order' : step.order,
-						'step'  : step.step,
-						'isNote': step.isNote})
+		storage.append({'order' : store.order,
+						'step'  : store.step,
+						'isNote': store.isNote})
 
 	data = {'name'         : menu_item.name,
 			'quality_check': menu_item.quality_check,
