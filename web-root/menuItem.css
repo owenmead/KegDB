@@ -28,3 +28,7 @@ td.stepNum {
 	text-align: right;
 	width: 25px;
 }
+
+td.noteStep {
+	font-weight: bold;
+}

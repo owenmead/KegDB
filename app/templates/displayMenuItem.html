@@ -37,8 +37,13 @@
 		<tbody>
 		{% for step in steps %}
 		<tr>
-			<td class="stepNum">{{step.order}}.</td>
+			{% if step.isNote %}
+			<td class="stepNum"></td>
+			<td class="noteStep">NOTE: {{step.step}}</td>
+			{% else %}
+			<td class="stepNum">{{step.dispOrder}}.</td>
 			<td>{{step.step}}</td>
+			{% endif %}
 		</tr>
 		{% endfor %}
 		</tbody>
@@ -49,8 +54,13 @@
 		<tbody>
 		{% for store in storage %}
 		<tr>
-			<td class="stepNum">{{store.order}}.</td>
+			{% if store.isNote %}
+			<td class="stepNum"></td>
+			<td class="noteStep">NOTE: {{store.step}}</td>
+			{% else %}
+			<td class="stepNum">{{store.dispOrder}}.</td>
 			<td>{{store.step}}</td>
+			{% endif %}
 		</tr>
 		{% endfor %}
 		</tbody>

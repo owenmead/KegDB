@@ -35,16 +35,24 @@ def displayMenuItem(request, item_id):
 							})
 
 	steps = []
+	displayOrder = 0
 	for step in menu_item.menuprepstep_set.all():
-		steps.append({'order' : step.order,
-					  'step'  : step.step,
-					  'isNote': step.isNote})
+		if not step.isNote:
+			displayOrder += 1
+		steps.append({'dispOrder' : displayOrder,
+					  'order'     : step.order,
+					  'step'      : step.step,
+					  'isNote'    : step.isNote})
 
 	storage = []
+	displayOrder = 0
 	for store in menu_item.menustoragestep_set.all():
-		storage.append({'order' : store.order,
-						'step'  : store.step,
-						'isNote': store.isNote})
+		if not store.isNote:
+			displayOrder += 1
+		storage.append({'dispOrder' : displayOrder,
+						'order'     : store.order,
+						'step'      : store.step,
+						'isNote'    : store.isNote})
 
 	data = {'name'         : menu_item.name,
 			'quality_check': menu_item.quality_check,
