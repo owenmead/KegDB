@@ -18,7 +18,7 @@
 
 </head>
 <body style="padding: 5px 15px;">
-	{% if menu_item.photo %}<a href="{{menu_item.photo.url}}"><img alt="Desc" title="{{ menu_item.name }}" src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/></a>{% endif %}
+	{% if menu_item.photo %}<a href="{{menu_item.photo.url}}" id="thumbImage"><img alt="Desc" title="{{ menu_item.name }}" src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/></a>{% endif %}
 	<h1>{{menu_item.name}}</h1>
 
 	<div id="smallInfo">
@@ -26,7 +26,7 @@
 		<div><h3>Shelf Life</h3><span>{{menu_item.shelf_life}}</span></div>
 	</div>
 
-	<h2>Quality Check:</h2>
+	<h2 style="clear: both;">Quality Check:</h2>
 	<p>{{menu_item.quality_check}}</p>
 
 	<h2>Ingredients</h2>	
