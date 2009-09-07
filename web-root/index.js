@@ -15,14 +15,14 @@ function styleToInt(el, style) {
 	return parseInt(theTop.substr(0, theTop.length-2));
 }
 
-TopNavigationManager = function(navContainerID) {
+TopNavigationManager = function(navContainerID, menuItemManager) {
     this.navContainerID = navContainerID;
+    this.menuItemManager = menuItemManager;
 }
 
 TopNavigationManager.prototype.init = function() {
     var nodeApply = function(n, self) {
-        var data = {'self': self, 'display_type': n.getAttribute('display_type')};
-        new YAHOO.util.Element(n).addListener('mouseup', self.clickNavButton, data);
+        new YAHOO.util.Element(n).addListener('mouseup', self.clickNavButton, self);
     }
 
     YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply, this);
@@ -32,13 +32,16 @@ TopNavigationManager.prototype.clearNavButtons = function() {
     var nodeApply = function(n) {
         n.setAttribute('state', 'unselected');
     }
-
     YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply);
 }
 
-TopNavigationManager.prototype.clickNavButton = function(evnt, data) {
-    data['self'].clearNavButtons();
-    evnt.currentTarget.setAttribute('state', 'selected');
+TopNavigationManager.prototype.clickNavButton = function(evnt, self) {
+    self.clearNavButtons();
+
+    var buttonClicked = evnt.currentTarget;
+    buttonClicked.setAttribute('state', 'selected');
+    self.menuItemManager.setMode(buttonClicked.getAttribute('display_type'));
+    self.menuItemManager.pickLast();
 }
 
 //  ____      _                              _     _     _   __  __
@@ -123,16 +126,23 @@ CategoryListManager.prototype.pickCategory = function(categoryID) {
 // | |  | |  __/ | | | |_| || || ||  __/ | | | | | |  | | (_| | | | | (_| | (_| |  __/ |   
 // |_|  |_|\___|_| |_|\__,_|___|\__\___|_| |_| |_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|   
 //                                                                         |___/
-MenuItemManager = function(scrollingDOMID, canvasDOMID, iFrameViewerDOMID) {
+MenuItemManager = function(scrollingDOMID, canvasDOMID, iFrameViewerDOMID, initialMode) {
     this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
     this.scrollingDOMID = scrollingDOMID;
     this.iFrameViewerDOMID = iFrameViewerDOMID
+    this.mode = initialMode;
+    this.lastPickedID = null;
 }
 
 MenuItemManager.prototype.init = function() {
     this.redraw("_ALL");
     this.iFrameViewer = document.getElementById(this.iFrameViewerDOMID);
 }
+
+MenuItemManager.prototype.setMode = function(mode) {
+    this.mode = mode;
+}
+
 MenuItemManager.prototype.redraw = function(categoryID) {
 	var callback = {
 		success: this.menuItemCallBack,
@@ -193,7 +203,14 @@ MenuItemManager.prototype.clickMenuItem = function(evnt, data) {
     }
 }
 
+MenuItemManager.prototype.pickLast = function() {
+    if (this.lastPickedID != null) {
+        this.pickItem(this.lastPickedID);
+    }
+}
+
 MenuItemManager.prototype.pickItem = function(itemID) {
+    this.lastPickedID = itemID;
     var nodeApply = function(n) {
         // Lets do some fade action here :-)
         if (n.id == itemID) {
@@ -210,7 +227,7 @@ MenuItemManager.prototype.pickItem = function(itemID) {
     }
     YAHOO.util.Dom.getElementsBy(function(n) {return true}, "dd", this.scrollingDOMID, nodeApply);
 
-    this.iFrameViewer.src = "/menuitem/" + itemID + "/";
+    this.iFrameViewer.src = "/menuitem/" + itemID + "/" + this.mode + "/";
     
 }
 

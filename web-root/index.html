@@ -23,9 +23,9 @@
 	<script type="text/javascript" src="index.js"></script>
 	
 	<script type="text/javascript" charset="utf-8">
-		var menuItemManager = new MenuItemManager("menuItemsToScroll", "menuItemsCanvas", "menuItemViewer");
+		var menuItemManager = new MenuItemManager("menuItemsToScroll", "menuItemsCanvas", "menuItemViewer", "prep");
 		var categoryListManager = new CategoryListManager("categoryToScroll", "categoryCanvas", menuItemManager);
-		var topNavigationManager = new TopNavigationManager("topNav");
+		var topNavigationManager = new TopNavigationManager("topNav", menuItemManager);
 	</script>
 	
 	<style type="text/css" media="screen">
