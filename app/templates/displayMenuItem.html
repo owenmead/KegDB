@@ -1,4 +1,6 @@
 {% load thumbnail %}
+{% thumbnail menu_item.photo 125x100 upscale autocrop as thumb %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -11,6 +13,8 @@
 </head>
 <body style="padding: 5px 15px;">
 	<h1>{{menu_item.name}}</h1>
+	<img src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}" />
+
 	<img src="{{menu_item.photo.url}}" alt="{{menu_item.name}}" height="{{menu_item.photo.height}}" width="{{menu_item.photo.width}}" />
 
 	<div id="smallInfo">
@@ -20,9 +24,6 @@
 
 	<h2>Quality Check:</h2>
 	<p>{{menu_item.quality_check}}</p>
-
-	<img src="{% thumbnail menu_item.photo 80x80 crop upscale %}" />
-
 
 	<h2>Ingredients</h2>	
 	<table>
