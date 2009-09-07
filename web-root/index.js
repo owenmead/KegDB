@@ -15,6 +15,32 @@ function styleToInt(el, style) {
 	return parseInt(theTop.substr(0, theTop.length-2));
 }
 
+TopNavigationManager = function(navContainerID) {
+    this.navContainerID = navContainerID;
+}
+
+TopNavigationManager.prototype.init = function() {
+    var nodeApply = function(n, self) {
+        var data = {'self': self, 'display_type': n.getAttribute('display_type')};
+        new YAHOO.util.Element(n).addListener('mouseup', self.clickNavButton, data);
+    }
+
+    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply, this);
+}
+
+TopNavigationManager.prototype.clearNavButtons = function() {
+    var nodeApply = function(n) {
+        n.setAttribute('state', 'unselected');
+    }
+
+    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply);
+}
+
+TopNavigationManager.prototype.clickNavButton = function(evnt, data) {
+    data['self'].clearNavButtons();
+    evnt.currentTarget.setAttribute('state', 'selected');
+}
+
 //  ____      _                              _     _     _   __  __
 // / ___|__ _| |_ ___  __ _  ___  _ __ _   _| |   (_)___| |_|  \/  | __ _ _ __   __ _  __ _  ___ _ __
 //| |   / _` | __/ _ \/ _` |/ _ \| '__| | | | |   | / __| __| |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|

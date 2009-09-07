@@ -39,12 +39,12 @@ iframe#menuItemViewer {
 	border: 2px solid #ddd;	
 }
 
-div.topNav {
+div#topNav {
 	background-image: url('/images/nav/nav_bg.png');
 	background-repeat: repeat-x;
 	height: 46px;
 }
-	div.topNav a {
+	div#topNav a {
 		background-repeat: no-repeat;
 		float: right;
 		height: 46px;
@@ -52,36 +52,36 @@ div.topNav {
 		cursor: hand; cursor: pointer;
 	}
 	
-	div.topNav a#allergy_reverse_lookup {
+	div#topNav a#allergy_reverse_lookup {
 		background-image: url(/images/nav/allergy_reverse_lookup.png);
 		width: 261px;
 		margin-right: 20px;
 	}
-	div.topNav a#allergy_info {
+	div#topNav a#allergy_info {
 		background-image: url(/images/nav/allergy_info.png);
 		width: 171px;
 	}
-	div.topNav a#cook_present {
+	div#topNav a#cook_present {
 		background-image: url(/images/nav/cook_present.png);
 		width: 194px;
 	}
-	div.topNav a#preparation {
+	div#topNav a#preparation {
 		background-image: url(/images/nav/preparation.png);
 		width: 167px;
 		margin-right: 15px;
 	}
 	
-	div.topNav a[state=unselected]#allergy_reverse_lookup:hover { background-image: url(/images/nav/allergy_reverse_lookup_over.png); }
-	div.topNav a[state=unselected]#allergy_info:hover { background-image: url(/images/nav/allergy_info_over.png); }
-	div.topNav a[state=unselected]#cook_present:hover { background-image: url(/images/nav/cook_present_over.png); }
-	div.topNav a[state=unselected]#preparation:hover { background-image: url(/images/nav/preparation_over.png); }
+	div#topNav a[state=unselected]#allergy_reverse_lookup:hover { background-image: url(/images/nav/allergy_reverse_lookup_over.png); }
+	div#topNav a[state=unselected]#allergy_info:hover { background-image: url(/images/nav/allergy_info_over.png); }
+	div#topNav a[state=unselected]#cook_present:hover { background-image: url(/images/nav/cook_present_over.png); }
+	div#topNav a[state=unselected]#preparation:hover { background-image: url(/images/nav/preparation_over.png); }
 
-	div.topNav a[state=selected]#allergy_reverse_lookup { background-image: url(/images/nav/allergy_reverse_lookup_selected.png); }
-	div.topNav a[state=selected]#allergy_info { background-image: url(/images/nav/allergy_info_selected.png); }
-	div.topNav a[state=selected]#cook_present { background-image: url(/images/nav/cook_present_selected.png); }
-	div.topNav a[state=selected]#preparation { background-image: url(/images/nav/preparation_selected.png); }
+	div#topNav a[state=selected]#allergy_reverse_lookup { background-image: url(/images/nav/allergy_reverse_lookup_selected.png); }
+	div#topNav a[state=selected]#allergy_info { background-image: url(/images/nav/allergy_info_selected.png); }
+	div#topNav a[state=selected]#cook_present { background-image: url(/images/nav/cook_present_selected.png); }
+	div#topNav a[state=selected]#preparation { background-image: url(/images/nav/preparation_selected.png); }
 
-/*<end div.topnav*/
+/*<end div#topNav*/
 
 dl#toScroll {
 	position: relative;

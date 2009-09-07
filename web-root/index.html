@@ -25,6 +25,7 @@
 	<script type="text/javascript" charset="utf-8">
 		var menuItemManager = new MenuItemManager("menuItemsToScroll", "menuItemsCanvas", "menuItemViewer");
 		var categoryListManager = new CategoryListManager("categoryToScroll", "categoryCanvas", menuItemManager);
+		var topNavigationManager = new TopNavigationManager("topNav");
 	</script>
 	
 	<style type="text/css" media="screen">
@@ -33,12 +34,12 @@
 		iframe { width: 49%; height: 550px; }
 	</style>
 </head>
-<body onLoad="menuItemManager.init(); categoryListManager.init()">
-	<div class="topNav">
-		<a state="selected" id="preparation"></a>
-		<a state="unselected" id="cook_present"></a>
-		<a state="unselected" id="allergy_info"></a>
-		<a state="unselected" id="allergy_reverse_lookup"></a>
+<body onLoad="menuItemManager.init(); categoryListManager.init(); topNavigationManager.init();">
+	<div id="topNav">
+		<a state="selected"   id="preparation"            display_type="prep"></a>
+		<a state="unselected" id="cook_present"           display_type="cook"></a>
+		<a state="unselected" id="allergy_info"           display_type="allergy"></a>
+		<a state="unselected" id="allergy_reverse_lookup" display_type="reverse"></a>
 	</div>
 	<div id="categoryCanvas" class="canvas">
 		<dl id="categoryToScroll"></dl>
