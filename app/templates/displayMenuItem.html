@@ -4,20 +4,21 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Prep Information - {{name}}</title>
+	<title>Prep Information - {{menu_item.name}}</title>
 	<link rel="stylesheet" type="text/css" href="/global.css">
 	<link rel="stylesheet" type="text/css" href="/menuItem.css">
 </head>
 <body style="padding: 5px 15px;">
-	<h1>{{name}}</h1>
-	
+	<h1>{{menu_item.name}}</h1>
+	<img src="{{menu_item.photo.url}}" alt="{{menu_item.name}}" height="{{menu_item.photo.height}}" width="{{menu_item.photo.width}}" />
+
 	<div id="smallInfo">
-		<div><h3>Yield</h3><span>{{prep_yield}}</span></div>
-		<div><h3>Shelf Life</h3><span>{{shelf_life}}</span></div>
+		<div><h3>Yield</h3><span>{{menu_item.prep_yield}}</span></div>
+		<div><h3>Shelf Life</h3><span>{{menu_item.shelf_life}}</span></div>
 	</div>
-	
+
 	<h2>Quality Check:</h2>
-	<p>{{quality_check}}</p>
+	<p>{{menu_item.quality_check}}</p>
 
 	<h2>Ingredients</h2>	
 	<table>

@@ -18,6 +18,8 @@ class MenuItem(models.Model):
 	prep_yield = models.CharField(max_length=50)
 	shelf_life = models.CharField(max_length=50)
 
+	photo = models.ImageField(upload_to="menuPhoto")
+
 	category = models.ForeignKey(Category)
 
 	def __unicode__(self):

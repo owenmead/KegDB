@@ -54,10 +54,7 @@ def displayMenuItem(request, item_id):
 						'step'      : store.step,
 						'isNote'    : store.isNote})
 
-	data = {'name'         : menu_item.name,
-			'quality_check': menu_item.quality_check,
-			'prep_yield'   : menu_item.prep_yield,
-			'shelf_life'   : menu_item.shelf_life,
+	data = {'menu_item'    : menu_item,
 			'ingredients'  : ingredients,
 			'steps'        : steps,
 			'storage'      : storage,
