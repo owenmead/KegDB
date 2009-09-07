@@ -18,7 +18,7 @@
 
 </head>
 <body style="padding: 5px 15px;">
-	<a href="{{menu_item.photo.url}}"><img alt="Desc" title="{{ menu_item.name }}" src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/></a>
+	{% if menu_item.photo %}<a href="{{menu_item.photo.url}}"><img alt="Desc" title="{{ menu_item.name }}" src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/></a>{% endif %}
 	<h1>{{menu_item.name}}</h1>
 
 	<div id="smallInfo">
