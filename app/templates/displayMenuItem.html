@@ -1,8 +1,8 @@
-{% load thumbnail %}
-{% thumbnail menu_item.photo 125x100 upscale autocrop as thumb %}
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
+
+{% load thumbnail %}
+{% thumbnail menu_item.photo 125x100 upscale autocrop as thumb %}
 
 <html lang="en">
 <head>
@@ -10,12 +10,16 @@
 	<title>Prep Information - {{menu_item.name}}</title>
 	<link rel="stylesheet" type="text/css" href="/global.css">
 	<link rel="stylesheet" type="text/css" href="/menuItem.css">
+
+	<script type="text/javascript" src="/yui/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="/yui/animation-min.js"></script>
+	<script type="text/javascript" src="/awesome-box/js/awesomebox.js"></script>
+	<link rel="stylesheet" href="/awesome-box/css/awesomebox.css" type="text/css" media="all" />
+
 </head>
 <body style="padding: 5px 15px;">
+	<a href="{{menu_item.photo.url}}"><img alt="Desc" title="{{ menu_item.name }}" src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/></a>
 	<h1>{{menu_item.name}}</h1>
-	<img src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}" />
-
-	<img src="{{menu_item.photo.url}}" alt="{{menu_item.name}}" height="{{menu_item.photo.height}}" width="{{menu_item.photo.width}}" />
 
 	<div id="smallInfo">
 		<div><h3>Yield</h3><span>{{menu_item.prep_yield}}</span></div>
