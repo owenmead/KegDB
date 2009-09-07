@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 
 	(r'^menuitem/$',  'app.menu_items.views.menuitemList'),
 	(r'^menuitem/byCategory/(\d+)/$',  'app.menu_items.views.menuitemList'),
-	(r'^menuitem/(\d+)/',  'app.menu_items.views.displayMenuItem'),
+	(r'^menuitem/(\d+)/(prep|allergy|cook)/',  'app.menu_items.views.displayMenuItem'),
 
 
 	# Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
