@@ -25,8 +25,6 @@ def menuitemList(request, category_id=None):
 	return HttpResponse(simplejson.dumps(menu_items))
 
 def displayMenuItem(request, item_id, display_type):
-	print '-'*20, display_type
-	
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
 	
 	ingredients = []
@@ -62,4 +60,4 @@ def displayMenuItem(request, item_id, display_type):
 			'storage'      : storage,
 			}
 	
-	return render_to_response('displayMenuItem.html', data)
+	return render_to_response('menuItem_%s.html' % display_type, data)
