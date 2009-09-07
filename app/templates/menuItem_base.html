@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+{% load thumbnail %}
+{% thumbnail menu_item.photo 125x100 upscale autocrop as thumb %}
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>{% block pageTitle %}Prep Information - {{menu_item.name}} {% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="/global.css">
+	<link rel="stylesheet" type="text/css" href="/menuItem.css">
+
+	<script type="text/javascript" src="/yui/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="/yui/animation-min.js"></script>
+	<script type="text/javascript" src="/awesome-box/js/awesomebox.js"></script>
+	<link rel="stylesheet" href="/awesome-box/css/awesomebox.css" type="text/css" media="all" />
+
+</head>
+<body style="padding: 5px 15px;">
+	{% if menu_item.photo %}<a href="{{menu_item.photo.url}}" id="thumbImage"><img alt="Desc" title="{{ menu_item.name }}" src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/></a>{% endif %}
+	<h1>{{menu_item.name}}</h1>
+
+	<div id="smallInfo">{% block smallInfo %}{% endblock smallInfo %}</div>
+
+	{% block qualityCheck %}<h2 style="clear: both;">Quality Check:</h2>{% endblock qualityCheck %}
+	{% block ingredients %}<h2>Ingredients</h2>{% endblock ingredients %}
+	{% block steps %}<h2>Steps</h2>{% endblock steps %}
+	{% block storage %}<h2>Storage</h2>{% endblock storage %}
+	{% block allergies %}<h2>Allergies</h2>{% endblock allergies %}
+</body>
+</html>

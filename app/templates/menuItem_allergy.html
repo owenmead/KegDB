@@ -1,78 +1,24 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
+{% extends "menuItem_base.html" %}
 
-{% load thumbnail %}
-{% thumbnail menu_item.photo 125x100 upscale autocrop as thumb %}
+{% block pageTitle %}Allergy Information - {{menu_item.name}} {% endblock %}
 
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Prep Information - {{menu_item.name}}</title>
-	<link rel="stylesheet" type="text/css" href="/global.css">
-	<link rel="stylesheet" type="text/css" href="/menuItem.css">
-
-	<script type="text/javascript" src="/yui/yahoo-dom-event.js"></script>
-	<script type="text/javascript" src="/yui/animation-min.js"></script>
-	<script type="text/javascript" src="/awesome-box/js/awesomebox.js"></script>
-	<link rel="stylesheet" href="/awesome-box/css/awesomebox.css" type="text/css" media="all" />
-
-</head>
-<body style="padding: 5px 15px;">
-	{% if menu_item.photo %}<a href="{{menu_item.photo.url}}" id="thumbImage"><img alt="Desc" title="{{ menu_item.name }}" src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}"/></a>{% endif %}
-	<h1>{{menu_item.name}}</h1>
-
-	<h1>Allergy</h1>
-	<div id="smallInfo">
-		<div><h3>Yield</h3><span>{{menu_item.prep_yield}}</span></div>
-		<div><h3>Shelf Life</h3><span>{{menu_item.shelf_life}}</span></div>
-	</div>
-
-	<h2 style="clear: both;">Quality Check:</h2>
-	<p>{{menu_item.quality_check}}</p>
-
-	<h2>Ingredients</h2>	
+{% block allergies %}
+<div style="float: left; width: 70%;">
+	{{ block.super }}
 	<table>
 		<tbody>
-		{% for ingredient in ingredients %}
-		<tr>
-			<td>{{ingredient.amount_metric}}</td>
-			<td>{{ingredient.amount_imperial}}</td>
-			<td>{{ingredient.name}}</td>
-		</tr>
-		{% endfor %}
+			<tr><td>Seafood</td></tr>
+			<tr><td>Glutton</td></tr>
+			<tr><td>Lemon</td></tr>
 		</tbody>
 	</table>
-	
-	<h2>Steps</h2>
-	<table>
-		<tbody>
-		{% for step in steps %}
-		<tr>
-			{% if step.isNote %}
-			<td colspan="2" class="noteStep">NOTE: {{step.step}}</td>
-			{% else %}
-			<td class="stepNum">{{step.dispOrder}}.</td>
-			<td>{{step.step}}</td>
-			{% endif %}
-		</tr>
-		{% endfor %}
-		</tbody>
-	</table>
+</div>
+{% endblock allergies %}
 
-	<h2>Storage</h2>
-	<table>
-		<tbody>
-		{% for store in storage %}
-		<tr>
-			{% if store.isNote %}
-			<td colspan="2" class="noteStep">NOTE: {{store.step}}</td>
-			{% else %}
-			<td class="stepNum">{{store.dispOrder}}.</td>
-			<td>{{store.step}}</td>
-			{% endif %}
-		</tr>
-		{% endfor %}
-		</tbody>
-	</table>
-</body>
-</html>
+<!-- Remove content from parent template -->
+{% block smallInfo %}{% endblock smallInfo %}
+{% block qualityCheck %}{% endblock qualityCheck %}
+{% block ingredients %}{% endblock ingredients %}
+{% block steps %}{% endblock %}
+{% block storage %}{% endblock %}
+
