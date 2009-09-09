@@ -50,7 +50,9 @@ class MenuStorageStep(MenuItemAbstractStep):
 
 class MenuPrepStep(MenuItemAbstractStep):
 	pass
-	# At present, the same as Storage Step
+
+class MenuCookStep(MenuItemAbstractStep):
+	pass
 
 class Ingredient(models.Model):
 	name = models.CharField(max_length=200)

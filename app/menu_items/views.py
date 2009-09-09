@@ -34,9 +34,16 @@ def displayMenuItem(request, item_id, display_type):
 							'amount_metric'  : mi.amount_metric,
 							})
 
+	if display_type == 'cook':
+		step_set = menu_item.menucookstep_set.all()
+	elif display_type == 'prep':
+		step_set = menu_item.menuprepstep_set.all()
+	else:
+		step_set = []
+
 	steps = []
-	displayOrder = 0
-	for step in menu_item.menuprepstep_set.all():
+	displayOrder = 0	
+	for step in step_set:
 		if not step.isNote:
 			displayOrder += 1
 		steps.append({'dispOrder' : displayOrder,
