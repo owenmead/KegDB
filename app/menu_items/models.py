@@ -17,6 +17,7 @@ class MenuItem(models.Model):
 	quality_check_cook = models.TextField()
 
 	prep_yield = models.CharField(max_length=50)
+	cook_yield = models.CharField(max_length=50, default="1 serving")
 	shelf_life = models.CharField(max_length=50)
 
 	photo = models.ImageField(upload_to="menuPhoto")

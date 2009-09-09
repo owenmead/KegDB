@@ -3,10 +3,8 @@
 {% block pageTitle %}Prep Information - {{menu_item.name}} {% endblock %}
 
 {% block smallInfo %}
-	<h1>COOK!</h1>
 	{{ block.super }}
-	<div><h3>Yield</h3><span>{{menu_item.prep_yield}}</span></div>
-	<div><h3>Shelf Life</h3><span>{{menu_item.shelf_life}}</span></div>
+	<div><h3>Yield</h3><span>{{menu_item.cook_yield}}</span></div>
 {% endblock smallInfo %}
 
 {% block qualityCheck %}
