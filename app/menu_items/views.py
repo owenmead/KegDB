@@ -27,8 +27,15 @@ def menuitemList(request, category_id=None):
 def displayMenuItem(request, item_id, display_type):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
 	
+	if display_type == 'prep':
+		ingredient_filter = dict(ingredient_type='P')
+	elif display_type == 'cook':
+		ingredient_filter = dict(ingredient_type='C')
+	else:
+		ingredient_filter = {}
+	
 	ingredients = []
-	for mi in menu_item.menuingredient_set.all():
+	for mi in menu_item.menuingredient_set.all().filter(**ingredient_filter):
 		ingredients.append({'name'           : mi.ingredient.name,
 							'amount_imperial': mi.amount_imperial,
 							'amount_metric'  : mi.amount_metric,

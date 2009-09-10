@@ -73,5 +73,8 @@ class MenuIngredient(models.Model):
 	amount_imperial = models.CharField(max_length=50)
 	amount_metric = models.CharField(max_length=50)
 
+	TYPE_CHOICES = (('C', 'Cook'), ('P', 'Prep'))
+	ingredient_type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+
 	def __unicode__(self):
 		return "%s >> %s/%s << %s" % (self.menuItem.name, self.amount_imperial, self.amount_metric, self.ingredient.name)
