@@ -13,14 +13,14 @@ class Category(models.Model):
 
 class MenuItem(models.Model):
 	name = models.CharField(max_length=200)
-	quality_check_prep = models.TextField()
-	quality_check_cook = models.TextField()
+	quality_check_prep = models.TextField(blank=True)
+	quality_check_cook = models.TextField(blank=True)
 
-	prep_yield = models.CharField(max_length=50)
+	prep_yield = models.CharField(max_length=50, default="1 portion")
 	cook_yield = models.CharField(max_length=50, default="1 serving")
-	shelf_life = models.CharField(max_length=50)
+	shelf_life = models.CharField(max_length=50, blank=True)
 
-	photo = models.ImageField(upload_to="menuPhoto")
+	photo = models.ImageField(upload_to="menuPhoto", blank=True)
 
 	category = models.ForeignKey(Category)
 
