@@ -61,10 +61,21 @@ def displayMenuItem(request, item_id, display_type):
 						'step'      : store.step,
 						'isNote'    : store.isNote})
 
+	presentation = []
+	displayOrder = 0
+	for pres in menu_item.menupresentationstep_set.all():
+		if not pres.isNote:
+			displayOrder += 1
+		presentation.append({'dispOrder' : displayOrder,
+							 'order'     : pres.order,
+							 'step'      : pres.step,
+							 'isNote'    : pres.isNote})
+
 	data = {'menu_item'    : menu_item,
 			'ingredients'  : ingredients,
 			'steps'        : steps,
 			'storage'      : storage,
+			'presentation' : presentation,
 			}
 	
 	return render_to_response('menuItem_%s.html' % display_type, data)

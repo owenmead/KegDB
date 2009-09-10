@@ -1,4 +1,4 @@
-from app.menu_items.models import Category, MenuItem, Ingredient, MenuIngredient, MenuPrepStep, MenuStorageStep, MenuCookStep
+from app.menu_items.models import Category, MenuItem, Ingredient, MenuIngredient, MenuPrepStep, MenuStorageStep, MenuCookStep, MenuPresentationStep
 from django.contrib import admin
 
 class MenuStorageStepInline(admin.TabularInline):
@@ -13,8 +13,12 @@ class MenuCookStepInline(admin.TabularInline):
 	model = MenuCookStep
 	extra = 1
 
+class MenuPresentationStepInline(admin.TabularInline):
+	model = MenuPresentationStep
+	extra = 1
+
 class MenuItemAdmin(admin.ModelAdmin):
-	inlines = [MenuPrepStepInline, MenuStorageStepInline, MenuCookStepInline]
+	inlines = [MenuPrepStepInline, MenuStorageStepInline, MenuCookStepInline, MenuPresentationStepInline]
 
 class MenuItemInline(admin.TabularInline):
 	model = MenuItem
@@ -34,3 +38,4 @@ admin.site.register(MenuIngredient)
 admin.site.register(MenuPrepStep)
 admin.site.register(MenuCookStep)
 admin.site.register(MenuStorageStep)
+admin.site.register(MenuPresentationStepInline)

@@ -54,6 +54,9 @@ class MenuPrepStep(MenuItemAbstractStep):
 class MenuCookStep(MenuItemAbstractStep):
 	pass
 
+class MenuPresentationStep(MenuItemAbstractStep):
+	pass
+
 class Ingredient(models.Model):
 	name = models.CharField(max_length=200)
 

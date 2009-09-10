@@ -45,6 +45,24 @@
 </table>
 {% endblock %}
 
+{% block presentation %}
+{{ block.super }}
+<table>
+	<tbody>
+	{% for pres in presentation %}
+	<tr>
+		{% if pres.isNote %}
+		<td colspan="2" class="noteStep">NOTE: {{pres.step}}</td>
+		{% else %}
+		<td class="stepNum">{{pres.dispOrder}}.</td>
+		<td>{{pres.step}}</td>
+		{% endif %}
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
+
 <!-- Remove content from parent template -->
 {% block storage %}{% endblock %}
 {% block allergies %}{% endblock %}
