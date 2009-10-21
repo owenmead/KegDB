@@ -24,6 +24,11 @@ def menuitemList(request, category_id=None):
 		menu_items.append({'id': item.id, 'name': item.name, 'categoryID': item.category.id})
 	return HttpResponse(simplejson.dumps(menu_items))
 
+def displayAllergy(request, item_id):
+	menu_item = get_object_or_404(MenuItem, pk=item_id)
+	data = {'menu_item' : menu_item}
+	return render_to_response('menuItem_allergy.html', data)
+
 def displayMenuItem(request, item_id, display_type):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
 	
