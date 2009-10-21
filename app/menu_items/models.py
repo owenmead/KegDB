@@ -78,3 +78,11 @@ class MenuIngredient(models.Model):
 
 	def __unicode__(self):
 		return "%s >> %s/%s << %s" % (self.menuItem.name, self.amount_imperial, self.amount_metric, self.ingredient.name)
+
+class Allergen(models.Model):
+	name = models.CharField(max_length=200)
+
+	ingredients = models.ManyToManyField(Ingredient, blank=True)
+
+	def __unicode__(self):
+		return self.name
