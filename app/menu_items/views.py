@@ -1,4 +1,4 @@
-from app.menu_items.models import Category, MenuItem
+from app.menu_items.models import Category, MenuItem, Allergen
 from django.http import HttpResponse
 #from django.core import serializers   -- little bit overkill
 from django.utils import simplejson
@@ -26,7 +26,8 @@ def menuitemList(request, category_id=None):
 
 def displayAllergy(request, item_id):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
-	data = {'menu_item' : menu_item}
+	allergens = Allergen.objects.filter(ingredients__menuItems__id=item_id).distinct()
+	data = {'menu_item' : menu_item, 'allergens' : allergens }
 	return render_to_response('menuItem_allergy.html', data)
 
 def displayMenuItem(request, item_id, display_type):
