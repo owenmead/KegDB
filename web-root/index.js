@@ -267,6 +267,9 @@ ScrollManager.prototype.init = function() {
 	this.scrollingDD.on('startDragEvent', this.onStartDragging, this, true);
 
 	this.scrollingrEl.on('mousedown', this.stopScrollingAnimation, this, true);
+
+    // Rest the list to start at the top
+	this.resetPosition();
 }
 
 ScrollManager.prototype.onDragging = function(ev) {
@@ -321,4 +324,8 @@ ScrollManager.prototype.animateList = function(posDiff, timeDiff) {
 
 ScrollManager.prototype.stopScrollingAnimation = function(ev) {
 	this.scrollAnimation.stop(false);
+}
+
+ScrollManager.prototype.resetPosition = function() {
+    this.scrollingrEl.setStyle('top', 0);
 }
