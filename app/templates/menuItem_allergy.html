@@ -3,18 +3,16 @@
 {% block pageTitle %}Allergy Information - {{menu_item.name}} {% endblock %}
 
 {% block allergies %}
-<div style="float: left; width: 70%;">
-	{{ block.super }}
-	<table>
-		<tbody>
-		{% for allergen in allergens %}
-		<tr>
-			<td>{{allergen.name}}</td>
-		</tr>
-		{% endfor %}
-		</tbody>
-	</table>
-</div>
+{{ block.super }}
+<table>
+	<tbody>
+	{% for allergen in allergens %}
+	<tr>
+		<td>{{allergen.name}}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
 {% endblock allergies %}
 
 <!-- Remove content from parent template -->
