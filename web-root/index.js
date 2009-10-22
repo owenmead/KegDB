@@ -135,7 +135,6 @@ MenuItemManager = function(scrollingDOMID, canvasDOMID, iFrameViewerDOMID, initi
 }
 
 MenuItemManager.prototype.init = function() {
-    this.redraw("_ALL");
     this.iFrameViewer = document.getElementById(this.iFrameViewerDOMID);
 }
 
