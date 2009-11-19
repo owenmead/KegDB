@@ -1,6 +1,7 @@
 from app.menu_items.models import Category, MenuItem, Ingredient, MenuIngredient, MenuPrepStep, MenuStorageStep, MenuCookStep, MenuPresentationStep, Allergen
 from django.contrib import admin
 
+# === Menu Item Admin =========================================================
 class MenuStorageStepInline(admin.TabularInline):
 	model = MenuStorageStep
 	extra = 1
@@ -20,6 +21,8 @@ class MenuPresentationStepInline(admin.TabularInline):
 class MenuItemAdmin(admin.ModelAdmin):
 	inlines = [MenuPrepStepInline, MenuStorageStepInline, MenuCookStepInline, MenuPresentationStepInline]
 
+
+# === Category Admin ==========================================================
 class MenuItemInline(admin.TabularInline):
 	model = MenuItem
 	extra = 1
@@ -30,6 +33,8 @@ class CategoryAdmin(admin.ModelAdmin):
 		(None,               {'fields': ['name']}),
 	]
 	inlines = [MenuItemInline]
+
+# === Ingredient Admin ========================================================
 
 admin.site.register(MenuItem, MenuItemAdmin)
 admin.site.register(Category, CategoryAdmin)
