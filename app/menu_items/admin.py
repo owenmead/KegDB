@@ -20,7 +20,7 @@ class MenuPresentationStepInline(admin.TabularInline):
 
 class MenuItemAdmin(admin.ModelAdmin):
 	inlines = [MenuPrepStepInline, MenuStorageStepInline, MenuCookStepInline, MenuPresentationStepInline]
-
+	ordering = ('name',)
 
 # === Category Admin ==========================================================
 class MenuItemInline(admin.TabularInline):
@@ -33,6 +33,7 @@ class CategoryAdmin(admin.ModelAdmin):
 		(None,               {'fields': ['name']}),
 	]
 	inlines = [MenuItemInline]
+	ordering = ('name',)
 
 # === Ingredient Admin ========================================================
 
