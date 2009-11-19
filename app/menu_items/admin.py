@@ -36,11 +36,17 @@ class CategoryAdmin(admin.ModelAdmin):
 	ordering = ('name',)
 
 # === Ingredient / Allergen Admin =============================================
+class AllergenIngredientInline(admin.TabularInline):
+    model = Allergen.ingredients.through
+
 class AllergenAdmin(admin.ModelAdmin):
     ordering = ('name',)
+    inlines = [AllergenIngredientInline]
+    exclude = ('ingredients',)
 
 class IngredientAdmin(admin.ModelAdmin):
     ordering = ('name',)
+    inlines = [AllergenIngredientInline]
 
 admin.site.register(MenuItem, MenuItemAdmin)
 admin.site.register(Category, CategoryAdmin)
