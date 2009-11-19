@@ -35,13 +35,19 @@ class CategoryAdmin(admin.ModelAdmin):
 	inlines = [MenuItemInline]
 	ordering = ('name',)
 
-# === Ingredient Admin ========================================================
+# === Ingredient / Allergen Admin =============================================
+class AllergenAdmin(admin.ModelAdmin):
+    ordering = ('name',)
+
+class IngredientAdmin(admin.ModelAdmin):
+    ordering = ('name',)
 
 admin.site.register(MenuItem, MenuItemAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Ingredient)
-admin.site.register(MenuIngredient)
-admin.site.register(MenuPrepStep)
-admin.site.register(MenuCookStep)
-admin.site.register(MenuStorageStep)
-admin.site.register(Allergen)
+admin.site.register(Allergen, AllergenAdmin)
+admin.site.register(Ingredient, IngredientAdmin)
+
+#admin.site.register(MenuIngredient)
+#admin.site.register(MenuPrepStep)
+#admin.site.register(MenuCookStep)
+#admin.site.register(MenuStorageStep)
