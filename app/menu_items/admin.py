@@ -2,25 +2,31 @@ from app.menu_items.models import Category, MenuItem, Ingredient, MenuIngredient
 from django.contrib import admin
 
 # === Menu Item Admin =========================================================
+class IngredientInline(admin.TabularInline):
+    model = MenuIngredient
+    extra = 6
+
 class MenuStorageStepInline(admin.TabularInline):
 	model = MenuStorageStep
-	extra = 1
+	extra = 3
 
 class MenuPrepStepInline(admin.TabularInline):
 	model = MenuPrepStep
-	extra = 1
+	extra = 6
 
 class MenuCookStepInline(admin.TabularInline):
 	model = MenuCookStep
-	extra = 1
+	extra = 3
 
 class MenuPresentationStepInline(admin.TabularInline):
 	model = MenuPresentationStep
-	extra = 1
+	extra = 3
 
 class MenuItemAdmin(admin.ModelAdmin):
-	inlines = [MenuPrepStepInline, MenuStorageStepInline, MenuCookStepInline, MenuPresentationStepInline]
+	search_fields = ['name']
+	inlines = [IngredientInline, MenuPrepStepInline, MenuStorageStepInline, MenuCookStepInline, MenuPresentationStepInline]
 	ordering = ('name',)
+	save_on_top = True
 
 # === Category Admin ==========================================================
 class MenuItemInline(admin.TabularInline):
@@ -46,7 +52,7 @@ class AllergenAdmin(admin.ModelAdmin):
 
 class IngredientAdmin(admin.ModelAdmin):
     ordering = ('name',)
-    inlines = [AllergenIngredientInline]
+    inlines = [AllergenIngredientInline, IngredientInline]
 
 admin.site.register(MenuItem, MenuItemAdmin)
 admin.site.register(Category, CategoryAdmin)
