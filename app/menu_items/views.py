@@ -5,7 +5,7 @@ from django.utils import simplejson
 from django.shortcuts import render_to_response, get_object_or_404
 
 def index(request):
-	return HttpResponse("INDEX")
+    return render_to_response('index.html')
 
 def categoryList(request):
 	cats = []
