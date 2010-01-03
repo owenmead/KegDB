@@ -38,7 +38,7 @@ class CategoryAdmin(admin.ModelAdmin):
 	fieldsets = [
 		(None,               {'fields': ['name']}),
 	]
-	inlines = [MenuItemInline]
+	#inlines = [MenuItemInline]
 	ordering = ('name',)
 
 # === Ingredient / Allergen Admin =============================================
