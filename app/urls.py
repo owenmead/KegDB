@@ -23,7 +23,7 @@ urlpatterns = patterns('',
 	
 	# Used as a temp web server DO NOT USE IN PRODUCTION
 	# THIS WILL ALSO GRAB ANY URL NOT SPECIFIED ABOVE
-	(r'^(?P<path>.*)$', 'django.views.static.serve',
+	(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
 	        {'document_root': settings.STATIC_DOC_ROOT}),
 
 )
