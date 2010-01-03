@@ -86,3 +86,11 @@ class Allergen(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+class Flatware(models.Model):
+	name = models.CharField(max_length=200)
+
+	menuItems = models.ManyToManyField(MenuItem, blank=True)
+
+	def __unicode__(self):
+		return self.name

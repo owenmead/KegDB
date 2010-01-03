@@ -1,4 +1,4 @@
-from app.menu_items.models import Category, MenuItem, Ingredient, MenuIngredient, MenuPrepStep, MenuStorageStep, MenuCookStep, MenuPresentationStep, Allergen
+from app.menu_items.models import Category, MenuItem, Ingredient, MenuIngredient, MenuPrepStep, MenuStorageStep, MenuCookStep, MenuPresentationStep, Allergen, Flatware
 from django.contrib import admin
 
 # === Menu Item Admin =========================================================
@@ -22,9 +22,12 @@ class MenuPresentationStepInline(admin.TabularInline):
 	model = MenuPresentationStep
 	extra = 3
 
+class FlatwareMenuItemInline(admin.TabularInline):
+    model = Flatware.menuItems.through
+
 class MenuItemAdmin(admin.ModelAdmin):
 	search_fields = ['name']
-	inlines = [IngredientInline, MenuPrepStepInline, MenuStorageStepInline, MenuCookStepInline, MenuPresentationStepInline]
+	inlines = [IngredientInline, FlatwareMenuItemInline, MenuPrepStepInline, MenuStorageStepInline, MenuCookStepInline, MenuPresentationStepInline]
 	ordering = ('name',)
 	save_on_top = True
 
@@ -54,10 +57,16 @@ class IngredientAdmin(admin.ModelAdmin):
     ordering = ('name',)
     inlines = [AllergenIngredientInline, IngredientInline]
 
+# === Flatware ================================================================
+class FlatwareAdmin(admin.ModelAdmin):
+	exclude = ('menuItems',)
+
+# === Register Admin Classes ==================================================
 admin.site.register(MenuItem, MenuItemAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Allergen, AllergenAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
+admin.site.register(Flatware, FlatwareAdmin)
 
 #admin.site.register(MenuIngredient)
 #admin.site.register(MenuPrepStep)
