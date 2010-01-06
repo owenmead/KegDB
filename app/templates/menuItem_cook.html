@@ -12,6 +12,20 @@
 	<p>{{menu_item.quality_check_cook}}</p>
 {% endblock qualityCheck %}
 
+{% block flatware %}
+{{ block.super }}
+<table>
+	<tbody>
+	{% for piece in flatware %}
+	<tr>
+		<td>{{piece.name}}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock flatware %}
+
+
 {% block ingredients %}
 {{ block.super }}
 <table>

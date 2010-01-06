@@ -47,8 +47,12 @@ def displayMenuItem(request, item_id, display_type):
 							'amount_metric'  : mi.amount_metric,
 							})
 
+	flatware = None
 	if display_type == 'cook':
 		step_set = menu_item.menucookstep_set.all()
+		flatware = []
+		for piece in menu_item.flatware_set.all():
+			flatware.append	({ 'name' : piece.name })
 	elif display_type == 'prep':
 		step_set = menu_item.menuprepstep_set.all()
 	else:
@@ -89,6 +93,7 @@ def displayMenuItem(request, item_id, display_type):
 			'steps'        : steps,
 			'storage'      : storage,
 			'presentation' : presentation,
+			'flatware'     : flatware,
 			}
 	
 	return render_to_response('menuItem_%s.html' % display_type, data)
