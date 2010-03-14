@@ -27,6 +27,9 @@ class MenuItem(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta:
+		ordering = ['name']
+
 	@classmethod
 	def get_items(cls):
 		return cls.objects.all().order_by('name')
@@ -65,6 +68,10 @@ class Ingredient(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta:
+		ordering = ['name']
+
+
 class MenuIngredient(models.Model):
 	menuItem = models.ForeignKey(MenuItem)
 	ingredient = models.ForeignKey(Ingredient)
@@ -87,6 +94,9 @@ class Allergen(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta:
+		ordering = ['name']
+
 class Flatware(models.Model):
 	name = models.CharField(max_length=200)
 
@@ -94,3 +104,6 @@ class Flatware(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+	class Meta:
+		ordering = ['name']
