@@ -7,6 +7,9 @@ class Category(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta:
+		ordering = ['name']
+
 	@classmethod
 	def get_items(cls):
 		return cls.objects.all()
