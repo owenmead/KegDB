@@ -1,0 +1,22 @@
+# KEG Restaurants
+
+Canada - 89
+    AB - 16
+    BC - 22
+    MB - 4
+    NB - 1
+    NL - 1
+    NS - 1
+    ON - 40
+    QC - 2
+    SK - 2
+
+United States - 16
+           AZ - 4
+           CO - 2
+           FL - 1
+           TX - 4
+           WA - 5
+
+Total : 105
+
