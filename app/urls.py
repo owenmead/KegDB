@@ -5,25 +5,26 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-	(r'^$',          'app.menu_items.views.index'),
-	(r'^category/$', 'app.menu_items.views.categoryList'),
+urlpatterns = patterns('app.menu_items.views',
+	(r'^$',          'index'),
+	(r'^category/$', 'categoryList'),
 
-	(r'^menuitem/$',  'app.menu_items.views.menuitemList'),
-	(r'^menuitem/byCategory/(\d+)/$',  'app.menu_items.views.menuitemList'),
-	(r'^menuitem/(\d+)/(prep|cook)/',  'app.menu_items.views.displayMenuItem'),
-	(r'^menuitem/(\d+)/allergy/',  'app.menu_items.views.displayAllergy'),
+	(r'^menuitem/$',                   'menuitemList'),
+	(r'^menuitem/byCategory/(\d+)/$',  'menuitemList'),
+	(r'^menuitem/(\d+)/(prep|cook)/',  'displayMenuItem'),
+	(r'^menuitem/(\d+)/allergy/',      'displayAllergy')
+)
 
-	# Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-	# to INSTALLED_APPS to enable admin documentation:
-	# (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
+urlpatterns += patterns('',
 	# Uncomment the next line to enable the admin:
 	(r'^admin/', include(admin.site.urls)),
-	
+
 	# Used as a temp web server DO NOT USE IN PRODUCTION
 	# THIS WILL ALSO GRAB ANY URL NOT SPECIFIED ABOVE
 	(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
 	        {'document_root': settings.STATIC_DOC_ROOT}),
 
+	# Uncomment the admin/doc line below and add 'django.contrib.admindocs'
+	# to INSTALLED_APPS to enable admin documentation:
+	# (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 )
