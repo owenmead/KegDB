@@ -1,5 +1,5 @@
-//  _   _      _                   _____                 _   _                 
-// | | | | ___| |_ __   ___ _ __  |  ___|   _ _ __   ___| |_(_) ___  _ __  ___ 
+//  _   _      _                   _____                 _   _
+// | | | | ___| |_ __   ___ _ __  |  ___|   _ _ __   ___| |_(_) ___  _ __  ___
 // | |_| |/ _ \ | '_ \ / _ \ '__| | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
 // |  _  |  __/ | |_) |  __/ |    |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
 // |_| |_|\___|_| .__/ \___|_|    |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
@@ -8,7 +8,7 @@
 function styleToInt(el, style) {
 	// Grab the style which is a string
 	var theTop = el.getStyle(style);
-	
+
 	if (theTop == 'auto') return 0;
 
 	// Chop the negative sign, and the 'px'
@@ -81,7 +81,7 @@ CategoryListManager.prototype.drawCategoryList = function(data) {
 		collect += "<dd id=\"" + data[category_item_pos]['id'] + "\">" + data[category_item_pos]['name'] + "</dd>";
 		category_item_pos++;
 	}
-	
+
 	var toWriteTo = document.getElementById(this.scrollingDOMID);
 	toWriteTo.innerHTML = collect;
 	this.scrollManager.init();
@@ -120,11 +120,11 @@ CategoryListManager.prototype.pickCategory = function(categoryID) {
     this.menuItemManager.redraw(categoryID);
 }
 
-//  __  __                  ___ _                 __  __                                   
-// |  \/  | ___ _ __  _   _|_ _| |_ ___ _ __ ___ |  \/  | __ _ _ __   __ _  __ _  ___ _ __ 
+//  __  __                  ___ _                 __  __
+// |  \/  | ___ _ __  _   _|_ _| |_ ___ _ __ ___ |  \/  | __ _ _ __   __ _  __ _  ___ _ __
 // | |\/| |/ _ \ '_ \| | | || || __/ _ \ '_ ` _ \| |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
-// | |  | |  __/ | | | |_| || || ||  __/ | | | | | |  | | (_| | | | | (_| | (_| |  __/ |   
-// |_|  |_|\___|_| |_|\__,_|___|\__\___|_| |_| |_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|   
+// | |  | |  __/ | | | |_| || || ||  __/ | | | | | |  | | (_| | | | | (_| | (_| |  __/ |
+// |_|  |_|\___|_| |_|\__,_|___|\__\___|_| |_| |_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
 //                                                                         |___/
 MenuItemManager = function(scrollingDOMID, canvasDOMID, iFrameViewerDOMID, initialMode) {
     this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
@@ -162,24 +162,33 @@ MenuItemManager.prototype.menuItemCallBack = function(o) {
 MenuItemManager.prototype.menuItemCallBack_error = function(o) {
 	alert("Error getting Menu Items")
 }
+var isNumber = new RegExp("[0-9]+");
+var getFirstCharacter = function(menu_name) {
+    var first_character = menu_name[0].toUpperCase();
+    return isNumber.test(first_character) ? '#' : first_character;
+}
 MenuItemManager.prototype.drawMenuItems = function(data) {
-	var letters = ["A","B","C","D","E","F","G","H","I","J","K",
-					"L","M","N","O","P","Q","R","S","T","U",
+	var letters = ["#","A","B","C","D","E","F","G","H","I","J",
+	                "K","L","M","N","O","P","Q","R","S","T","U",
 					"V","W","X","Y","Z"]
 
 	var collect = "";
 	var menu_item_pos = 0;
 	for (var i in letters) {
-	    if (data[menu_item_pos] != null && data[menu_item_pos]['name'][0].toUpperCase() == letters[i]) {
+	    if (data[menu_item_pos] != null) {
+    	    var first_character = getFirstCharacter(data[menu_item_pos]['name']);
+    	}
+
+	    if (data[menu_item_pos] != null && first_character == letters[i]) {
     	    collect += "<dt>" + letters[i] + "</dt>\n";
 		}
 		while (menu_item_pos < data.length
-							&& data[menu_item_pos]['name'][0].toUpperCase() == letters[i]) {
+							&& (first_character=getFirstCharacter(data[menu_item_pos]['name'])) == letters[i]) {
 			collect += "<dd id=\"" + data[menu_item_pos]['id'] + "\">" + data[menu_item_pos]['name'] + "</dd>";
 			menu_item_pos++;
 		}
 	}
-	
+
 	if (data.length == 0 ) {
         collect = "<div class=\"noItems\">No Items Found, Sorry</div>";
     }
@@ -227,19 +236,19 @@ MenuItemManager.prototype.pickItem = function(itemID) {
     YAHOO.util.Dom.getElementsBy(function(n) {return true}, "dd", this.scrollingDOMID, nodeApply);
 
     this.iFrameViewer.src = "/menuitem/" + itemID + "/" + this.mode + "/";
-    
+
 }
 
 
-//  ____                 _ _ __  __                                   
-// / ___|  ___ _ __ ___ | | |  \/  | __ _ _ __   __ _  __ _  ___ _ __ 
+//  ____                 _ _ __  __
+// / ___|  ___ _ __ ___ | | |  \/  | __ _ _ __   __ _  __ _  ___ _ __
 // \___ \ / __| '__/ _ \| | | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
-//  ___) | (__| | | (_) | | | |  | | (_| | | | | (_| | (_| |  __/ |   
-// |____/ \___|_|  \___/|_|_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|   
+//  ___) | (__| | | (_) | | | |  | | (_| | | | | (_| | (_| |  __/ |
+// |____/ \___|_|  \___/|_|_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
 //                                                    |___/
 
 /*
-    TODO : Calc dragging velocity at intervals instead of over who drag event
+    TODO : Calc dragging velocity at intervals instead of over whole drag event
 */
 
 ScrollManager = function (scrollingDOMID, canvasDOMID) {
@@ -258,10 +267,10 @@ ScrollManager.prototype.init = function() {
 
 	// Needed for on dragging events
 	this.scrollingDD.scrollManager = this;
-	
+
 	// Only drag in Y-axis
 	this.scrollingDD.setXConstraint(0, 0);
-	
+
 	this.scrollingDD.on('dragEvent', this.onDragging, this, true);
 	this.scrollingDD.on('endDragEvent', this.onEndDragging, this, true);
 	this.scrollingDD.on('startDragEvent', this.onStartDragging, this, true);
