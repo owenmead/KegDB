@@ -1,7 +1,9 @@
 div.canvas {
 	background-color: #FFF;
-	height: 550px;
 	overflow: hidden;
+	position: absolute;
+	top: 46px;
+	bottom: 0px;
 }
 	div.canvas dl dt, div.canvas dl dd.topItem {
 		border-top: 1px solid #C6D8EC;
@@ -36,7 +38,9 @@ div.canvas {
 /* <end canvas */
 
 iframe#menuItemViewer {
-	border: 2px solid #ddd;	
+	border: none;
+	width: 100%;
+	height: 100%;
 }
 
 div#topNav {
