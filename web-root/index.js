@@ -22,10 +22,21 @@ function styleToInt(el, style) {
 // |____/ \__,_| .__/ \___|_|  |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
 //             |_|                                       |___/
 
+// Sub-Managers are really dumb. SuperManager knows what to deligate to whom
+
 SuperManager = function(menuItemManager, categoryListManager, topNavigationManager) {
-    this.menuItemManager = menuItemManager;
-    this.categoryListManager = categoryListManager;
-    this.topNavigationManager = topNavigationManager;
+    this.menuItemManager;
+    this.categoryListManager;
+    this.topNavigationManager;
+}
+
+// Notify others of a change
+SuperManager.prototype.notifyOthers = function(notifier, args) {
+    if (notifier == 'nav_change') {
+        self.menuItemManager.setMode(args);
+        self.menuItemManager.pickLast();
+
+    }
 }
 
 SuperManager.prototype.go_prep = function(item_id) {
@@ -39,16 +50,16 @@ SuperManager.prototype.go_prep = function(item_id) {
 //  |_|\___/| .__/|_| \_|\__,_| \_/ |_|\__, |\__,_|\__|_|\___/|_| |_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
 //          |_|                        |___/                                                  |___/
 
-TopNavigationManager = function(navContainerID, menuItemManager) {
+TopNavigationManager = function(navContainerID, superManager) {
     this.navContainerID = navContainerID;
-    this.menuItemManager = menuItemManager;
+    this.superManager = superManager;
+    this.superManager.topNavigationManager = this;
 }
 
 TopNavigationManager.prototype.init = function() {
     var nodeApply = function(n, self) {
         new YAHOO.util.Element(n).addListener('mouseup', self.clickNavButton, self);
     }
-
     YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply, this);
 }
 
@@ -60,12 +71,13 @@ TopNavigationManager.prototype.clearNavButtons = function() {
 }
 
 TopNavigationManager.prototype.clickNavButton = function(evnt, self) {
+    // Update the graphics
     self.clearNavButtons();
-
     var buttonClicked = evnt.currentTarget;
     buttonClicked.setAttribute('state', 'selected');
-    self.menuItemManager.setMode(buttonClicked.getAttribute('display_type'));
-    self.menuItemManager.pickLast();
+
+    // Notify others of the change
+    self.superManager.notifyOthers("nav_change", buttonClicked.getAttribute('display_type'));
 }
 
 
@@ -151,12 +163,14 @@ CategoryListManager.prototype.pickCategory = function(categoryID) {
 // | |  | |  __/ | | | |_| || || ||  __/ | | | | | |  | | (_| | | | | (_| | (_| |  __/ |
 // |_|  |_|\___|_| |_|\__,_|___|\__\___|_| |_| |_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
 //                                                                         |___/
-MenuItemManager = function(scrollingDOMID, canvasDOMID, iFrameViewerDOMID, initialMode) {
+MenuItemManager = function(scrollingDOMID, canvasDOMID, iFrameViewerDOMID, initialMode, superManager) {
     this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
     this.scrollingDOMID = scrollingDOMID;
     this.iFrameViewerDOMID = iFrameViewerDOMID
     this.mode = initialMode;
     this.lastPickedID = null;
+    this.superManager = superManager;
+    this.superManager.menuItemManager = this;
 }
 
 MenuItemManager.prototype.init = function() {

@@ -23,11 +23,12 @@
 	<script type="text/javascript" src="/site_media/index.js"></script>
 
 	<script type="text/javascript" charset="utf-8">
-		var menuItemManager = new MenuItemManager("menuItemsToScroll", "menuItemsCanvas", "menuItemViewer", "prep");
-		var categoryListManager = new CategoryListManager("categoryToScroll", "categoryCanvas", menuItemManager);
-		var topNavigationManager = new TopNavigationManager("topNav", menuItemManager);
+		var superManager = new SuperManager();
 
-		var superManager = new SuperManager(menuItemManager, categoryListManager, topNavigationManager);
+		var menuItemManager = new MenuItemManager("menuItemsToScroll", "menuItemsCanvas", "menuItemViewer", "prep", superManager);
+		var categoryListManager = new CategoryListManager("categoryToScroll", "categoryCanvas", menuItemManager);
+		var topNavigationManager = new TopNavigationManager("topNav", superManager);
+
 
 		// Call back for iFrame link to display a prep item
 		var show_prep_item = function(item_id) {
