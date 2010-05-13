@@ -42,6 +42,7 @@ SuperManager.prototype.notifyOthers = function(notifier, args) {
 }
 
 SuperManager.prototype.go_prep = function(item_id) {
+    this.topNavigationManager.setMode('prep');
     this.menuItemManager.setMode('prep');
     this.menuItemManager.pickItem(item_id);
 }
@@ -66,21 +67,17 @@ TopNavigationManager.prototype.init = function() {
     YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply, this);
 }
 
-TopNavigationManager.prototype.clearNavButtons = function() {
+TopNavigationManager.prototype.setMode = function(mode) {
     var nodeApply = function(n) {
-        n.setAttribute('state', 'unselected');
+        n.setAttribute('state', n.getAttribute('display_type') == mode ? 'selected' : 'unselected');
     }
     YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply);
 }
 
 TopNavigationManager.prototype.clickNavButton = function(evnt, self) {
-    // Update the graphics
-    self.clearNavButtons();
-    var buttonClicked = evnt.currentTarget;
-    buttonClicked.setAttribute('state', 'selected');
-
-    // Notify others of the change
-    self.superManager.notifyOthers("nav_change", buttonClicked.getAttribute('display_type'));
+    var new_nav_mode = evnt.currentTarget.getAttribute('display_type')
+    self.setMode(new_nav_mode);
+    self.superManager.notifyOthers("nav_change", new_nav_mode);
 }
 
 
