@@ -33,8 +33,8 @@ SuperManager = function(menuItemManager, categoryListManager, topNavigationManag
 // Notify others of a change
 SuperManager.prototype.notifyOthers = function(notifier, args) {
     if (notifier == 'nav_change') {
-        self.menuItemManager.setMode(args);
-        self.menuItemManager.pickLast();
+        this.menuItemManager.setMode(args);
+        this.menuItemManager.pickLast();
 
     } else if (notifier == 'pick_category') {
         this.menuItemManager.redraw(args);
