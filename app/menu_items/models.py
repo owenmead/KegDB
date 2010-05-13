@@ -25,6 +25,15 @@ class MenuItem(models.Model):
 
 	photo = models.ImageField(upload_to="menuPhoto", blank=True)
 
+	TYPE_REGULAR  = 'R'
+	TYPE_COOKONLY = 'C'
+	TYPE_PREPONLY = 'P'
+
+	ITEM_TYPES = (	( TYPE_REGULAR,  'Regular'  ),
+					( TYPE_COOKONLY, 'CookOnly' ),
+					( TYPE_PREPONLY, 'PrepOnly' ) )
+	item_type = models.CharField(max_length=1, choices=ITEM_TYPES, default="R")
+
 	category = models.ForeignKey(Category)
 
 	def __unicode__(self):
