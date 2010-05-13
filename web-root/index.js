@@ -42,7 +42,8 @@ SuperManager.prototype.notifyOthers = function(notifier, args) {
 }
 
 SuperManager.prototype.go_prep = function(item_id) {
-    alert("SUPER MANAGER " + item_id);
+    this.menuItemManager.setMode('prep');
+    this.menuItemManager.pickItem(item_id);
 }
 
 // _____           _   _             _             _   _             __  __
