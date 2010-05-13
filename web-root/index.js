@@ -36,6 +36,8 @@ SuperManager.prototype.notifyOthers = function(notifier, args) {
         self.menuItemManager.setMode(args);
         self.menuItemManager.pickLast();
 
+    } else if (notifier == 'pick_category') {
+        this.menuItemManager.redraw(args);
     }
 }
 
@@ -88,10 +90,11 @@ TopNavigationManager.prototype.clickNavButton = function(evnt, self) {
 // \____\__,_|\__\___|\__, |\___/|_|   \__, |_____|_|___/\__|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
 //                    |___/            |___/                                          |___/
 
-CategoryListManager = function(scrollingDOMID, canvasDOMID, menuItemManager) {
+CategoryListManager = function(scrollingDOMID, canvasDOMID, superManager) {
     this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
     this.scrollingDOMID = scrollingDOMID;
-    this.menuItemManager = menuItemManager;
+    this.superManager = superManager;
+    this.superManager.categoryListManager = this;
 }
 
 CategoryListManager.prototype.init = function() {
@@ -154,7 +157,7 @@ CategoryListManager.prototype.pickCategory = function(categoryID) {
     }
     YAHOO.util.Dom.getElementsBy(function(n) {return true}, "dd", this.scrollingDOMID, nodeApply);
 
-    this.menuItemManager.redraw(categoryID);
+    this.superManager.notifyOthers("pick_category", categoryID);
 }
 
 //  __  __                  ___ _                 __  __
