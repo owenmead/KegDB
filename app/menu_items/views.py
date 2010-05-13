@@ -33,7 +33,9 @@ def displayAllergy(request, item_id):
 def displayMenuItem(request, item_id, display_type):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
 
-	if display_type == 'prep':
+	if menu_item.item_type == MenuItem.TYPE_COOKONLY and display_type == 'prep':
+		ingredient_filter = dict(ingredient_type='C', ingredient__prep_item_link__isnull=False)
+	elif display_type == 'prep':
 		ingredient_filter = dict(ingredient_type='P')
 	elif display_type == 'cook':
 		ingredient_filter = dict(ingredient_type='C')
