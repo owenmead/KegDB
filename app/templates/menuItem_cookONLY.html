@@ -3,10 +3,16 @@
 {% block pageTitle %}Prep Information - {{menu_item.name}} {% endblock %}
 
 {% block extra %}
-	<h2>No Direct Prep for {{menu_item.name}}</h2>
-	{% for ingredient in ingredients %}
-	<p><a href="javascript:parent.show_prep_item({{ingredient.linked_prep_item_id}});">{{ingredient.name}}</a></p>
-	{% endfor %}
+	<h2>No Direct Prep. See the following:</h2>
+	<table>
+		<tbody>
+		{% for ingredient in ingredients %}
+		<tr>
+			<td><a href="javascript:parent.show_prep_item({{ingredient.linked_prep_item_id}});">{{ingredient.name}}</a></td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
 {% endblock extra %}
 
 <!-- Remove content from parent template -->
