@@ -32,14 +32,14 @@ def displayAllergy(request, item_id):
 
 def displayMenuItem(request, item_id, display_type):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
-	
+
 	if display_type == 'prep':
 		ingredient_filter = dict(ingredient_type='P')
 	elif display_type == 'cook':
 		ingredient_filter = dict(ingredient_type='C')
 	else:
 		ingredient_filter = {}
-	
+
 	ingredients = []
 	for mi in menu_item.menuingredient_set.all().filter(**ingredient_filter):
 		linked_prep_item_id = mi.ingredient.prep_item_link and \
@@ -63,7 +63,7 @@ def displayMenuItem(request, item_id, display_type):
 		step_set = []
 
 	steps = []
-	displayOrder = 0	
+	displayOrder = 0
 	for step in step_set:
 		if not step.isNote:
 			displayOrder += 1
