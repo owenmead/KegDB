@@ -15,6 +15,30 @@ function styleToInt(el, style) {
 	return parseInt(theTop.substr(0, theTop.length-2));
 }
 
+//  ____                        __  __
+// / ___| _   _ _ __   ___ _ __|  \/  | __ _ _ __   __ _  __ _  ___ _ __
+// \___ \| | | | '_ \ / _ \ '__| |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
+//  ___) | |_| | |_) |  __/ |  | |  | | (_| | | | | (_| | (_| |  __/ |
+// |____/ \__,_| .__/ \___|_|  |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
+//             |_|                                       |___/
+
+SuperManager = function(menuItemManager, categoryListManager, topNavigationManager) {
+    this.menuItemManager = menuItemManager;
+    this.categoryListManager = categoryListManager;
+    this.topNavigationManager = topNavigationManager;
+}
+
+SuperManager.prototype.go_prep = function(item_id) {
+    alert("SUPER MANAGER " + item_id);
+}
+
+// _____           _   _             _             _   _             __  __
+//|_   _|__  _ __ | \ | | __ ___   _(_) __ _  __ _| |_(_) ___  _ __ |  \/  | __ _ _ __   __ _  __ _  ___ _ __
+//  | |/ _ \| '_ \|  \| |/ _` \ \ / / |/ _` |/ _` | __| |/ _ \| '_ \| |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
+//  | | (_) | |_) | |\  | (_| |\ V /| | (_| | (_| | |_| | (_) | | | | |  | | (_| | | | | (_| | (_| |  __/ |
+//  |_|\___/| .__/|_| \_|\__,_| \_/ |_|\__, |\__,_|\__|_|\___/|_| |_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
+//          |_|                        |___/                                                  |___/
+
 TopNavigationManager = function(navContainerID, menuItemManager) {
     this.navContainerID = navContainerID;
     this.menuItemManager = menuItemManager;
@@ -44,9 +68,6 @@ TopNavigationManager.prototype.clickNavButton = function(evnt, self) {
     self.menuItemManager.pickLast();
 }
 
-TopNavigationManager.prototype.go_prep = function(item_id) {
-    alert("Manager Go To " + item_id);
-}
 
 //  ____      _                              _     _     _   __  __
 // / ___|__ _| |_ ___  __ _  ___  _ __ _   _| |   (_)___| |_|  \/  | __ _ _ __   __ _  __ _  ___ _ __

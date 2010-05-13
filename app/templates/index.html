@@ -27,9 +27,11 @@
 		var categoryListManager = new CategoryListManager("categoryToScroll", "categoryCanvas", menuItemManager);
 		var topNavigationManager = new TopNavigationManager("topNav", menuItemManager);
 
+		var superManager = new SuperManager(menuItemManager, categoryListManager, topNavigationManager);
+
 		// Call back for iFrame link to display a prep item
 		var show_prep_item = function(item_id) {
-			topNavigationManager.go_prep(item_id);
+			superManager.go_prep(item_id);
 		}
 	</script>
 
