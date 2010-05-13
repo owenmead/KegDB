@@ -1,0 +1,20 @@
+{% extends "menuItem_base.html" %}
+
+{% block pageTitle %}Prep Information - {{menu_item.name}} {% endblock %}
+
+{% block extra %}
+	<h2>No Direct Prep for {{menu_item.name}}</h2>
+	{% for ingredient in ingredients %}
+	<p>{{ ingredient }}</p>
+	{% endfor %}
+{% endblock extra %}
+
+<!-- Remove content from parent template -->
+{% block smallInfo %}{% endblock smallInfo %}
+{% block qualityCheck %}{% endblock qualityCheck %}
+{% block flatware %}{% endblock flatware %}
+{% block ingredients %}{% endblock ingredients %}
+{% block steps %}{% endblock steps %}
+{% block presentation %}{% endblock presentation %}
+{% block storage %}{% endblock storage %}
+{% block allergies %}{% endblock allergies %}

@@ -99,5 +99,8 @@ def displayMenuItem(request, item_id, display_type):
 			'presentation' : presentation,
 			'flatware'     : flatware,
 			}
-	
+
+	if display_type == 'prep' and menu_item.item_type == MenuItem.TYPE_COOKONLY:
+		display_type = 'cookONLY'
+
 	return render_to_response('menuItem_%s.html' % display_type, data)
