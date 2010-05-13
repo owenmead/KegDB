@@ -44,6 +44,10 @@ TopNavigationManager.prototype.clickNavButton = function(evnt, self) {
     self.menuItemManager.pickLast();
 }
 
+TopNavigationManager.prototype.go_prep = function(item_id) {
+    alert("Manager Go To " + item_id);
+}
+
 //  ____      _                              _     _     _   __  __
 // / ___|__ _| |_ ___  __ _  ___  _ __ _   _| |   (_)___| |_|  \/  | __ _ _ __   __ _  __ _  ___ _ __
 //| |   / _` | __/ _ \/ _` |/ _ \| '__| | | | |   | / __| __| |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|

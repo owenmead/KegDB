@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="/site_media/index.css">
 
 	<script type="text/javascript" src="/site_media/yui/utilities.js"></script>
-	<script type="text/javascript" src="/site_media/yui/yahoo-min.js"></script> 
+	<script type="text/javascript" src="/site_media/yui/yahoo-min.js"></script>
 	<script type="text/javascript" src="/site_media/yui/dom-min.js"></script>
 	<script type="text/javascript" src="/site_media/yui/yahoo-dom-event.js"></script>
 	<script type="text/javascript" src="/site_media/yui/element-min.js"></script>
@@ -21,13 +21,18 @@
 	<script type="text/javascript" src="/site_media/yui/json-min.js"></script>
 
 	<script type="text/javascript" src="/site_media/index.js"></script>
-	
+
 	<script type="text/javascript" charset="utf-8">
 		var menuItemManager = new MenuItemManager("menuItemsToScroll", "menuItemsCanvas", "menuItemViewer", "prep");
 		var categoryListManager = new CategoryListManager("categoryToScroll", "categoryCanvas", menuItemManager);
 		var topNavigationManager = new TopNavigationManager("topNav", menuItemManager);
+
+		// Call back for iFrame link to display a prep item
+		var show_prep_item = function(item_id) {
+			topNavigationManager.go_prep(item_id);
+		}
 	</script>
-	
+
 	<style type="text/css" media="screen">
 		div#categoryCanvas  { left: 0px; width: 20%; }
 		div#menuItemsCanvas { left: 20%; width: 30%; }

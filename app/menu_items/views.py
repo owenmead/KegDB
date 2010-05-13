@@ -42,9 +42,13 @@ def displayMenuItem(request, item_id, display_type):
 	
 	ingredients = []
 	for mi in menu_item.menuingredient_set.all().filter(**ingredient_filter):
-		ingredients.append({'name'           : mi.ingredient.name,
-							'amount_imperial': mi.amount_imperial,
-							'amount_metric'  : mi.amount_metric,
+		linked_prep_item_id = mi.ingredient.prep_item_link and \
+									mi.ingredient.prep_item_link.id or None
+
+		ingredients.append({'name'               : mi.ingredient.name,
+							'amount_imperial'    : mi.amount_imperial,
+							'amount_metric'      : mi.amount_metric,
+							'linked_prep_item_id': linked_prep_item_id
 							})
 
 	flatware = None
