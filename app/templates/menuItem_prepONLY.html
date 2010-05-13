@@ -1,0 +1,24 @@
+{% extends "menuItem_base.html" %}
+
+{% block pageTitle %}Cook Information - {{menu_item.name}} {% endblock %}
+
+{% block extra %}
+	<h2>Is used in the following:</h2>
+	<table>
+		<tbody>
+		<tr>
+			<td><a href="javascript:parent.show_cook_item(1);">{{foogoo}}</a></td>
+		</tr>
+		</tbody>
+	</table>
+{% endblock extra %}
+
+<!-- Remove content from parent template -->
+{% block smallInfo %}{% endblock smallInfo %}
+{% block qualityCheck %}{% endblock qualityCheck %}
+{% block flatware %}{% endblock flatware %}
+{% block ingredients %}{% endblock ingredients %}
+{% block steps %}{% endblock steps %}
+{% block presentation %}{% endblock presentation %}
+{% block storage %}{% endblock storage %}
+{% block allergies %}{% endblock allergies %}

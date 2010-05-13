@@ -104,5 +104,8 @@ def displayMenuItem(request, item_id, display_type):
 
 	if display_type == 'prep' and menu_item.item_type == MenuItem.TYPE_COOKONLY:
 		display_type = 'cookONLY'
+	elif display_type == 'cook' and menu_item.item_type == MenuItem.TYPE_PREPONLY:
+		display_type = 'prepONLY'
+		data['foogoo'] = 'Ashley is sexy';
 
 	return render_to_response('menuItem_%s.html' % display_type, data)
