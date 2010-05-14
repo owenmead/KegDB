@@ -41,9 +41,15 @@ SuperManager.prototype.notifyOthers = function(notifier, args) {
     }
 }
 
-SuperManager.prototype.go_prep = function(item_id) {
+SuperManager.prototype.show_prep_item = function(item_id) {
     this.topNavigationManager.setMode('prep');
     this.menuItemManager.setMode('prep');
+    this.menuItemManager.pickItem(item_id);
+}
+
+SuperManager.prototype.show_cook_item = function(item_id) {
+    this.topNavigationManager.setMode('cook');
+    this.menuItemManager.setMode('cook');
     this.menuItemManager.pickItem(item_id);
 }
 
