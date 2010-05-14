@@ -6,9 +6,11 @@
 	<h2>Is used in the following:</h2>
 	<table>
 		<tbody>
+		{% for menuitem in usedIn %}
 		<tr>
-			<td><a href="javascript:parent.show_cook_item(1);">{{foogoo}}</a></td>
+			<td><a href="javascript:parent.show_cook_item({{menuitem.id}});">{{menuitem.name}}</a></td>
 		</tr>
+		{% endfor %}
 		</tbody>
 	</table>
 {% endblock extra %}

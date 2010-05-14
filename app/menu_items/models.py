@@ -77,7 +77,7 @@ class Ingredient(models.Model):
 
 	menuItems = models.ManyToManyField(MenuItem, through="MenuIngredient")
 
-	prep_item_link = models.ForeignKey(MenuItem, related_name="prepMenuItems", null=True)
+	prep_item_link = models.ForeignKey(MenuItem, related_name="prepIngredients", null=True)
 
 	def __unicode__(self):
 		return self.name

@@ -106,6 +106,11 @@ def displayMenuItem(request, item_id, display_type):
 		display_type = 'cookONLY'
 	elif display_type == 'cook' and menu_item.item_type == MenuItem.TYPE_PREPONLY:
 		display_type = 'prepONLY'
-		data['foogoo'] = 'Ashley is sexy';
+
+		# FIXME: I'm SURE this can be done in a single query.
+		data['usedIn'] = []
+		for ing in menu_item.prepIngredients.all():
+			for mi in ing.menuItems.all():
+				data['usedIn'].append(mi)
 
 	return render_to_response('menuItem_%s.html' % display_type, data)
