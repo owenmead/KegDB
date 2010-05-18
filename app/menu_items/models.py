@@ -25,15 +25,6 @@ class MenuItem(models.Model):
 
 	photo = models.ImageField(upload_to="menuPhoto", blank=True)
 
-	TYPE_REGULAR  = 'R'
-	TYPE_COOKONLY = 'C'
-	TYPE_PREPONLY = 'P'
-
-	ITEM_TYPES = (	( TYPE_REGULAR,  'Regular'  ),
-					( TYPE_COOKONLY, 'CookOnly' ),
-					( TYPE_PREPONLY, 'PrepOnly' ) )
-	item_type = models.CharField(max_length=1, choices=ITEM_TYPES, default="R")
-
 	category = models.ForeignKey(Category)
 
 	def __unicode__(self):
@@ -41,6 +32,18 @@ class MenuItem(models.Model):
 
 	class Meta:
 		ordering = ['name']
+
+	TYPE_REGULAR  = 'R'
+	TYPE_COOKONLY = 'C'
+	TYPE_PREPONLY = 'P'
+	def get_type(self):
+		# Infered by ingredient list. If no prep ingredients, then cook only for example.
+		if self.menuingredient_set.filter(ingredient_type='C').count() == 0:
+			return self.TYPE_PREPONLY
+		elif self.menuingredient_set.filter(ingredient_type='P').count() == 0:
+			return self.TYPE_COOKONLY
+		else:
+			return self.TYPE_REGULAR
 
 	@classmethod
 	def get_items(cls):
