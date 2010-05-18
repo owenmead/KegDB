@@ -49,16 +49,20 @@ class AllergenIngredientInline(admin.TabularInline):
     model = Allergen.ingredients.through
 
 class AllergenAdmin(admin.ModelAdmin):
+    search_fields = ['name']
     ordering = ('name',)
     inlines = [AllergenIngredientInline]
     exclude = ('ingredients',)
 
 class IngredientAdmin(admin.ModelAdmin):
+    search_fields = ['name']
     ordering = ('name',)
     inlines = [AllergenIngredientInline, IngredientInline]
 
 # === Flatware ================================================================
 class FlatwareAdmin(admin.ModelAdmin):
+	search_fields = ['name']
+	ordering = ('name',)
 	exclude = ('menuItems',)
 
 # === Register Admin Classes ==================================================
