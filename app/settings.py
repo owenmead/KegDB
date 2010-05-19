@@ -82,5 +82,4 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'app.menu_items',
-    'sorl.thumbnail',
 )
