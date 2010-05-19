@@ -1,6 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
 
+{% load thumbnail %}
+
+
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -25,6 +28,11 @@
 	<div id="mainCanvas" class="canvas">
 		<div id="mainToScroll">
 			<h1>{{menu_item.name}}</h1>
+
+			<img src="{% thumbnail menu_item.photo 200x200 crop=smart %}" />
+
+			{{menu_item.photo.url}}
+			<img src="{{menu_item.photo.url}}" />
 
 			<div id="smallInfo">{% block smallInfo %}{% endblock smallInfo %}</div>
 
