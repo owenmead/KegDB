@@ -10,9 +10,11 @@
 	<title>{% block pageTitle %}Prep Information - {{menu_item.name}} {% endblock %}</title>
 	<link rel="stylesheet" type="text/css" href="/site_media/global.css">
 	<link rel="stylesheet" type="text/css" href="/site_media/menuItem.css">
+	<link rel="stylesheet" type="text/css" href="/site_media/awesome-box/css/awesomebox.css">
 
 	<script type="text/javascript" src="/site_media/yui/utilities.js"></script>
 	<script type="text/javascript" src="/site_media/index.js"></script>
+	<script type="text/javascript" src="/site_media/awesome-box/js/awesomebox.js"></script>
 
 	<script type="text/javascript" charset="utf-8">
 		var scrollManager = new ScrollManager("mainToScroll", "mainCanvas");
@@ -31,10 +33,9 @@
 
 			{% block photo %}
 				{% if menu_item.photo %}
-				<img src="{% thumbnail menu_item.photo 200x200 crop=smart %}" />
-
-				{{menu_item.photo.url}}
-				<img src="{{menu_item.photo.url}}" />
+				<a href="{{menu_item.photo.url}}" id="thumbImage">
+				    <img src="{% thumbnail menu_item.photo 200x200 crop=smart %}" title="{{ menu_item.name }}" alt=" " />
+				</a>
 				{% endif %}
 			{% endblock photo %}
 
