@@ -39,10 +39,6 @@ td.noteStep {
 
 a#thumbImage {
 	float: right;
-	padding-bottom: 14px;
-	background-image: url(/images/zoomFullSize.png);
-	background-position: bottom center;
-	background-repeat: no-repeat;
 }
 	a#thumbImage img {
 		border: 1px solid #3C5F7F;
