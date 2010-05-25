@@ -3,6 +3,7 @@
 {% block pageTitle %}Cook Information - {{menu_item.name}} {% endblock %}
 
 {% block extra %}
+	{% if usedIn %}
 	<h2>Is used in the following:</h2>
 	<table>
 		<tbody>
@@ -13,6 +14,12 @@
 		{% endfor %}
 		</tbody>
 	</table>
+	{% else %}
+	<h3>No cooking information found for {{menu_item.name}}</h3>
+	{% endif %}
+
+
+
 {% endblock extra %}
 
 <!-- Remove content from parent template -->
