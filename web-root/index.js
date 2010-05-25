@@ -361,6 +361,10 @@ ScrollManager.prototype.animateList = function(posDiff, timeDiff) {
 		attributes = {
 		   top: { to: 0 }
 		};
+	} else if (scrollerHeight < canvasHeight) {
+		attributes = {
+		   top: { to: 0 }
+		};
 	} else if (Math.abs(currentTop + distanceToMove) > scrollerHeight - canvasHeight) {
 		attributes = {
 		   top: { to: scrollerHeight*-1 + canvasHeight }
