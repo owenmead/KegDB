@@ -13,6 +13,7 @@
 {% endblock qualityCheck %}
 
 {% block flatware %}
+{% if flatware %}
 {{ block.super }}
 <table>
 	<tbody>
@@ -23,10 +24,12 @@
 	{% endfor %}
 	</tbody>
 </table>
+{% endif %}
 {% endblock flatware %}
 
 
 {% block ingredients %}
+{% if ingredients %}
 {{ block.super }}
 <table>
 	<tbody>
@@ -40,9 +43,11 @@
 	{% endfor %}
 	</tbody>
 </table>
+{% endif %}
 {% endblock ingredients %}
 
 {% block steps %}
+{% if steps %}
 {{ block.super }}
 <table>
 	<tbody>
@@ -58,9 +63,11 @@
 	{% endfor %}
 	</tbody>
 </table>
+{% endif %}
 {% endblock %}
 
 {% block presentation %}
+{% if presentation %}
 {{ block.super }}
 <table>
 	<tbody>
@@ -76,6 +83,7 @@
 	{% endfor %}
 	</tbody>
 </table>
+{% endif %}
 {% endblock %}
 
 <!-- Remove content from parent template -->

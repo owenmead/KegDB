@@ -3,6 +3,7 @@
 {% block pageTitle %}Allergy Information - {{menu_item.name}} {% endblock %}
 
 {% block allergies %}
+{% if allergens %}
 {{ block.super }}
 <table>
 	<tbody>
@@ -13,9 +14,13 @@
 	{% endfor %}
 	</tbody>
 </table>
+{% else %}
+<h3>No allergy information found for {{menu_item.name}}</h3>
+{% endif %}
 {% endblock allergies %}
 
 <!-- Remove content from parent template -->
+{% block photo %}{% endblock photo %}
 {% block smallInfo %}{% endblock smallInfo %}
 {% block qualityCheck %}{% endblock qualityCheck %}
 {% block ingredients %}{% endblock ingredients %}

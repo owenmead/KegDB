@@ -29,6 +29,7 @@
 {% endblock ingredients %}
 
 {% block steps %}
+{% if steps %}
 {{ block.super }}
 <table>
 	<tbody>
@@ -44,9 +45,11 @@
 	{% endfor %}
 	</tbody>
 </table>
+{% endif %}
 {% endblock %}
 
 {% block storage %}
+{% if storage %}
 {{ block.super }}
 <table>
 	<tbody>
@@ -62,6 +65,7 @@
 	{% endfor %}
 	</tbody>
 </table>
+{% endif %}
 {% endblock storage %}
 
 <!-- Remove content from parent template -->
