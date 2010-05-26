@@ -124,3 +124,17 @@ class Flatware(models.Model):
 
 	class Meta:
 		ordering = ['name']
+
+class KegAllergen(models.Model):
+	'''
+	A temporary relation while we wait for allergy information to tie it
+	directly to the ingredients. This is taken directly from AllergyAware.
+	'''
+	name = models.CharField(max_length=200)
+	menuItems = models.ManyToManyField(MenuItem, blank=True)
+
+	def __unicode__(self):
+		return self.name
+
+	class Meta:
+		ordering = ['name']
