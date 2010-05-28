@@ -14,10 +14,9 @@ def categoryList(request):
 	return HttpResponse(simplejson.dumps(cats))
 
 def menuitemList(request, category_id=None):
+	search = dict(is_active=True)
 	if category_id:
-		search = dict(category=category_id)
-	else:
-		search = {}
+		search['category'] =category_id
 
 	menu_items = []
 	for item in MenuItem.get_items().filter(**search):
