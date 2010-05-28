@@ -53,6 +53,7 @@ class MenuItemAbstractStep(models.Model):
 	order = models.PositiveIntegerField()
 	step = models.TextField()
 	isNote = models.BooleanField(default=False)
+	photo = models.ImageField(upload_to="menuPhoto", blank=True)
 
 	menu = models.ForeignKey(MenuItem)
 
@@ -80,7 +81,7 @@ class Ingredient(models.Model):
 
 	menuItems = models.ManyToManyField(MenuItem, through="MenuIngredient")
 
-	prep_item_link = models.ForeignKey(MenuItem, related_name="prepIngredients", null=True)
+	prep_item_link = models.ForeignKey(MenuItem, related_name="prepIngredients", null=True, blank=True)
 
 	def __unicode__(self):
 		return self.name
