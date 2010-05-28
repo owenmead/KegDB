@@ -27,6 +27,8 @@ class MenuItem(models.Model):
 
 	category = models.ForeignKey(Category)
 
+	is_active = models.BooleanField(default=True)
+
 	def __unicode__(self):
 		return self.name
 
