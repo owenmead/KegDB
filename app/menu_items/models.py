@@ -53,7 +53,7 @@ class MenuItem(models.Model):
 
 class MenuItemAbstractStep(models.Model):
 	order = models.PositiveIntegerField()
-	step = models.TextField()
+	step = models.TextField(blank=True)
 	isNote = models.BooleanField(default=False)
 	photo = models.ImageField(upload_to="menuPhoto", blank=True)
 
