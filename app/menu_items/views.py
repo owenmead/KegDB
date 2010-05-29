@@ -73,7 +73,8 @@ def displayMenuItem(request, item_id, display_type):
 		steps.append({'dispOrder' : displayOrder,
 					  'order'     : step.order,
 					  'step'      : step.step,
-					  'isNote'    : step.isNote})
+					  'isNote'    : step.isNote,
+					  'photo'     : step.photo and step.photo.url})
 
 	storage = []
 	displayOrder = 0

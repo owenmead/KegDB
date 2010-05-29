@@ -37,6 +37,10 @@ td.noteStep {
 	padding-left: 35px;
 }
 
+td.photoStep {
+	text-align: center;
+}
+
 a#thumbImage {
 	float: right;
 }
