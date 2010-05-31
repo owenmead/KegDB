@@ -1,4 +1,4 @@
-from app.menu_items.models import Category, MenuItem, Ingredient, MenuIngredient, MenuPrepStep, MenuStorageStep, MenuCookStep, MenuPresentationStep, Allergen, Flatware, KegAllergen
+from app.menu_items.models import Category, MenuItem, Ingredient, MenuIngredient, MenuPrepStep, MenuStorageStep, MenuCookStep, MenuPresentationStep, Allergen, Flatware
 from django.contrib import admin
 
 # === Menu Item Admin =========================================================
@@ -67,15 +67,6 @@ class FlatwareAdmin(admin.ModelAdmin):
 #    inlines = [AllergenIngredientInline]
 #    exclude = ('ingredients',)
 
-class KegAllergenMenuItemInline(admin.TabularInline):
-	model = KegAllergen.menuItems.through
-
-class KegAllergenAdmin(admin.ModelAdmin):
-	search_fields = ['name']
-	ordering = ('name',)
-	inlines = [KegAllergenMenuItemInline,]
-	exclude = ('menuItems',)
-
 # === Register Admin Classes ==================================================
 admin.site.register(MenuItem, MenuItemAdmin)
 admin.site.register(Category, CategoryAdmin)
@@ -83,8 +74,6 @@ admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Flatware, FlatwareAdmin)
 
 #admin.site.register(Allergen, AllergenAdmin)
-admin.site.register(KegAllergen, KegAllergenAdmin)
-
 
 #admin.site.register(MenuIngredient)
 #admin.site.register(MenuPrepStep)
