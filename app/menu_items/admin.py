@@ -44,13 +44,6 @@ class CategoryAdmin(admin.ModelAdmin):
 	#inlines = [MenuItemInline]
 	ordering = ('name',)
 
-# === Ingredient ==============================================================
-class IngredientAdmin(admin.ModelAdmin):
-	search_fields = ['name']
-	ordering = ('name',)
-	#inlines = [AllergenIngredientInline, IngredientInline]
-	inlines = [IngredientInline]
-
 # === Flatware ================================================================
 class FlatwareAdmin(admin.ModelAdmin):
 	search_fields = ['name']
@@ -58,14 +51,20 @@ class FlatwareAdmin(admin.ModelAdmin):
 	exclude = ('menuItems',)
 
 # === Allergans ================================================================
-#class AllergenIngredientInline(admin.TabularInline):
-#    model = Allergen.ingredients.through
-#
-#class AllergenAdmin(admin.ModelAdmin):
-#    search_fields = ['name']
-#    ordering = ('name',)
-#    inlines = [AllergenIngredientInline]
-#    exclude = ('ingredients',)
+class AllergenIngredientInline(admin.TabularInline):
+    model = Allergen.ingredients.through
+
+class AllergenAdmin(admin.ModelAdmin):
+    search_fields = ['name']
+    ordering = ('name',)
+    inlines = [AllergenIngredientInline]
+    exclude = ('ingredients',)
+
+# === Ingredient ==============================================================
+class IngredientAdmin(admin.ModelAdmin):
+	search_fields = ['name']
+	ordering = ('name',)
+	inlines = [AllergenIngredientInline, IngredientInline]
 
 # === Register Admin Classes ==================================================
 admin.site.register(MenuItem, MenuItemAdmin)
@@ -73,7 +72,7 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Flatware, FlatwareAdmin)
 
-#admin.site.register(Allergen, AllergenAdmin)
+admin.site.register(Allergen, AllergenAdmin)
 
 #admin.site.register(MenuIngredient)
 #admin.site.register(MenuPrepStep)
