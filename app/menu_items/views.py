@@ -26,15 +26,26 @@ def menuitemList(request, category_id=None):
 def displayAllergy(request, item_id):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
 
-	# Start by creating a set of alergies (to ensure unique here, and when adding)
-	allergens = set(Allergen.objects.filter(ingredients__menuItems__id=item_id))
+	allergens = []
 
-	# Find allergies from linked prep menu items
-	for linked_ingredient in menu_item.ingredient_set.filter(prep_item_link__isnull = False):
-		linked_menu_item = linked_ingredient.prep_item_link
-		linked_allergens = set(Allergen.objects.filter(ingredients__menuItems__id=linked_menu_item.id))
-		# Add the sets together
-		allergens.update(linked_allergens)
+	for menu_ingredient in menu_item.menuingredient_set.all():
+		# Grab all the direct allergens from the ingredients
+		for allergen in menu_ingredient.ingredient.allergen_set.all():
+			allergens.append([allergen,
+							  menu_ingredient.ingredient,
+							  menu_ingredient.ingredient_type])
+
+		# Search through linked ingredients for more allergies (only one deep)
+		linked_menu_item = menu_ingredient.ingredient.prep_item_link
+		if linked_menu_item:
+			linked_allergens = Allergen.objects.filter(ingredients__menuItems__id=linked_menu_item.id)
+			for linked_allergen in linked_allergens:
+				allergens.append([linked_allergen,
+								  menu_ingredient.ingredient,
+								  menu_ingredient.ingredient_type])
+
+	# Sort by the ingredient type (prep | cook)
+	allergens = sorted(allergens, key=lambda allergy:allergy[2])
 
 	data = {'menu_item' : menu_item, 'allergens' : allergens }
 	return render_to_response('menuItem_allergy.html', data)

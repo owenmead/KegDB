@@ -6,10 +6,17 @@
 {% if allergens %}
 {{ block.super }}
 <table>
+	<thead>
+	<tr>
+		<th>Allergen</th><th>Ingredient</th><th>Used In</th>
+	</tr>
+	</thead>
 	<tbody>
 	{% for allergen in allergens %}
 	<tr>
-		<td>{{allergen.name}}</td>
+		<td>{{allergen.0.name}}</td>
+		<td>{{allergen.1.name}}</td>
+		{% if allergen.2 == 'C' %}<td>Cook</td>{% else %}<td>Prep</td>{% endif %}
 	</tr>
 	{% endfor %}
 	</tbody>
