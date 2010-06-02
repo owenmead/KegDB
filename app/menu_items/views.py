@@ -25,7 +25,17 @@ def menuitemList(request, category_id=None):
 
 def displayAllergy(request, item_id):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
-	allergens = Allergen.objects.filter(ingredients__menuItems__id=item_id).distinct()
+
+	# Start by creating a set of alergies (to ensure unique here, and when adding)
+	allergens = set(Allergen.objects.filter(ingredients__menuItems__id=item_id))
+
+	# Find allergies from linked prep menu items
+	for linked_ingredient in menu_item.ingredient_set.filter(prep_item_link__isnull = False):
+		linked_menu_item = linked_ingredient.prep_item_link
+		linked_allergens = set(Allergen.objects.filter(ingredients__menuItems__id=linked_menu_item.id))
+		# Add the sets together
+		allergens.update(linked_allergens)
+
 	data = {'menu_item' : menu_item, 'allergens' : allergens }
 	return render_to_response('menuItem_allergy.html', data)
 
