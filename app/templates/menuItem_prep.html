@@ -21,7 +21,8 @@
 	<tr>
 		<td>{{ingredient.amount_metric}}</td>
 		<td>{{ingredient.amount_imperial}}</td>
-		<td>{{ingredient.name}}</td>
+		{%if ingredient.linked_prep_item_id %}<td><a href="javascript:parent.show_prep_item({{ingredient.linked_prep_item_id}});">{{ingredient.name}}</a></td>
+		{% else %}<td>{{ingredient.name}}</td>{% endif %}
 	</tr>
 	{% endfor %}
 	</tbody>
