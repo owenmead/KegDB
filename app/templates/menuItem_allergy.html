@@ -5,7 +5,25 @@
 {% block allergies %}
 {% if allergens %}
 {{ block.super }}
-<table>
+<table id="allergy_basic">
+	<thead>
+	<tr>
+		<th>Allergen</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for allergen in allergens %}
+	<tr>
+		<td>{{allergen.0.name}}</td>
+	</tr>
+	{% endfor %}
+	<tr>
+		<td><a href="javascript:$('allergy_basic').style.display = 'none';$('allergy_detail').style.display = 'table';" >More Details</a></td>
+	</tr>
+	</tbody>
+</table>
+
+<table id="allergy_detail" style="display: none;">
 	<thead>
 	<tr>
 		<th>Allergen</th><th>Ingredient</th><th>Used In</th>
