@@ -24,26 +24,28 @@ def menuitemList(request, category_id=None):
 	return HttpResponse(simplejson.dumps(menu_items))
 
 def displayAllergy(request, item_id):
-	menu_item = get_object_or_404(MenuItem, pk=item_id)
+	visited = []
+	def get_allergens(menu_item):
+		if menu_item.id in visited: return []
+		else: visited.append(menu_item.id)
 
-	allergens = []
-
-	for menu_ingredient in menu_item.menuingredient_set.all():
-		# Grab all the direct allergens from the ingredients
-		for allergen in menu_ingredient.ingredient.allergen_set.all():
-			allergens.append([allergen,
-							  menu_ingredient.ingredient,
-							  menu_ingredient.ingredient_type])
-
-		# Search through linked ingredients for more allergies (only one deep)
-		linked_menu_item = menu_ingredient.ingredient.prep_item_link
-		if linked_menu_item:
-			linked_allergens = Allergen.objects.filter(ingredients__menuItems__id=linked_menu_item.id)
-			for linked_allergen in linked_allergens:
-				allergens.append([linked_allergen,
+		allergens = []
+		for menu_ingredient in menu_item.menuingredient_set.all():
+			# Grab all the direct allergens from the ingredients
+			for allergen in menu_ingredient.ingredient.allergen_set.all():
+				allergens.append([allergen,
 								  menu_ingredient.ingredient,
 								  menu_ingredient.ingredient_type])
 
+			# Search through linked ingredients for more allergies (recursively)
+			linked_menu_item = menu_ingredient.ingredient.prep_item_link
+			if linked_menu_item:
+				allergens.extend(get_allergens(linked_menu_item))
+
+		return allergens
+
+	menu_item = get_object_or_404(MenuItem, pk=item_id)
+	allergens = get_allergens(menu_item)
 	# Sort by the ingredient type (prep | cook)
 	allergens = sorted(allergens, key=lambda allergy:allergy[2])
 
