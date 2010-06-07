@@ -47,7 +47,7 @@ def displayAllergy(request, item_id):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
 	allergens = get_allergens(menu_item)
 	# Sort by the ingredient type (prep | cook)
-	allergens = sorted(allergens, key=lambda allergy:allergy[2])
+	allergens = sorted(allergens, key=lambda allergy:allergy[0].name)
 
 	data = {'menu_item' : menu_item, 'allergens' : allergens }
 	return render_to_response('menuItem_allergy.html', data)
