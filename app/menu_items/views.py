@@ -33,8 +33,9 @@ def displayAllergy(request, item_id):
 		for menu_ingredient in menu_item.menuingredient_set.all():
 			# Grab all the direct allergens from the ingredients
 			for allergen in menu_ingredient.ingredient.allergen_set.all():
-				allergens.append([allergen,
-								  menu_ingredient.ingredient,
+				allergens.append([allergen.name,
+								  menu_ingredient.ingredient.name,
+								  menu_ingredient.menuItem.name,
 								  menu_ingredient.ingredient_type])
 
 			# Search through linked ingredients for more allergies (recursively)
@@ -47,7 +48,7 @@ def displayAllergy(request, item_id):
 	menu_item = get_object_or_404(MenuItem, pk=item_id)
 	allergens = get_allergens(menu_item)
 	# Sort by the ingredient type (prep | cook)
-	allergens = sorted(allergens, key=lambda allergy:allergy[0].name)
+	allergens = sorted(allergens, key=lambda allergy:allergy[0])
 
 	data = {'menu_item' : menu_item, 'allergens' : allergens }
 	return render_to_response('menuItem_allergy.html', data)

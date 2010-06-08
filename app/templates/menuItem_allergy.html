@@ -26,15 +26,15 @@
 <table id="allergy_detail">
 	<thead>
 	<tr>
-		<th>Allergen</th><th>Ingredient</th><th>Used In</th>
+		<th>Allergen</th><th>Found In</th><th>Used In</th>
 	</tr>
 	</thead>
 	<tbody>
 	{% for allergen in allergens %}
 	<tr>
-		<td>{{allergen.0.name}}</td>
-		<td>{{allergen.1.name}}</td>
-		{% if allergen.2 == 'C' %}<td>Cook</td>{% else %}<td>Prep</td>{% endif %}
+		<td>{{allergen.0}}</td>
+		<td>{{allergen.2}} <strong style="font-size: 90%">({{allergen.1}})</strong></td>
+		{% if allergen.3 == 'C' %}<td>Cook</td>{% else %}<td>Prep</td>{% endif %}
 	</tr>
 	{% endfor %}
 	</tbody>
