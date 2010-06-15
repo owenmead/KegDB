@@ -60,11 +60,6 @@ div#topNav {
 		cursor: hand; cursor: pointer;
 	}
 
-	div#topNav a#allergy_reverse_lookup {
-		background-image: url(/site_media/images/nav/allergy_reverse_lookup.png);
-		width: 261px;
-		margin-right: 20px;
-	}
 	div#topNav a#allergy_info {
 		background-image: url(/site_media/images/nav/allergy_info.png);
 		width: 171px;
@@ -79,7 +74,6 @@ div#topNav {
 		margin-right: 15px;
 	}
 
-	div#topNav a[state=selected]#allergy_reverse_lookup { background-image: url(/site_media/images/nav/allergy_reverse_lookup_selected.png); }
 	div#topNav a[state=selected]#allergy_info { background-image: url(/site_media/images/nav/allergy_info_selected.png); }
 	div#topNav a[state=selected]#cook_present { background-image: url(/site_media/images/nav/cook_present_selected.png); }
 	div#topNav a[state=selected]#preparation { background-image: url(/site_media/images/nav/preparation_selected.png); }
