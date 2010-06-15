@@ -41,13 +41,13 @@ table tr {
 }
 
 table tr td {
-	border-bottom: 1px solid #C6D8EC;
+	border-bottom: 1px solid #DFDFDF;
 	padding: 3px;
 }
 
 table tr th {
 	text-align: left;
 	font-size: 90%;
-	border-bottom: 2px solid #C6D8EC;
+	border-bottom: 2px solid #DFDFDF;
 	padding: 3px 3px 1px 3px;
 }

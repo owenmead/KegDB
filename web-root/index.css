@@ -10,12 +10,12 @@ div.canvas {
 	position: absolute;
 }
 	div.canvas dl dt, div.canvas dl dd.topItem {
-		border-top: 1px solid #C6D8EC;
+		border-top: 1px solid #DFDFDF;
 	}
 	div.canvas dl dt, div.canvas dl dd {
-		border-bottom: 1px solid #C6D8EC;
-		border-left: 1px solid #C6D8EC;
-		border-right: 1px solid #C6D8EC;
+		border-bottom: 1px solid #DFDFDF;
+		border-left: 1px solid #DFDFDF;
+		border-right: 1px solid #DFDFDF;
 	}
 	div.canvas dl dt {
 		font-weight: bold;
@@ -35,12 +35,18 @@ div.canvas {
 		padding: 8px 5px;
 	}
 
+	div.canvas dl dd[state=selected] {
+		background-image: url('/site_media/images/selectedRow.png');
+		font-weight: bold;
+		color: #FFF;
+	}
+
 	div.canvas div.noItems {
 		text-align: center;
 		border: 2px solid #ddd;
 		padding: 40px 0px 50px;
 		font-size: 150%;
-		color: #C6D8EC;
+		color: #DFDFDF;
 	}
 /* <end canvas */
 
