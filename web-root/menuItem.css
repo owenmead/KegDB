@@ -1,3 +1,7 @@
+body {
+	background-image: url('images/paper.png')
+}
+
 div#smallInfo {
 	margin: 20px 0px 15px;
 }
