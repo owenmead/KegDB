@@ -9,13 +9,8 @@ div.canvas {
 	overflow: hidden;
 	position: absolute;
 }
-	div.canvas dl dt, div.canvas dl dd.topItem {
-		border-top: 1px solid #DFDFDF;
-	}
 	div.canvas dl dt, div.canvas dl dd {
 		border-bottom: 1px solid #DFDFDF;
-		border-left: 1px solid #DFDFDF;
-		border-right: 1px solid #DFDFDF;
 	}
 	div.canvas dl dt {
 		font-weight: bold;
