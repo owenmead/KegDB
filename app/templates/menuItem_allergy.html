@@ -4,26 +4,15 @@
 
 {% block allergies %}
 {% if allergens %}
-{{ block.super }}
-<table id="allergy_basic" style="display: none;">
-	<thead>
-	<tr>
-		<th>Allergen</th>
-	</tr>
-	</thead>
-	<tbody>
-	{% for allergen in allergens %}
-	<tr>
-		<td>{{allergen.0.name}}</td>
-	</tr>
+<div id="allergy_basic">
+	{{ block.super }}
+	{% for allergen in allergens_basic %}
+	<p>{{allergen}}</p>
 	{% endfor %}
-	<tr>
-		<td><a href="javascript:$('allergy_basic').style.display = 'none';$('allergy_detail').style.display = 'table';" >More Details</a></td>
-	</tr>
-	</tbody>
-</table>
+	<p><a href="javascript:$('allergy_basic').style.display = 'none';$('allergy_detail').style.display = 'table';" >More Details</a></p>
+</div>
 
-<table id="allergy_detail">
+<table id="allergy_detail" style="display:none">
 	<thead>
 	<tr>
 		<th>Allergen</th><th>Found In</th><th>Used In</th>
@@ -42,6 +31,10 @@
 {% else %}
 <h3>No allergy information found for {{menu_item.name}}</h3>
 {% endif %}
+
+<hr style="margin-bottom: 0.5em;">
+<p style="color: #333; font-size: 14px; line-height: 18px; padding-left: 0px;"><strong>Note:</strong> Allergy Information
+	Is <strong>NOT</strong> always accurate.</p>
 {% endblock allergies %}
 
 <!-- Remove content from parent template -->
