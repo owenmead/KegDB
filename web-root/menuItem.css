@@ -3,33 +3,28 @@ body {
 }
 
 div#smallInfo {
-	margin: 20px 0px 15px;
+	float: right;
 }
-	div#smallInfo div {
-		height: 24px;
-		vertical-align: bottom;
-	}
-
-	div#smallInfo h3 {
+	div#smallInfo em {
 		width: 80px;
 		text-align: right;
-		margin-right: 5px;
+		margin-right: 0.6em;
 		display: block;
 		float: left;
-		line-height: 18px;
 	}
 	div#smallInfo span {
-		line-height: 18px;
+		font-weight: bold;
 	}
 /* end smallInfo */
 
-table {
-	margin-bottom: 18px;
+table.steps {
+	margin-left: 10px;
 }
 
 td.stepNum {
 	text-align: right;
 	width: 25px;
+	padding: 0pt;
 }
 
 td.noteStep {
@@ -37,8 +32,8 @@ td.noteStep {
 }
 
 td.noteStep {
-	text-indent:-25px;
-	padding-left: 35px;
+	text-indent:-38px;
+	padding-left: 38px;
 }
 
 td.photoStep {

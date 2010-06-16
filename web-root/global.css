@@ -4,18 +4,26 @@
 }
 body {
 	font-family: "Serif72Beta",tahoma,verdana,arial,sans-serif;
-	color: #1C3451;
+	color: #000;
+	font-size: 18px;
+	line-height: 26px;
 }
 
 h1 {
-	font-size: 24px;
+	padding-top: 0.75em;
+	font-size: 36px;
+	padding-bottom: 0.25em;
+	text-indent:-40px;
+	padding-left: 40px;
+	
 }
 
 h2 {
-	font-size: 16px;
-	border-bottom: 2px solid #1C3451;
-	line-height: 24px;
-	margin-bottom: 4px;
+	padding-top: 0.75em;
+	font-size: 24px;
+	margin-bottom: 0.25em;
+	font-style: italic;
+	font-weight: normal;
 }
 
 h3 {
@@ -25,14 +33,14 @@ h3 {
 }
 
 p {
-	font-size: 14px;
-	line-height: 18px;
 	text-align: justify;
-	margin-bottom: 18px;
+	margin-bottom: 0.5em;
+	padding-left: 35px;
 }
 
 table {
-	width: 100%;
+	margin-left: 35px;
+	margin-bottom: 0.5em;
 	border-collapse:collapse;
 }
 
@@ -41,8 +49,7 @@ table tr {
 }
 
 table tr td {
-	border-bottom: 1px solid #DFDFDF;
-	padding: 3px;
+	padding: 0pt 13px;
 }
 
 table tr th {

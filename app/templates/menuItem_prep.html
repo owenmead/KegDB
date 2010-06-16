@@ -4,8 +4,8 @@
 
 {% block smallInfo %}
 	{{ block.super }}
-	<div><h3>Yield</h3><span>{{menu_item.prep_yield}}</span></div>
-	<div><h3>Shelf Life</h3><span>{{menu_item.shelf_life}}</span></div>
+	<div><em>Yield:</em><span>{{menu_item.prep_yield}}</span></div>
+	<div><em>Shelf Life:</em><span>{{menu_item.shelf_life}}</span></div>
 {% endblock smallInfo %}
 
 {% block qualityCheck %}
@@ -32,7 +32,7 @@
 {% block steps %}
 {% if steps %}
 {{ block.super }}
-<table>
+<table class="steps">
 	<tbody>
 	{% for step in steps %}
 	<tr>
