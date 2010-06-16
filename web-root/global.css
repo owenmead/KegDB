@@ -1,7 +1,10 @@
 * {
 	margin: 0pt;
 	padding: 0pt;
+	-webkit-user-select:none;
+	-moz-user-select:none;
 }
+
 body {
 	font-family: "Serif72Beta",tahoma,verdana,arial,sans-serif;
 	color: #000;
