@@ -29,19 +29,23 @@
 <body style="padding: 5px 15px;" onload="scrollManager.init();">
 	<div id="mainCanvas" class="canvas">
 		<div id="mainToScroll">
+			<div id="smallInfo">{% block smallInfo %}{% endblock smallInfo %}</div>
+
 			{% block photo %}
 				{% if menu_item.photo %}
-				<a href="{{menu_item.photo.url}}" id="thumbImage">
-				    <img src="{% thumbnail menu_item.photo 200x200 crop=smart %}" title="{{ menu_item.name }}" alt=" " />
+				<a href="/site_media/images/garlicShrimp.png" id="thumbImage">
+					<img src="/site_media/images/garlicShrimp_thumb.png" title="{{ menu_item.name }}" alt=" " />
 				</a>
+				<!--
+				<a href="{{menu_item.photo.url}}" id="thumbImage">
+				    <img src="{% thumbnail menu_item.photo 293x200 crop=smart %}" title="{{ menu_item.name }}" alt=" " />
+				</a> -->
 				{% endif %}
 			{% endblock photo %}
 
-			<div id="smallInfo">{% block smallInfo %}{% endblock smallInfo %}</div>
-
 			<h1>{{menu_item.name}}</h1>
 
-			{% block qualityCheck %}<h2 style="clear: both;">Quality Check:</h2>{% endblock qualityCheck %}
+			{% block qualityCheck %}<h2>Quality Check:</h2>{% endblock qualityCheck %}
 			{% block flatware %}<h2>Flatware</h2>{% endblock flatware %}
 			{% block ingredients %}<h2>Ingredients</h2>{% endblock ingredients %}
 			{% block steps %}<h2>Steps</h2>{% endblock steps %}

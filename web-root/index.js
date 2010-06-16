@@ -287,6 +287,13 @@ MenuItemManager.prototype.pickItem = function(itemID) {
 
     this.iFrameViewer.src = "/menuitem/" + itemID + "/" + this.mode + "/";
 
+	// Temporary solution for the photo thing
+	if (itemID == 1 && this.mode == "cook") {
+		document.getElementById("paperclip").style.display = "block";
+	} else {
+		document.getElementById("paperclip").style.display = "none";
+	}
+
 }
 
 

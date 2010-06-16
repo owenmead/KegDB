@@ -47,9 +47,18 @@
 		}
 		div#menuItemsCanvas { top: 95px; left: 218px; width: 277px; height: 820px; }
 		div#viewerContainer { top: 73px; left: 547px; width: 700px; height: 904px; }
+		
+		img#paperclip {
+			position: absolute;
+			left: 1201px;
+			top: 124px;
+			z-index: 200;
+		}
+		
 	</style>
 </head>
 <body onLoad="menuItemManager.init(); categoryListManager.init(); topNavigationManager.init();">
+	<img id="paperclip" src="/site_media/images/paperclip.png" />
 	<div id="topNav">
 		<a state="selected"   id="preparation"            display_type="prep"></a>
 		<a state="unselected" id="cook_present"           display_type="cook"></a>
