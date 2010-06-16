@@ -23,6 +23,7 @@ div.canvas {
 		padding-top: 2px;
 		height: 21px;
 		text-shadow: #666 0px 1px 1px;
+		line-height: 18px;
 	}
 	div.canvas dl dd {
 		font-size: 18px;
