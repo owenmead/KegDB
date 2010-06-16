@@ -5,15 +5,9 @@
 {% block extra %}
 	{% if usedIn %}
 	<h2>Is used in the following:</h2>
-	<table>
-		<tbody>
-		{% for menuitem in usedIn %}
-		<tr>
-			<td><a href="javascript:parent.show_cook_item({{menuitem.id}});">{{menuitem.name}}</a></td>
-		</tr>
-		{% endfor %}
-		</tbody>
-	</table>
+	{% for menuitem in usedIn %}
+		<p><a href="javascript:parent.show_cook_item({{menuitem.id}});">{{menuitem.name}}</a></p>
+	{% endfor %}
 	{% else %}
 	<h3>No cooking information found for {{menu_item.name}}</h3>
 	{% endif %}

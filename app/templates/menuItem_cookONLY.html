@@ -5,15 +5,9 @@
 {% block extra %}
 	{% if ingredients %}
 	<h2>Please See the following:</h2>
-	<table>
-		<tbody>
-		{% for ingredient in ingredients %}
-		<tr>
-			<td><a href="javascript:parent.show_prep_item({{ingredient.linked_prep_item_id}});">{{ingredient.name}}</a></td>
-		</tr>
-		{% endfor %}
-		</tbody>
-	</table>
+	{% for ingredient in ingredients %}
+		<p><a href="javascript:parent.show_prep_item({{ingredient.linked_prep_item_id}});">{{ingredient.name}}</a><p>
+	{% endfor %}
 	{% else %}
 	<h3>No prep information found for {{menu_item.name}}</h3>
 	{% endif %}
