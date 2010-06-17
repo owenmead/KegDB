@@ -328,7 +328,7 @@ ScrollManager.prototype.init = function() {
 	// Only drag in Y-axis
 	this.scrollingDD.setXConstraint(0, 0);
 
-	YAHOO.util.DragDropMgr.clickPixelThresh = 10;
+	YAHOO.util.DragDropMgr.clickPixelThresh = 15;
 
 	this.scrollingDD.on('dragEvent', this.onDragging, this, true);
 	this.scrollingDD.on('endDragEvent', this.onEndDragging, this, true);
