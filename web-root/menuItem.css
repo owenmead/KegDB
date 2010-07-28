@@ -40,7 +40,7 @@ td.photoStep {
 	text-align: center;
 }
 
-a#thumbImage {
+a#thumbImage, a#thumbVideo {
 	clear: right;
 	float: right;
 	margin-right: -10px;

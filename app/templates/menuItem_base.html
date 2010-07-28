@@ -43,6 +43,12 @@
 				{% endif %}
 			{% endblock photo %}
 
+			{% block video %}
+				<a href="#" id="thumbVideo">
+					<img src="/site_media/images/video.png" title="View Video" alt=" " />
+				</a>
+			{% endblock video %}
+
 			<h1>{{menu_item.name}}</h1>
 
 			{% block qualityCheck %}<h2>Quality Check:</h2>{% endblock qualityCheck %}
