@@ -2,6 +2,14 @@
 
 {% block pageTitle %}Prep Information - {{menu_item.name}} {% endblock %}
 
+{% block video %}
+{% if menu_item.id == 1 %}
+<a id="thumbVideo" rel="shadowbox;width=600;height=450" href="http://shadowbox-js.com/gallery/alien.flv">
+	<img src="/site_media/images/video.png" alt="">
+</a>
+{% endif %}
+{% endblock %}
+
 {% block smallInfo %}
 	{{ block.super }}
 	<div><em>Yield:</em><span>{{menu_item.prep_yield}}</span></div>
