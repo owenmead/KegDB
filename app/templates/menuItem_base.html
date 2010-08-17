@@ -35,7 +35,8 @@
 			{% block photo %}
 				{% if menu_item.photo and display_type == 'cook' %}
 				<a href="{{menu_item.photo.url}}" id="thumbImage" rel="shadowbox">
-				    <img src="{% thumbnail menu_item.photo 293x200 crop=smart %}" alt="{{ menu_item.name }}" />
+				    <img id="preview_img" width="293" height="200" src="{% thumbnail menu_item.photo 293x200 crop=smart %}" alt="{{ menu_item.name }}" /><br>
+					<img id="thumb-tack" width="35" height="27" src="/site_media/images/thumb-tack.png" />
 				</a>
 				{% endif %}
 			{% endblock photo %}

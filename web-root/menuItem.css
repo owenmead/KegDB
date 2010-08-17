@@ -46,13 +46,18 @@ a#thumbImage {
 	transform: rotate(2deg);
 
 }
-a#thumbImage img {
+a#thumbImage img#preview_img {
 	border: 4px solid #FFF;
 	-moz-box-shadow:    3px 3px 7px #666;
 	-webkit-box-shadow: 3px 3px 7px #666;
 	box-shadow:         3px 3px 7px #666;
 }
 
+a#thumbImage img#thumb-tack {
+	position: relative;
+	top: -225px;
+	left: 135px;
+}
 a#thumbImage, a#thumbVideo {
 	clear: right;
 	float: right;
@@ -60,7 +65,7 @@ a#thumbImage, a#thumbVideo {
 	margin-left: 1em;
 	display: block;
 }
-	a#thumbImage img {
+	a#thumbImage img#preview_img {
 		z-index: 20;
 	}
 /*end a#thumbImage*/
