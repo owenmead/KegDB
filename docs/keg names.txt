@@ -1,0 +1,197 @@
+Kitchen Window - Trademarked
+FoodView - squatted
+KitchenSage - squatted
+FoodSage - taken, but not used
+KitchenData - taken, but not used
+
+LightReference - available
+FoodPedantry - available (nice play on words with Food Pantry, although doesn't roll off the tongue)
+
+
+=== To Picks ===
+GlassSage
+LogicGlass
+KitchenIntel
+EnlightKitchen
+KitchenStudy
+TangibleLogic
+EdibleIntel
+EdibleDB
+LightReference
+
+
+
+
+=== Currently Available ===
+ChowIntel
+IntelChow
+LogicChow
+ChowAdvisor
+WiseChow
+ChowSage
+ChowSense
+ShrewdChow
+ChowAdvice
+ChowGuidance
+ChowInfo
+ChowLore
+ChowData
+DataChow
+ChowDB
+ChowFacts
+LightChow
+ChowLight
+
+KitchenAdvise
+KitchenIntel
+KitchenEnlight
+EnlightKitchen
+InfoKitchen
+KitchenLore
+KitchenStudy
+KitchenSpark
+TactileKitchen
+
+WiseChow
+ChowWise
+WiseGrub
+GrubWise
+WiseEpicure
+
+LightLogic
+LogicShine
+TangibleLogic
+
+MealSage
+SageGrub
+SageChow
+ChowSage
+CookingSage
+GourmetSage
+SageCuisine
+
+SenseCook
+SenseGourmet
+EpicureSense
+FoodieSense
+CuisineSense
+
+EdibleFacts
+EdibleInfo
+EdibleDB
+EdibleIntel
+EdibleTouch
+
+VividGrub
+VividChow
+VividCooking
+VividAppliance
+VividIntel
+
+Glass
+GlassSage
+LogicGlass
+AdviceGlass + AdviseGlass
+EdibleGlass
+GlassEpicure
+EpicureGlass
+CuisineGlass
+ShrewdGlass
+GlassShrewd
+
+MealCube
+GourmetCube
+TactileCube
+
+EpicurePad
+AdvisePad + AdvicePad for $500
+ShrewdPad
+FactPad $250
+
+GlassSage
+LogicGlass
+AdviceGlass & AdviseGlass
+EdibleGlass
+GlassEpicure
+EpicureGlass
+CuisineGlass
+ShrewdGlass
+GlassShrewd
+
+MealCube
+GourmetCube
+TactileCube
+
+===========================
+
+
+Meals                   Wisdom                  Data              Touch
+Grub                    Advisability            Details           Tactile
+*Chow                   Intelligence            Facts             Tangible
+Cooking                 *Logic                  Info              Concrete
+Cuisine                 Rationale               Intel             Evident
+Eats                    Rationality             Intelligence      Objective
+Edibles                 Sagacity                DB                Physical
+Fare                    *Sage                                     Solid
+*Food                   *Sense
+                        Soundness               Light             Real
+                        Shrewdness              Shine             Absolute
+                                                Bright            Actual
+                                                Clear             True
+Foodie                                          Vivid             Truth
+Gourmet                 Academic                                  Definite
+Connoisseur             Advice                  Fire
+Epicure                 Counsel                 Ignight
+Epicurean               Enlightenment           Kindle
+Gastronome              Erudition               Spark
+Gourmand                Guidance
+Gourmet                 Information
+Informal Foodie         Instruction
+                        Intel
+*Kitchen                Intelligence
+Cuisine                 Knowledge
+Mess                    Learning
+Appliance               Lore
+Machine                 Philosophy
+Gadget                  Scholarship
+Tool                    Sophistication
+                        Study
+
+
+Square
+Case
+Block
+Slab
+Stone
+Block
+Slice
+
+Glass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Erudition - Erudite : Having or showing great knowledge or learning.
+Pedantry : A person who is excessively concerned with minor details and rules or with displaying academic learning.
+
+Reading
+
+
+GlassEpicure
