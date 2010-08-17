@@ -140,4 +140,6 @@ def displayMenuItem(request, item_id, display_type):
 			for mi in ing.menuItems.all():
 				data['usedIn'].append(mi)
 
+	data['display_type'] = display_type
+
 	return render_to_response('menuItem_%s.html' % display_type, data)
