@@ -34,14 +34,9 @@
 
 			{% block photo %}
 				{% if menu_item.photo %}
-				<a href="/site_media/images/garlicShrimp.png" id="thumbImage" rel="shadowbox">
-					<img src="/site_media/images/garlicShrimp_thumb.png" alt="{{ menu_item.name }}" />
+				<a href="{{menu_item.photo.url}}" id="thumbImage" rel="shadowbox">
+				    <img src="{% thumbnail menu_item.photo 293x200 crop=smart %}" alt="{{ menu_item.name }}" />
 				</a>
-
-				<!--
-				<a href="{{menu_item.photo.url}}" id="thumbImage">
-				    <img src="{% thumbnail menu_item.photo 293x200 crop=smart %}" title="{{ menu_item.name }}" alt=" " />
-				</a> -->
 				{% endif %}
 			{% endblock photo %}
 
