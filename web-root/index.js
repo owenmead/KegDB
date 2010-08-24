@@ -67,25 +67,22 @@ TopNavigationManager = function(navContainerID, superManager) {
 }
 
 TopNavigationManager.prototype.init = function() {
-    var nodeApply = function(n, self) {
-        new YAHOO.util.Element(n).addListener('mouseup', self.clickNavButton, self);
-    }
-    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply, this);
+	var self = this;
+	// Grab all the links and setup the click event with notification
+	$("#" + this.navContainerID + " a").click(function() {
+		var new_nav_mode = $(this).attr("display_type");
+	    self.setMode(new_nav_mode);
+	    self.superManager.notifyOthers("nav_change", new_nav_mode);
+	});
+
 }
 
 TopNavigationManager.prototype.setMode = function(mode) {
-    var nodeApply = function(n) {
-        n.setAttribute('state', n.getAttribute('display_type') == mode ? 'selected' : 'unselected');
-    }
-    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply);
+	// Change the display_type attribute depending on which one is clicked
+	$("#" + this.navContainerID + " a").each(function() {
+		$(this).attr("state", $(this).attr("display_type") == mode ? 'selected' : 'unselected');
+	});
 }
-
-TopNavigationManager.prototype.clickNavButton = function(evnt, self) {
-    var new_nav_mode = evnt.currentTarget.getAttribute('display_type')
-    self.setMode(new_nav_mode);
-    self.superManager.notifyOthers("nav_change", new_nav_mode);
-}
-
 
 //  ____      _                              _     _     _   __  __
 // / ___|__ _| |_ ___  __ _  ___  _ __ _   _| |   (_)___| |_|  \/  | __ _ _ __   __ _  __ _  ___ _ __
