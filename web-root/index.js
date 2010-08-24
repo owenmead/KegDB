@@ -1,3 +1,7 @@
+/*
+	TODO : Replace all getElementById with jQuery love
+*/
+
 //  _   _      _                   _____                 _   _
 // | | | | ___| |_ __   ___ _ __  |  ___|   _ _ __   ___| |_(_) ___  _ __  ___
 // | |_| |/ _ \ | '_ \ / _ \ '__| | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
@@ -99,16 +103,16 @@ CategoryListManager = function(scrollingDOMID, canvasDOMID, superManager) {
 }
 
 CategoryListManager.prototype.init = function() {
-	var callback = {
+	$.ajax({
+		url: '/category/',
+		dataType: 'json',
+		context: this,
 		success: this.categoryListCallBack,
-		failure: this.categoryListCallBack_error,
-		scope: this
-	}
-	YAHOO.util.Connect.asyncRequest('GET', '/category/', callback, null);
+		error: this.categoryListCallBack_error
+	});
 }
 
-CategoryListManager.prototype.categoryListCallBack = function(o) {
-	var data = YAHOO.lang.JSON.parse(o.responseText);
+CategoryListManager.prototype.categoryListCallBack = function(data) {
 	this.drawCategoryList(data);
 	this.pickCategory("_ALL");
 }
