@@ -111,7 +111,6 @@ CategoryListManager.prototype.init = function() {
 		error: this.categoryListCallBack_error
 	});
 }
-
 CategoryListManager.prototype.categoryListCallBack = function(data) {
 	this.drawCategoryList(data);
 	this.pickCategory("_ALL");
@@ -127,8 +126,7 @@ CategoryListManager.prototype.drawCategoryList = function(data) {
 		category_item_pos++;
 	}
 
-	var toWriteTo = document.getElementById(this.scrollingDOMID);
-	toWriteTo.innerHTML = collect;
+	$("#"+this.scrollingDOMID).html(collect);
 	this.scrollManager.init();
 
     // Hook up the mouse click events
@@ -192,21 +190,17 @@ MenuItemManager.prototype.setMode = function(mode) {
 }
 
 MenuItemManager.prototype.redraw = function(categoryID) {
-	var callback = {
-		success: this.menuItemCallBack,
-		failure: this.menuItemCallBack_error,
-		scope: this
-	}
-
 	var url = "/menuitem/";
 	if (categoryID != "_ALL") {
 	    url = "/menuitem/byCategory/"+categoryID+"/";
 	}
-	YAHOO.util.Connect.asyncRequest('GET', url, callback, null);
-}
-MenuItemManager.prototype.menuItemCallBack = function(o) {
-	var data = YAHOO.lang.JSON.parse(o.responseText);
-	this.drawMenuItems(data);
+	$.ajax({
+		url: url,
+		dataType: 'json',
+		context: this,
+		success: this.menuItemCallBack,
+		error: this.menuItemCallBack_error
+	});
 }
 MenuItemManager.prototype.menuItemCallBack_error = function(o) {
 	alert("Error getting Menu Items")
@@ -216,7 +210,7 @@ var getFirstCharacter = function(menu_name) {
     var first_character = menu_name[0].toUpperCase();
     return isNumber.test(first_character) ? '#' : first_character;
 }
-MenuItemManager.prototype.drawMenuItems = function(data) {
+MenuItemManager.prototype.menuItemCallBack = function(data) {
 	var letters = ["#","A","B","C","D","E","F","G","H","I","J",
 	                "K","L","M","N","O","P","Q","R","S","T","U",
 					"V","W","X","Y","Z"]
