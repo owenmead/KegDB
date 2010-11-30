@@ -35,7 +35,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/Users/owenmead/work/KegDB/web-root/'
+MEDIA_ROOT = '/Users/owenmead/work/MealCube/web-root/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -48,7 +48,7 @@ MEDIA_URL = 'http://localhost:8000/site_media/'
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Used to serve static files when in development
-STATIC_DOC_ROOT = "/Users/owenmead/work/KegDB/web-root"
+STATIC_DOC_ROOT = "/Users/owenmead/work/MealCube/web-root"
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'a-rqk03mrl6-1-y8vtn3q2y+-y&ar1mlcm4z)($pmj%5wyunqo'
@@ -72,7 +72,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-	'/Users/owenmead/work/KegDB/app/templates',
+	'/Users/owenmead/work/MealCube/app/templates',
 )
 
 INSTALLED_APPS = (
