@@ -7,6 +7,9 @@ from django.shortcuts import render_to_response, get_object_or_404
 def index(request):
     return render_to_response('index.html')
 
+def desktopIndex(request):
+    return render_to_response('desktopIndex.html')
+
 def categoryList(request):
 	cats = []
 	for cat in Category.get_items():
