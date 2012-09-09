@@ -1,4 +1,8 @@
+.Python
 .DS_Store
 *.pyc
 sqlite3.db
 web-root/menuPhoto/
+bin
+include
+lib
