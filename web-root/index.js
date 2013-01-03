@@ -1,3 +1,7 @@
+/*
+	TODO : Replace all getElementById with jQuery love
+*/
+
 //  _   _      _                   _____                 _   _
 // | | | | ___| |_ __   ___ _ __  |  ___|   _ _ __   ___| |_(_) ___  _ __  ___
 // | |_| |/ _ \ | '_ \ / _ \ '__| | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
@@ -67,25 +71,22 @@ TopNavigationManager = function(navContainerID, superManager) {
 }
 
 TopNavigationManager.prototype.init = function() {
-    var nodeApply = function(n, self) {
-        new YAHOO.util.Element(n).addListener('mouseup', self.clickNavButton, self);
-    }
-    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply, this);
+	var self = this;
+	// Grab all the links and setup the click event with notification
+	$("#" + this.navContainerID + " a").click(function() {
+		var new_nav_mode = $(this).attr("display_type");
+	    self.setMode(new_nav_mode);
+	    self.superManager.notifyOthers("nav_change", new_nav_mode);
+	});
+
 }
 
 TopNavigationManager.prototype.setMode = function(mode) {
-    var nodeApply = function(n) {
-        n.setAttribute('state', n.getAttribute('display_type') == mode ? 'selected' : 'unselected');
-    }
-    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "a", this.navContainerID, nodeApply);
+	// Change the display_type attribute depending on which one is clicked
+	$("#" + this.navContainerID + " a").each(function() {
+		$(this).attr("state", $(this).attr("display_type") == mode ? 'selected' : 'unselected');
+	});
 }
-
-TopNavigationManager.prototype.clickNavButton = function(evnt, self) {
-    var new_nav_mode = evnt.currentTarget.getAttribute('display_type')
-    self.setMode(new_nav_mode);
-    self.superManager.notifyOthers("nav_change", new_nav_mode);
-}
-
 
 //  ____      _                              _     _     _   __  __
 // / ___|__ _| |_ ___  __ _  ___  _ __ _   _| |   (_)___| |_|  \/  | __ _ _ __   __ _  __ _  ___ _ __
@@ -102,16 +103,15 @@ CategoryListManager = function(scrollingDOMID, canvasDOMID, superManager) {
 }
 
 CategoryListManager.prototype.init = function() {
-	var callback = {
+	$.ajax({
+		url: '/category/',
+		dataType: 'json',
+		context: this,
 		success: this.categoryListCallBack,
-		failure: this.categoryListCallBack_error,
-		scope: this
-	}
-	YAHOO.util.Connect.asyncRequest('GET', '/category/', callback, null);
+		error: this.categoryListCallBack_error
+	});
 }
-
-CategoryListManager.prototype.categoryListCallBack = function(o) {
-	var data = YAHOO.lang.JSON.parse(o.responseText);
+CategoryListManager.prototype.categoryListCallBack = function(data) {
 	this.drawCategoryList(data);
 	this.pickCategory("_ALL");
 }
@@ -126,8 +126,7 @@ CategoryListManager.prototype.drawCategoryList = function(data) {
 		category_item_pos++;
 	}
 
-	var toWriteTo = document.getElementById(this.scrollingDOMID);
-	toWriteTo.innerHTML = collect;
+	$("#"+this.scrollingDOMID).html(collect);
 	this.scrollManager.init();
 
     // Hook up the mouse click events
@@ -191,21 +190,17 @@ MenuItemManager.prototype.setMode = function(mode) {
 }
 
 MenuItemManager.prototype.redraw = function(categoryID) {
-	var callback = {
-		success: this.menuItemCallBack,
-		failure: this.menuItemCallBack_error,
-		scope: this
-	}
-
 	var url = "/menuitem/";
 	if (categoryID != "_ALL") {
 	    url = "/menuitem/byCategory/"+categoryID+"/";
 	}
-	YAHOO.util.Connect.asyncRequest('GET', url, callback, null);
-}
-MenuItemManager.prototype.menuItemCallBack = function(o) {
-	var data = YAHOO.lang.JSON.parse(o.responseText);
-	this.drawMenuItems(data);
+	$.ajax({
+		url: url,
+		dataType: 'json',
+		context: this,
+		success: this.menuItemCallBack,
+		error: this.menuItemCallBack_error
+	});
 }
 MenuItemManager.prototype.menuItemCallBack_error = function(o) {
 	alert("Error getting Menu Items")
@@ -215,7 +210,7 @@ var getFirstCharacter = function(menu_name) {
     var first_character = menu_name[0].toUpperCase();
     return isNumber.test(first_character) ? '#' : first_character;
 }
-MenuItemManager.prototype.drawMenuItems = function(data) {
+MenuItemManager.prototype.menuItemCallBack = function(data) {
 	var letters = ["#","A","B","C","D","E","F","G","H","I","J",
 	                "K","L","M","N","O","P","Q","R","S","T","U",
 					"V","W","X","Y","Z"]
