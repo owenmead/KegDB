@@ -245,27 +245,15 @@ MenuItemManager.prototype.pickLast = function() {
 }
 
 MenuItemManager.prototype.pickItem = function(itemID) {
+    // Used for when user changes view type (prep, cook, allergy)
     this.lastPickedID = itemID;
-    var nodeApply = function(n) {
-        // Lets do some fade action here :-)
-        if (n.id == itemID) {
-            //var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#3C5F7F' }, color: { to: '#FFFFFF'}});
-            //myAnim.duration = 0.5;
-            //myAnim.animate();
-			n.setAttribute('state', 'selected');
-            n.HAS_STYLE = true;
-        } else if (n.HAS_STYLE) { // Only need to animate one of them back to normal state
-            //var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#FFFFFF' }, color: { to: '#1C3451'}});
-            //myAnim.duration = 0.25;
-            //myAnim.animate();
-			n.setAttribute('state', 'unselected');
-            n.HAS_STYLE = false;
-        }
-    }
-    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "dd", this.scrollingDOMID, nodeApply);
 
+    // Show a selected menuitem in the list... but only one
+    $("#menuitem_"+itemID).attr('state', 'selected');
+    $('#'+this.scrollingDOMID + ' dd').not("#menuitem_"+itemID).attr('state', 'unselected');
+
+    // Use the iFrame to switch what we are viewing
     this.iFrameViewer.src = "/menuitem/" + itemID + "/" + this.mode + "/";
-
 }
 
 
