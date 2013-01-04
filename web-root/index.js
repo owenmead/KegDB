@@ -96,8 +96,9 @@ TopNavigationManager.prototype.setMode = function(mode) {
 //                    |___/            |___/                                          |___/
 
 CategoryListManager = function(scrollingDOMID, canvasDOMID, superManager) {
-    this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
     this.scrollingDOMID = scrollingDOMID;
+    this.canvasDOMID = canvasDOMID;
+
     this.superManager = superManager;
     this.superManager.categoryListManager = this;
 }
@@ -125,16 +126,20 @@ CategoryListManager.prototype.drawCategoryList = function(data) {
 		collect += "<dd id=\"" + data[category_item_pos]['id'] + "\">" + data[category_item_pos]['name'] + "</dd>";
 		category_item_pos++;
 	}
-
 	$("#"+this.scrollingDOMID).html(collect);
-	this.scrollManager.init();
 
+	this.scrollManager = new iScroll(this.canvasDOMID);
+
+    // iScroll FIX - Hook this up!
+    /*
+	this.scrollManager.init();
     // Hook up the mouse click events
 	var dds = this.scrollManager.scrollingrEl.getElementsByTagName('dd');
 	for (var i=0; i<dds.length; i++) {
 	    var data = {'self': this, 'id': dds[i].id};
 		new YAHOO.util.Element(dds[i]).addListener('mouseup', this.clickMenuItem, data);
 	}
+	*/
 }
 
 CategoryListManager.prototype.clickMenuItem = function(evnt, data) {
@@ -172,7 +177,8 @@ CategoryListManager.prototype.pickCategory = function(categoryID) {
 // |_|  |_|\___|_| |_|\__,_|___|\__\___|_| |_| |_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
 //                                                                         |___/
 MenuItemManager = function(scrollingDOMID, canvasDOMID, iFrameViewerDOMID, initialMode, superManager) {
-    this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
+    // iScroll FIX - Hook this up!
+    //this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
     this.scrollingDOMID = scrollingDOMID;
     this.iFrameViewerDOMID = iFrameViewerDOMID
     this.mode = initialMode;
@@ -238,14 +244,17 @@ MenuItemManager.prototype.menuItemCallBack = function(data) {
 
 	var toWriteTo = document.getElementById(this.scrollingDOMID);
 	toWriteTo.innerHTML = collect;
-	this.scrollManager.init();
 
+    // iScroll FIX - Hook this up!
+    /*
+	this.scrollManager.init();
     // Hook up the mouse click events
 	var dds = this.scrollManager.scrollingrEl.getElementsByTagName('dd');
 	for (var i=0; i<dds.length; i++) {
 	    var data = {'self': this, 'id': dds[i].id};
 		new YAHOO.util.Element(dds[i]).addListener('mouseup', this.clickMenuItem, data);
 	}
+	*/
 }
 
 MenuItemManager.prototype.clickMenuItem = function(evnt, data) {
@@ -295,7 +304,7 @@ MenuItemManager.prototype.pickItem = function(itemID) {
 /*
     TODO : Calc dragging velocity at intervals instead of over whole drag event
 */
-
+/*
 ScrollManager = function (scrollingDOMID, canvasDOMID) {
 	this.scrollingDOMID = scrollingDOMID;
 	this.canvasDOMID = canvasDOMID;
@@ -389,3 +398,4 @@ ScrollManager.prototype.stopScrollingAnimation = function(ev) {
 ScrollManager.prototype.resetPosition = function() {
     this.scrollingrEl.setStyle('top', 0);
 }
+*/
