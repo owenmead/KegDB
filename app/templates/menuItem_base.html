@@ -18,7 +18,8 @@
 	<script type="text/javascript" src="/site_media/shadowbox/shadowbox.js"></script>
 
 	<script type="text/javascript" charset="utf-8">
-		var scrollManager = new ScrollManager("mainToScroll", "mainCanvas");
+	    // iScroll FIX - Hook this up!
+		//var scrollManager = new ScrollManager("mainToScroll", "mainCanvas");
 		Shadowbox.init();
 	</script>
 	<style type="text/css" media="screen">
@@ -27,7 +28,7 @@
 		}
 	</style>
 </head>
-<body style="padding: 5px 15px;" onload="scrollManager.init();">
+<body style="padding: 5px 15px;">
 	<div id="mainCanvas" class="canvas">
 		<div id="mainToScroll">
 			<div id="smallInfo">{% block smallInfo %}{% endblock smallInfo %}</div>
