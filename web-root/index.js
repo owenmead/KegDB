@@ -121,10 +121,10 @@ CategoryListManager.prototype.categoryListCallBack_error = function(o) {
 	alert("Error getting Category List")
 }
 CategoryListManager.prototype.drawCategoryList = function(data) {
-	var collect = "<dd id=\"_ALL\" class=\"topItem\">All Items</dd>";
+	var collect = "<dd id=\"category__ALL\" class=\"topItem\">All Items</dd>";
 	var category_item_pos = 0;
 	while (category_item_pos < data.length) {
-		collect += "<dd id=\"" + data[category_item_pos]['id'] + "\">" + data[category_item_pos]['name'] + "</dd>";
+		collect += "<dd id=\"category_" + data[category_item_pos]['id'] + "\">" + data[category_item_pos]['name'] + "</dd>";
 		category_item_pos++;
 	}
 	var toscroll = $("#"+this.scrollingDOMID).html(collect);
@@ -139,13 +139,13 @@ CategoryListManager.prototype.drawCategoryList = function(data) {
 
 	var that = this;
 	toscroll.find('dd').on('click', function() {
-	    that.pickCategory($(this).attr('id'));
+	    that.pickCategory($(this).attr('id').split('category_')[1]);
 	});
 }
 CategoryListManager.prototype.pickCategory = function(categoryID) {
     // Ensure the state of the cateogry buttons is correct
-    $("#"+categoryID).attr('state', 'selected');
-    $('#'+this.scrollingDOMID + ' dd').not("#"+categoryID).attr('state', 'unselected');
+    $("#category_"+categoryID).attr('state', 'selected');
+    $('#'+this.scrollingDOMID + ' dd').not("#category_"+categoryID).attr('state', 'unselected');
 
     // Notify others that the category has been selected
     this.superManager.notifyOthers("pick_category", categoryID);
@@ -214,7 +214,7 @@ MenuItemManager.prototype.menuItemCallBack = function(data) {
 		}
 		while (menu_item_pos < data.length
 							&& (first_character=getFirstCharacter(data[menu_item_pos]['name'])) == letters[i]) {
-			collect += "<dd id=\"" + data[menu_item_pos]['id'] + "\">" + data[menu_item_pos]['name'] + "</dd>";
+			collect += "<dd id=\"menuitem_" + data[menu_item_pos]['id'] + "\">" + data[menu_item_pos]['name'] + "</dd>";
 			menu_item_pos++;
 		}
 	}
@@ -234,7 +234,7 @@ MenuItemManager.prototype.menuItemCallBack = function(data) {
 
     var that = this;
 	toscroll.find('dd').on('click', function() {
-	    that.pickItem($(this).attr('id'));
+	    that.pickItem($(this).attr('id').split('menuitem_')[1]);
 	});
 }
 
