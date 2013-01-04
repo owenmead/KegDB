@@ -126,47 +126,21 @@ CategoryListManager.prototype.drawCategoryList = function(data) {
 		collect += "<dd id=\"" + data[category_item_pos]['id'] + "\">" + data[category_item_pos]['name'] + "</dd>";
 		category_item_pos++;
 	}
-	$("#"+this.scrollingDOMID).html(collect);
+	var toscroll = $("#"+this.scrollingDOMID).html(collect);
 
 	this.scrollManager = new iScroll(this.canvasDOMID);
 
-    // iScroll FIX - Hook this up!
-    /*
-	this.scrollManager.init();
-    // Hook up the mouse click events
-	var dds = this.scrollManager.scrollingrEl.getElementsByTagName('dd');
-	for (var i=0; i<dds.length; i++) {
-	    var data = {'self': this, 'id': dds[i].id};
-		new YAHOO.util.Element(dds[i]).addListener('mouseup', this.clickMenuItem, data);
-	}
-	*/
+	var that = this;
+	toscroll.find('dd').on('click', function() {
+	    that.pickCategory($(this).attr('id'));
+	});
 }
-
-CategoryListManager.prototype.clickMenuItem = function(evnt, data) {
-    if (!data['self'].scrollManager.isDragging) {
-        data['self'].pickCategory(data['id']);
-    }
-}
-
 CategoryListManager.prototype.pickCategory = function(categoryID) {
-    var nodeApply = function(n) {
-        // Lets do some fade action here :-)
-        if (n.id == categoryID) {
-            //var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#3C5F7F' }, color: { to: '#FFFFFF'}});
-            //myAnim.duration = 0.5;
-            //myAnim.animate();
-	        n.setAttribute('state', 'selected');
-            n.HAS_STYLE = true;
-        } else if (n.HAS_STYLE) { // Only need to animate one of them back to normal state
-            //var myAnim = new YAHOO.util.ColorAnim(n, {backgroundColor: { to: '#FFFFFF' }, color: { to: '#1C3451'}});
-            //myAnim.duration = 0.25;
-            //myAnim.animate();
-	        n.setAttribute('state', 'unselected');
-            n.HAS_STYLE = false;
-        }
-    }
-    YAHOO.util.Dom.getElementsBy(function(n) {return true}, "dd", this.scrollingDOMID, nodeApply);
+    // Ensure the state of the cateogry buttons is correct
+    $("#"+categoryID).attr('state', 'selected');
+    $('#'+this.scrollingDOMID + ' dd').not("#"+categoryID).attr('state', 'unselected');
 
+    // Notify others that the category has been selected
     this.superManager.notifyOthers("pick_category", categoryID);
 }
 
