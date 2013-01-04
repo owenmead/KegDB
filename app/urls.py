@@ -7,7 +7,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('app.menu_items.views',
 	(r'^$',          'index'),
-	(r'^desktop/$',  'desktopIndex'),
 
 	(r'^category/$', 'categoryList'),
 
