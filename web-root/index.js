@@ -223,8 +223,7 @@ MenuItemManager.prototype.menuItemCallBack = function(data) {
         collect = "<div class=\"noItems\">No Items Found, Sorry</div>";
     }
 
-	var toWriteTo = document.getElementById(this.scrollingDOMID);
-	toWriteTo.innerHTML = collect;
+    var toscroll = $("#" + this.scrollingDOMID).html(collect);
 
     if (this.scrollManager === undefined) {
         this.scrollManager = new iScroll(this.canvasDOMID);
@@ -233,23 +232,10 @@ MenuItemManager.prototype.menuItemCallBack = function(data) {
         this.scrollManager.scrollTo(0, 0, 0);
     }
 
-
-    // iScroll FIX - Hook this up!
-    /*
-	this.scrollManager.init();
-    // Hook up the mouse click events
-	var dds = this.scrollManager.scrollingrEl.getElementsByTagName('dd');
-	for (var i=0; i<dds.length; i++) {
-	    var data = {'self': this, 'id': dds[i].id};
-		new YAHOO.util.Element(dds[i]).addListener('mouseup', this.clickMenuItem, data);
-	}
-	*/
-}
-
-MenuItemManager.prototype.clickMenuItem = function(evnt, data) {
-    if (!data['self'].scrollManager.isDragging) {
-        data['self'].pickItem(data['id']);
-    }
+    var that = this;
+	toscroll.find('dd').on('click', function() {
+	    that.pickItem($(this).attr('id'));
+	});
 }
 
 MenuItemManager.prototype.pickLast = function() {
