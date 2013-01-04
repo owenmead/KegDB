@@ -1,5 +1,6 @@
 /*
-	TODO : Replace all getElementById with jQuery love
+    NOTE : This will eventually all be upgraded.
+           Just need get it working on tablets to see if we can sell this beast
 */
 
 //  _   _      _                   _____                 _   _
@@ -128,7 +129,13 @@ CategoryListManager.prototype.drawCategoryList = function(data) {
 	}
 	var toscroll = $("#"+this.scrollingDOMID).html(collect);
 
-	this.scrollManager = new iScroll(this.canvasDOMID);
+	if (this.scrollManager === undefined) {
+        this.scrollManager = new iScroll(this.canvasDOMID);
+    } else {
+        this.scrollManager.refresh();
+        this.scrollManager.scrollTo(0, 0, 0);
+    }
+
 
 	var that = this;
 	toscroll.find('dd').on('click', function() {
@@ -151,9 +158,9 @@ CategoryListManager.prototype.pickCategory = function(categoryID) {
 // |_|  |_|\___|_| |_|\__,_|___|\__\___|_| |_| |_|_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
 //                                                                         |___/
 MenuItemManager = function(scrollingDOMID, canvasDOMID, iFrameViewerDOMID, initialMode, superManager) {
-    // iScroll FIX - Hook this up!
-    //this.scrollManager = new ScrollManager(scrollingDOMID, canvasDOMID);
     this.scrollingDOMID = scrollingDOMID;
+    this.canvasDOMID = canvasDOMID;
+
     this.iFrameViewerDOMID = iFrameViewerDOMID
     this.mode = initialMode;
     this.lastPickedID = null;
@@ -218,6 +225,14 @@ MenuItemManager.prototype.menuItemCallBack = function(data) {
 
 	var toWriteTo = document.getElementById(this.scrollingDOMID);
 	toWriteTo.innerHTML = collect;
+
+    if (this.scrollManager === undefined) {
+        this.scrollManager = new iScroll(this.canvasDOMID);
+    } else {
+        this.scrollManager.refresh();
+        this.scrollManager.scrollTo(0, 0, 0);
+    }
+
 
     // iScroll FIX - Hook this up!
     /*
