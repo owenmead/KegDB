@@ -1,7 +1,7 @@
 body {
-	background-image: url('images/background.jpg');
-	height: 1024px;
-	width: 1280px;
+	/*background-image: url('images/background.jpg');*/
+	height: 748px; /* 768 - 20px top status bar */
+	width: 1024px;
 }
 
 div.canvas {

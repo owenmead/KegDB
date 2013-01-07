@@ -39,14 +39,15 @@
 
 	<style type="text/css" media="screen">
 		div#categoryCanvas  {
-			top: 95px; left: 29px;  width: 188px; height: 820px;
-			border-right: 2px solid #999;
+			top: 95px; left: 10px;  width: 150px; height: 640px;
+			border-right: 1px solid #999;
 		}
-		div#menuItemsCanvas { top: 95px; left: 218px; width: 277px; height: 820px; }
-		div#viewerContainer { top: 73px; left: 547px; width: 700px; height: 904px; }
+		div#menuItemsCanvas { top: 95px; left: 161px; width: 210px; height: 640px; }
+		div#viewerContainer { top: 73px; left: 391px; width: 623px; height: 665px; }
 	</style>
 </head>
 <body onLoad="menuItemManager.init(); categoryListManager.init(); topNavigationManager.init();">
+    <div id="ipadsizer" style="position: absolute; top: 0; left: 0; width: 1024px; height: 748px; background-color: blue;"></div>
 	<div id="topNav">
 		<a state="selected"   id="preparation"            display_type="prep"></a>
 		<a state="unselected" id="cook_present"           display_type="cook"></a>
