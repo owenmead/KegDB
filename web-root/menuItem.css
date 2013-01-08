@@ -1,5 +1,7 @@
 body {
-	background-image: url('images/paper.png')
+	background-image: url('images/paper.png');
+	margin: 0;
+	padding: 0;
 }
 
 div#smallInfo {
