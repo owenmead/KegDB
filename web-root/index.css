@@ -1,5 +1,5 @@
 body {
-	background-image: url('images/background.jpg');
+	background-image: url('images/background.jpg?v=1');
 	height: 748px; /* 768 - 20px top status bar */
 	width: 1024px;
 }
