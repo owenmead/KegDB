@@ -44,6 +44,21 @@
 		div#menuItemsCanvas { top: 81px; left: 161px; width: 210px; height: 636px; }
 		div#viewerContainer { top: 56px; left: 402px; width: 608px; height: 678px; }
 	</style>
+
+	<style type="text/css" media="screen and (orientation:portrait)">
+		body {
+			width : 768px;
+			height: 1004px;
+			background-image: url('site_media/images/background_portrait.jpg?v=1');
+		}
+		div#categoryCanvas, div#menuItemsCanvas { display: none; }
+		div#viewerContainer {
+			top: 62px;
+			left: 49px;
+			width: 693px;
+			height: 923px;
+		}
+	</style>
 </head>
 <body onLoad="menuItemManager.init(); categoryListManager.init(); topNavigationManager.init();">
 	<div id="topNav">
