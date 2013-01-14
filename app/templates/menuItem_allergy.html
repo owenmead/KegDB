@@ -9,7 +9,7 @@
 	{% for allergen in allergens_basic %}
 	<p>{{allergen}}</p>
 	{% endfor %}
-	<p><a href="javascript:document.getElementById('allergy_basic').style.display = 'none';document.getElementById('allergy_detail').style.display = 'table';" >More Details</a></p>
+	<p><a href="javascript:document.getElementById('allergy_basic').style.display = 'none';document.getElementById('allergy_detail').style.display = 'table';myScroll.refresh();" >More Details</a></p>
 </div>
 
 <table id="allergy_detail" style="display:none">
