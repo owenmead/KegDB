@@ -22,8 +22,8 @@ urlpatterns += patterns('',
 
 	# Used as a temp web server DO NOT USE IN PRODUCTION
 	# THIS WILL ALSO GRAB ANY URL NOT SPECIFIED ABOVE
-	(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
-	        {'document_root': settings.STATIC_DOC_ROOT}),
+	#(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
+	#        {'document_root': settings.STATIC_DOC_ROOT}),
 
 	# Uncomment the admin/doc line below and add 'django.contrib.admindocs'
 	# to INSTALLED_APPS to enable admin documentation:
